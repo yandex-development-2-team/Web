@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Testing //для будущих тестов
+coverage 
+
+# Misc //для приватных ключей
+.env
+.env.*
+!.env.example
