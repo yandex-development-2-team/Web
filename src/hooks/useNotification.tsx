@@ -1,14 +1,9 @@
 import { toast } from 'sonner';
 
-// для примера кастомизации. можно удалить
-import { AlarmCheckIcon } from 'lucide-react';
-
 type NotificationType = 'success' | 'error' | 'info';
 
-// можно использовать кастомные стили так или через toastOptions в NotificationProvider
 const notificationCustomConfig = {
   success: {
-    icon: <AlarmCheckIcon />,
     style: {
       background: '#f0fdf4',
       border: '1px solid #bbf7d0',
@@ -71,17 +66,7 @@ export function useNotification() {
     }
   };
 
-  // для автоматическокго управления уведомлениями, при разных состояних промиса
-  const promise = toast.promise;
-  // для ручного управления уведомленями во время загрузки
-  const loading = toast.loading;
-  // для ручного закрытия уведомлений
-  const dismiss = toast.dismiss;
-
   return {
     showNotification,
-    promise,
-    loading,
-    dismiss,
   };
 }
