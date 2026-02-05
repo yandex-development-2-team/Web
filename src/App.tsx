@@ -1,9 +1,7 @@
 import { cn } from '@/utils';
-import { useNotification } from '@/hooks/useNotification';
+import { showNotification } from '@/services/notification.service';
 
 function App() {
-  const { showNotification } = useNotification();
-
   const handelSuccess = () =>
     showNotification({
       message: 'Успех',
