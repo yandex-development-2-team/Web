@@ -2,4 +2,4 @@ const SupportPage = () => {
   return <h1>В разработке...</h1>;
 };
 
-export default SupportPage;
+export const Component = SupportPage;

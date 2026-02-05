@@ -2,4 +2,4 @@ const SystemSettingsPage = () => {
   return <h1>В разработке...</h1>;
 };
 
-export default SystemSettingsPage;
+export const Component = SystemSettingsPage;
