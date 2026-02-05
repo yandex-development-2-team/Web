@@ -74,7 +74,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ## Основной файл: src/api/axiosInstance.ts
 
 ```ts
-// src/api/axiosInstance.ts
 
 import axios, { AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios'
 import { toast } from 'sonner'
@@ -212,7 +211,6 @@ export default api
 В нём должно быть действие `logout`, которое очищает данные пользователя.
 
 ```ts
-// src/features/auth/authSlice.ts
 
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -266,7 +264,7 @@ export default authSlice.reducer
 Корневой файл конфигурации Redux store.
 
 ```ts
-// src/store.ts
+
 
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '@/features/auth/authSlice'
