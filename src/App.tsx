@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="p-5">
       <h1 className={cn('text-brand mb-4 bg-violet-300')}>
-        Админ панель. Яндекс развитие Проверка тестовых компонентов
+        Админ панель. Яндекс развитие
       </h1>
       <Outlet />
     </div>
