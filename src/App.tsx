@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router';
 import { cn } from '@/utils';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
       <h1 className={cn('text-brand mb-4 bg-violet-300')}>
         Админ панель. Яндекс развитие Проверка тестовых компонентов
       </h1>
+      <Outlet />
     </div>
   );
 }
