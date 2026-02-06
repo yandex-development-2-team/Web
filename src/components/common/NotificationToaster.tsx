@@ -1,11 +1,10 @@
 import { Toaster } from 'sonner';
 
-export function NotificationProvider() {
+export function NotificationToaster() {
   return (
     <Toaster
       position="bottom-left"
       expand={false}
-      richColors
       closeButton
       visibleToasts={3}
     />

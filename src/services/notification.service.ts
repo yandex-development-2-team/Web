@@ -38,29 +38,5 @@ export const showNotification = ({
   duration = 3000,
 }: NotificationOptions) => {
   const config = notificationCustomConfig[type];
-
-  const toastOptions = {
-    ...config,
-    duration,
-  };
-
-  switch (type) {
-    case 'success':
-      return toast.success(message, {
-        ...toastOptions,
-      });
-    case 'error':
-      return toast.error(message, {
-        ...toastOptions,
-      });
-    case 'info':
-      return toast.info(message, {
-        ...toastOptions,
-      });
-
-    default:
-      return toast.info(message, {
-        ...toastOptions,
-      });
-  }
+  return toast[type](message, { ...config, duration });
 };
