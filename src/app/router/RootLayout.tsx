@@ -1,7 +1,13 @@
 import { Outlet } from 'react-router';
+import { NotificationToaster } from '@/components/common';
 
 const RootLayout = () => {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <NotificationToaster />
+    </>
+  )
 };
 
 export default RootLayout;
