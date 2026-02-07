@@ -1,11 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-
-import '@/styles/globals.css';
-import App from '@/App';
 import { Toaster } from 'sonner';
+import App from '@/App';
 import { store } from '@/app/store';
+import '@/styles/globals.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
