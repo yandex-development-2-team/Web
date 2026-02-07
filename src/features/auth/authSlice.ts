@@ -2,9 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 interface AuthState {
   isAuthenticated: boolean
-  user: { role: 'admin' | 'manager' | null } | null
+  user: { role: 'admin' | 'manager' } | null
   token: string | null
-  // другие поля...
 }
 
 const initialState: AuthState = {
@@ -17,7 +16,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // ... другие редьюсеры (loginSuccess и т.д.)
     logout: (state) => {
       state.user = null
       state.token = null
