@@ -5,21 +5,21 @@ import { Slot } from "radix-ui"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/utils/index"
-import { Button } from "@/components/ui/Button/button"
-import { Separator } from "@/components/ui/Separator/separator"
+import { Button } from "@/components/ui/Button/Button"
+import { Separator } from "@/components/ui/Separator/Separator"
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/Sheet/sheet"
+} from "@/components/ui/Sheet/Sheet"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip/tooltip"
+} from "@/components/ui/Tooltip/Tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
