@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import '@/styles/globals.css';
 import App from '@/App';
 import { Toaster } from 'sonner';
-import { store } from '@/store';
+import { store } from '@/app/store';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
