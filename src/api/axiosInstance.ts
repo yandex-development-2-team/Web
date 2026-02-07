@@ -44,12 +44,14 @@ export const api: AxiosInstance = axios.create({
 })
 
 let isRefreshing = false
-let failedQueue: Array<{
-  resolve: (value?: unknown) => void
-  reject: (error: any) => void
-}> = []
+type QueueError = AxiosError | Error
+type QueueItem = {
+  resolve: () => void
+  reject: (error: QueueError) => void
+}
+let failedQueue: QueueItem[] = []
 
-const processQueue = (error: any = null) => {
+const processQueue = (error?: QueueError) => {
   failedQueue.forEach(({ resolve, reject }) => {
     if (error) reject(error)
     else resolve()
@@ -74,7 +76,7 @@ api.interceptors.response.use(
       }
 
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
           failedQueue.push({ resolve, reject })
         }).then(() => api(originalRequest))
       }
