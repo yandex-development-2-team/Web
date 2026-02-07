@@ -7,7 +7,7 @@ const RootLayout = () => {
       <Outlet />
       <NotificationToaster />
     </>
-  )
+  );
 };
 
 export default RootLayout;

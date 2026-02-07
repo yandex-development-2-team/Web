@@ -1,1 +1,1 @@
-export { NotificationToaster } from "./NotificationToaster"
+export { NotificationToaster } from './NotificationToaster';
