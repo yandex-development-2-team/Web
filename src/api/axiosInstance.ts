@@ -1,8 +1,8 @@
 import axios, { AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios'
+import { z } from 'zod'
 import { toast } from 'sonner'
 import { store } from '@/app/store'
 import { logout } from '@/features/auth/authSlice'
-import { z } from 'zod'
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean
