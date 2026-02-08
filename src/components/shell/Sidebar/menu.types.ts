@@ -1,4 +1,4 @@
-import type { Role } from './AppSidebar';
+import type {ROLE} from '@/mock/mock-user-info';
 
 type MenuSubItems = {
   title: string;
@@ -17,4 +17,4 @@ type MenuItemGroup = MenuItemBase & {
   url?: string;
 };
 type MenuItem = MenuItemLeaf | MenuItemGroup;
-export type MenuItems = Record<Role, MenuItem[]>;
+export type MenuItems = Record<ROLE, MenuItem[]>;

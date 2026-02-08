@@ -28,16 +28,15 @@ import {
 import ExitIcon from '@/assets/icons/exit.svg';
 import SupportIcon from '@/assets/icons/support.svg';
 import ArrowIcon from '@/assets/icons/arrow-down.svg';
+import MockIcon from '@/mock/mock-avatar.jpg';
 import { menu_items } from './menu.config';
 import { NavLink } from 'react-router';
-
-export type Role = 'ADMIN' | 'MANAGER';
+import { userInfo } from '@/mock/mock-user-info';
 
 export default function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
-  const role: Role = 'MANAGER';
-  const items = menu_items[role];
+  const items = menu_items[userInfo.role];
 
   return (
     <Sidebar collapsible="icon">
@@ -53,14 +52,14 @@ export default function AppSidebar() {
 
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="user" />
+            <AvatarImage src={MockIcon} alt="user" />
             <AvatarFallback>AN</AvatarFallback>
           </Avatar>
 
           {!collapsed && (
             <div>
-              <div>Анастасия</div>
-              <div>Администратор</div>
+              <div>{userInfo.name}</div>
+              <div>{userInfo.roleName}</div>
             </div>
           )}
         </div>
