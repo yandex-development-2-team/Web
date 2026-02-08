@@ -5,7 +5,7 @@ import BoxIcon from '@/assets/icons/control-box-60.svg';
 import SystemSettingsIcon from '@/assets/icons/system-settings.svg';
 import SpecialProjectsIcon from '@/assets/icons/special-projects.svg';
 import HomeIcon from '@/assets/icons/home.svg';
-import ControlUsersIcon from '@/assets/icons/control-users-60.svg'
+import ControlUsersIcon from '@/assets/icons/control-users-60.svg';
 import ControlTimesableIcon from '@/assets/icons/control-timetable-60.svg';
 import BoxesMenuIcon from '@/assets/icons/boxes-menu.svg';
 import ApplicationIcon from '@/assets/icons/application.svg';

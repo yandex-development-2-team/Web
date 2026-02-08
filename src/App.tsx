@@ -1,5 +1,6 @@
-import { AppSidebar } from "./components/shell/Sidebar";
-import { SidebarInset, SidebarProvider } from "./components/ui/Sidebar/Sidebar";
+import { Outlet } from 'react-router';
+import { AppSidebar } from './components/shell/Sidebar';
+import { SidebarInset, SidebarProvider } from './components/ui/Sidebar/Sidebar';
 
 function App() {
   return (
@@ -7,8 +8,7 @@ function App() {
       <AppSidebar />
 
       <SidebarInset>
-        <header>fdf</header>
-        <main>В разработке...</main>
+        <Outlet/>
       </SidebarInset>
     </SidebarProvider>
   );

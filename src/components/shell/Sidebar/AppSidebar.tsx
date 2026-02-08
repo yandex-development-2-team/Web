@@ -14,17 +14,22 @@ import {
   useSidebar,
 } from '@/components/ui/Sidebar/Sidebar';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/components/ui/Avatar/Avatar';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/Collapsible/Collapsible';
 
-import { ChevronRight } from 'lucide-react';
 import ExitIcon from '@/assets/icons/exit.svg';
 import SupportIcon from '@/assets/icons/support.svg';
+import ArrowIcon from '@/assets/icons/arrow-down.svg';
 import { menu_items } from './menu.config';
+import { NavLink } from 'react-router';
 
 export type Role = 'ADMIN' | 'MANAGER';
 
@@ -70,8 +75,15 @@ export default function AppSidebar() {
                   <Collapsible defaultOpen>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton>
+                        <img src={item.icon} alt="" />
                         {!collapsed && <span>{item.title}</span>}
-                        {!collapsed && <ChevronRight className="ml-auto" />}
+                        {!collapsed && (
+                          <img
+                            src={ArrowIcon}
+                            alt=""
+                            className="ml-auto rotate-180"
+                          />
+                        )}
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
 
@@ -81,7 +93,7 @@ export default function AppSidebar() {
                           {item.items?.map((sub) => (
                             <SidebarMenuSubItem key={sub.title}>
                               <SidebarMenuSubButton asChild>
-                                <a href={sub.url}>{sub.title}</a>
+                                <NavLink to={sub.url}>{sub.title}</NavLink>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           ))}
@@ -95,10 +107,10 @@ export default function AppSidebar() {
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url}>
-                    <img src={item.icon} alt="" className='h-6 w-6'/>
+                  <NavLink to={item.url}>
+                    <img src={item.icon} alt="" className="h-6 w-6" />
                     {!collapsed && <span>{item.title}</span>}
-                  </a>
+                  </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             );
@@ -110,14 +122,14 @@ export default function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton>
-              <img src={SupportIcon} alt="" className='w-6 h-6'/>
+              <img src={SupportIcon} alt="" className="h-6 w-6" />
               {!collapsed && <span>Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
 
           <SidebarMenuItem>
             <SidebarMenuButton>
-              <img src={ExitIcon} alt="" className='w-6 h-6'/>
+              <img src={ExitIcon} alt="" className="h-6 w-6" />
               {!collapsed && <span>Выход</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
