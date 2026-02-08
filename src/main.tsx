@@ -1,16 +1,13 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router';
+import { router } from '@/app/router';
 import { Toaster } from 'sonner';
-import App from '@/App';
-import { store } from '@/app/store';
 import '@/styles/globals.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
+    <RouterProvider router={router} />
       <Toaster richColors position="top-right" />
-    </Provider>
   </StrictMode>,
 );
