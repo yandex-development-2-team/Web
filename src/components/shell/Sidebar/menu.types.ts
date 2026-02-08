@@ -1,4 +1,4 @@
-import type {ROLE} from '@/mock/mock-user-info';
+import type { ROLE } from '@/mock/mock-user-info';
 
 type MenuSubItems = {
   title: string;

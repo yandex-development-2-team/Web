@@ -14,7 +14,7 @@ import AfishaIcon from '@/assets/icons/afisha.svg';
 export const menu_items: MenuItems = {
   ADMIN: [
     {
-      title: 'Коробочные решения',
+      title: 'Аналитика',
       icon: AnalyticsIcon,
       items: [
         {
@@ -40,17 +40,17 @@ export const menu_items: MenuItems = {
       ],
     },
     {
-      title: 'Управления коробками',
+      title: 'Управления\n коробками',
       url: ROUTES.BOX_MANAGEMENT,
       icon: BoxIcon,
     },
     {
-      title: 'Управление расписанием',
+      title: 'Управление\n расписанием',
       url: ROUTES.SCHEDULE_MANAGEMENT,
       icon: ControlTimesableIcon,
     },
     {
-      title: 'Управление правами и пользователями',
+      title: 'Управление правами\n и пользователями',
       url: ROUTES.USER_PERMISSIONS,
       icon: ControlUsersIcon,
     },

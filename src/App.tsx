@@ -8,7 +8,7 @@ function App() {
       <AppSidebar />
 
       <SidebarInset>
-        <Outlet/>
+        <Outlet />
       </SidebarInset>
     </SidebarProvider>
   );
