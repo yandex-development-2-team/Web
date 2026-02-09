@@ -55,7 +55,7 @@ export default function AppSidebar() {
   };
 
   return (
-    <Sidebar collapsible="icon" className="bg-(--color-card)">
+    <Sidebar collapsible="icon" className="bg-(--color-card) h-full overflow-x-hidden">
       <SidebarHeader className={sidebarStyles.header.root}>
         <div>
           <div className={sidebarStyles.header.row}>
