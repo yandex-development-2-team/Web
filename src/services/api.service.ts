@@ -1,7 +1,22 @@
 import axios, { AxiosError } from 'axios'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { emitAuthEvent } from '@/services/auth.service'
+import { ROUTES } from '@/app/router'
+import { navigate } from './navigation.service'
+
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '/api',
+  withCredentials: true,
+  timeout: 15_000,
+})
+
+api.interceptors.response.use(
+  response => response,
+  error => {
+    handleAxiosError(error)
+    return Promise.reject(error)
+  }
+)
 
 const ApiErrorSchema = z.object({
   message: z.string().optional(),
@@ -12,7 +27,7 @@ const ApiErrorSchema = z.object({
   ).optional(),
 })
 
-function getApiErrorMessage(data: unknown): string | null {
+const getApiErrorMessage = (data: unknown): string | null => {
   const parsed = ApiErrorSchema.safeParse(data)
   if (!parsed.success) return null
 
@@ -27,18 +42,19 @@ function getApiErrorMessage(data: unknown): string | null {
   return null
 }
 
-export const handleAxiosError = (error: AxiosError) => {
+const handleAxiosError = (error: AxiosError) => {
   const status = error.response?.status
 
   if (status === 401) {
-    emitAuthEvent('UNAUTHORIZED')
+    navigate(ROUTES.LOGIN)
   }
 
   if (status === 403) {
-    emitAuthEvent('FORBIDDEN')
-    toast.error('Нет доступа', {
-      description: 'Недостаточно прав для выполнения действия',
-    })
+    navigate(ROUTES.FORBIDDEN)
+  }
+
+  if (status === 404) {
+    navigate(ROUTES.NOT_FOUND)
   }
 
   if (status === 400) {
@@ -58,19 +74,3 @@ export const handleAxiosError = (error: AxiosError) => {
     })
   }
 }
-
-export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
-  withCredentials: true,
-  timeout: 15_000,
-})
-
-api.interceptors.response.use(
-  response => response,
-  error => {
-    handleAxiosError(error)
-    return Promise.reject(error)
-  }
-)
-
-export default api

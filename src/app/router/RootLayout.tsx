@@ -1,7 +1,12 @@
-import { Outlet } from 'react-router';
+import { useNavigate, Outlet } from 'react-router';
+import { setNavigate } from '@/services/navigation.service';
 import { NotificationToaster } from '@/components/common';
 
+
 const RootLayout = () => {
+  const navigateFn = useNavigate()
+  setNavigate(navigateFn)
+
   return (
     <>
       <Outlet />
