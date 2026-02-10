@@ -16,6 +16,7 @@ export const menu_items: MenuItems = {
     {
       title: 'Аналитика',
       icon: AnalyticsIcon,
+      url: ROUTES.ANALYTICS,
       items: [
         {
           title: 'Средняя посещаемость на коробку',
@@ -40,7 +41,7 @@ export const menu_items: MenuItems = {
       ],
     },
     {
-      title: 'Управления\n коробками',
+      title: 'Управление\n коробками',
       url: ROUTES.BOX_MANAGEMENT,
       icon: BoxIcon,
     },
@@ -55,7 +56,7 @@ export const menu_items: MenuItems = {
       icon: ControlUsersIcon,
     },
     {
-      title: 'Стстемные настройки',
+      title: 'Системные настройки',
       url: ROUTES.SYSTEM_SETTINGS,
       icon: SystemSettingsIcon,
     },

@@ -13,6 +13,7 @@ import {
   SidebarMenuSubButton,
   SidebarSeparator,
   useSidebar,
+  SidebarMenuSub,
 } from '@/components/ui/Sidebar/Sidebar';
 
 import {
@@ -34,7 +35,7 @@ import ExitIcon from '@/assets/icons/exit.svg';
 import SupportIcon from '@/assets/icons/support.svg';
 import ArrowIcon from '@/assets/icons/arrow-down.svg';
 import MockIcon from '@/mock/mock-avatar.jpg';
-import SidebarArrowIcon from '@/assets/icons/exit-arrow-right.svg';
+import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg';
 import UploadUserImage from '@/assets/icons/upload-24.svg';
 import { sidebarStyles } from './AppSidebar.styles';
 
@@ -55,7 +56,7 @@ export default function AppSidebar() {
   };
 
   return (
-    <Sidebar collapsible="icon" className="bg-(--color-card) h-full overflow-x-hidden">
+    <Sidebar collapsible="icon" className="bg-(--color-card) h-full overflow-x-hidden border-r-(--color-border-variant)">
       <SidebarHeader className={sidebarStyles.header.root}>
         <div>
           <div className={sidebarStyles.header.row}>
@@ -140,7 +141,7 @@ export default function AppSidebar() {
                             : sidebarStyles.menu.groupButtonIdle,
                         )}
                       >
-                        <img src={item.icon} alt="" />
+                        <img src={item.icon} alt="" className='ml-1'/>
                         {!collapsed && <span>{item.title}</span>}
                         {!collapsed && (
                           <img
@@ -157,10 +158,11 @@ export default function AppSidebar() {
 
                     {!collapsed && (
                       <CollapsibleContent>
+                      <SidebarMenuSub className={sidebarStyles.menu.subMenu}>
                         {item.items?.map((sub) => (
                           <SidebarMenuSubItem
                             key={sub.title}
-                            className={sidebarStyles.menu.subListItem}
+                            className={sidebarStyles.menu.subMenuList}
                           >
                             <SidebarMenuSubButton
                               asChild
@@ -176,6 +178,7 @@ export default function AppSidebar() {
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}
+                        </SidebarMenuSub>
                       </CollapsibleContent>
                     )}
                   </Collapsible>
