@@ -9,7 +9,7 @@ import ControlUsersIcon from '@/assets/icons/control-users-60.svg';
 import ControlTimesableIcon from '@/assets/icons/control-timetable-60.svg';
 import BoxesMenuIcon from '@/assets/icons/boxes-menu-60.svg';
 import ApplicationIcon from '@/assets/icons/application-60.svg';
-import AfishaIcon from '@/assets/icons/afisha-60.svg';
+import AfishaIcon from '@/assets/icons/afisha.svg';
 
 export const menu_items: MenuItems = {
   ADMIN: [

@@ -70,11 +70,7 @@ export default function AppSidebar() {
             />
 
             <SidebarTrigger className={sidebarStyles.header.trigger}>
-              <img
-                src={SidebarArrowIcon}
-                alt="Закрыть сайдбар"
-                className={sidebarStyles.header.triggerIcon}
-              />
+              <img src={SidebarArrowIcon} className={sidebarStyles.header.triggerIcon} />
             </SidebarTrigger>
           </div>
           <SidebarSeparator className={cn(sidebarStyles.separator.line)} />
@@ -96,11 +92,7 @@ export default function AppSidebar() {
               />
               <AvatarFallback>AN</AvatarFallback>
               <div className={sidebarStyles.user.avatarMask}>
-                <img
-                  src={UploadUserImage}
-                  alt="Изменить изображение пользователя"
-                  className="h-3 w-3"
-                />
+                <img src={UploadUserImage} className="h-3 w-3"/>
               </div>
             </Avatar>
           </label>
@@ -156,7 +148,8 @@ export default function AppSidebar() {
                           }
                           className="flex w-full items-center gap-3 pl-1"
                         >
-                          <img src={item.icon} alt="" className="ml-2 group-data-[collapsible=icon]:ml-0" />
+                          <img src={item.icon} alt="" className="ml-2 group-data-[collapsible=icon]:ml-0 active:bg-(--color-primary)" />
+                          
                           {!collapsed && (
                             <span className="ml-2">{item.title}</span>
                           )}
@@ -175,14 +168,10 @@ export default function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <img
-                            src={ArrowIcon}
-                            alt=""
-                            className={cn(
+                          <img src={ArrowIcon} className={cn(
                               sidebarStyles.menu.groupArrowIcon,
                               open ? 'rotate-180' : 'rotate-0',
-                            )}
-                          />
+                            )}/>
                         </button>
                       )}
                     </div>
@@ -228,7 +217,7 @@ export default function AppSidebar() {
                   className={sidebarStyles.menu.linkButton}
                 >
                   <NavLink to={item.url}>
-                    <img src={item.icon} alt="" className="h-15 w-15 group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:mt-1" />
+                    <img src={item.icon} alt="" className="w-15! h-15! group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:mt-1" />
                     {!collapsed && (
                       <span className="whitespace-pre-line!">{item.title}</span>
                     )}
@@ -245,14 +234,14 @@ export default function AppSidebar() {
         <SidebarMenu className='group-data-[collapsible=icon]:gap-3.25 group-data-[collapsible=icon]:ml-0.5'>
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
             <SidebarMenuButton className={sidebarStyles.footer.supportButton}>
-              <img src={SupportIcon} alt="" className="h-6 w-6 pt-0" />
+              <img src={SupportIcon} className="h-6 w-6 pt-0"/>
               {!collapsed && <span className="pl-2">Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
 
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
             <SidebarMenuButton className={sidebarStyles.footer.exitButton}>
-              <img src={ExitIcon} alt="" className="h-6 w-6" />
+              <img src={ExitIcon} className="h-6 w-6" />
               {!collapsed && <span className="pl-2">Выход</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
