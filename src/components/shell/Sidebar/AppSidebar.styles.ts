@@ -25,11 +25,11 @@ const footerButtonBase = cn(
 
 export const sidebarStyles = {
   header: {
-    root: cn('group-data-[collapsible=icon]:pb-5'),
+    root: cn('group-data-[collapsible=icon]:pb-5 pb-8.5'),
     row: cn(
       'flex items-center justify-between',
       'group-data-[collapsible=icon]:flex-col',
-      'pt-0!'
+      'pt-0!',
     ),
     brand: cn(
       'text-(--color-accent-strong)',
@@ -43,21 +43,18 @@ export const sidebarStyles = {
       'group-data-[collapsible=icon]:w-20',
       'group-data-[collapsible=icon]:h-12',
       'group-data-[collapsible=icon]:mt-4',
-      'hover:!bg-transparent hover:bg-(--color-background) duration-150',
+      'duration-150 hover:!bg-transparent hover:bg-(--color-background)',
       'pl-0.5',
-      'duration-150 hover:bg-(--color-background)!'
+      'duration-150 hover:bg-(--color-background)!',
     ),
-    triggerIcon: cn(
-      'w-5 h-5',
-      'group-data-[collapsible=icon]:rotate-0',
-    ),
+    triggerIcon: cn('h-5 w-5', 'group-data-[collapsible=icon]:rotate-0'),
   },
 
   user: {
     row: cn(
       'flex content-start gap-3',
       'h-12',
-      'mt-7 mb-2 ml-1',
+      'mt-8.75 mb-0.25 ml-1',
       'group-data-[collapsible=icon]:w-20!',
       'group-data-[collapsible=icon]:h-16!',
       'group-data-[collapsible=icon]:flex',
@@ -65,11 +62,12 @@ export const sidebarStyles = {
       'group-data-[collapsible=icon]:mt-2',
       'group-data-[collapsible=icon]:pr-2',
       'group-data-[collapsible=icon]:mb-0',
+      'group-data-[state=collapsed]:pt-1.5'
     ),
     avatar: cn(
       'h-10 w-10',
       'ring-1 ring-(--color-primary) ring-offset-3 ring-offset-(--color-card)',
-      'mt-0.75'
+      'mt-0.75',
     ),
     avatarImage: cn('object-cover'),
     name: cn('font-sans text-[16px] font-semibold'),
@@ -86,33 +84,28 @@ export const sidebarStyles = {
     groupItem: iconOnlyItem,
     linkButton: cn(
       'p-0! pl-2!',
-      'mt-3 ml-1 mb-1 h-15 content-center text-[16px]',
+      'mt-3 mb-1 ml-1 h-15 content-center text-[16px]',
       'rounded-xl data-[active=true]:bg-(--color-accent)',
       'transition-(--default-transition-timing-function) duration-150 data-[active=false]:hover:bg-(--color-background)',
       'group-data-[collapsible=icon]:w-20!',
       'group-data-[collapsible=icon]:h-15!',
-      'group-data-[collapsible=icon]:mb-0',
+      'group-data-[collapsible=icon]:m-0 pl-2',
       'group-data-[collapsible=icon]:p-0!',
       'group-data-[collapsible=icon]:pl-1.5!',
       'group-data-[collapsible=icon]:pb-1!',
     ),
     groupButton: cn(
-      'content-between',
-      'mt-0.75 ml-0 h-15 content-center pt-5 pb-5 text-[16px]',
+      'mt-0 h-15 content-center gap-0! pt-5 pb-5 text-[16px]',
       'group-data-[collapsible=icon]:w-20!',
       'group-data-[collapsible=icon]:h-15!',
     ),
-    groupButtonActive: cn('bg-(--color-accent) rounded-[12px]'),
+    groupButtonActive: cn('rounded-[12px] bg-(--color-accent)'),
     groupButtonIdle: cn('hover:bg-muted'),
-    groupArrowIcon: cn('ml-auto rotate-180 duration-150 w-[32px] h-[32px]'),
-    subMenu: cn(
-      'w-full pt-3.5 pl-21.25',
-      'm-0.25 gap-3.5',
-      'border-l-0'
-    ),
+    groupArrowIcon: cn('h-[25px] w-[25px] rotate-180 duration-150'),
+    subMenu: cn('w-full pt-3.5 pl-21.25', 'm-0.25 gap-3.5', 'border-l-0'),
     subMenuList: cn('flex'),
     subButton: cn(
-      'pl-3 pr-2 pt-2 pb-2',
+      'pt-2 pr-2 pb-2 pl-3',
       'relative h-13.5 w-full justify-start',
       'transition-colors duration-150 data-[active=false]:hover:bg-(--color-background)',
       'data-[active=true]:rounded-none',
@@ -124,7 +117,7 @@ export const sidebarStyles = {
     ),
     subLink: cn(
       'group-data-[collapsible=icon]:w-20',
-      'group-data-[collapsible=icon]:h-15'
+      'group-data-[collapsible=icon]:h-15',
     ),
   },
 
@@ -145,6 +138,16 @@ export const sidebarStyles = {
       'mt-3 ml-3.5',
       footerButtonBase,
       'group-data-[collapsible=icon]:m-0!',
+    ),
+  },
+
+  separator: {
+    line: cn('block', 'bg-(--color-background)', '!m-0'),
+    iconStyle: cn(
+      'hidden',
+      'group-data-[state=collapsed]:block',
+      'group-data-[collapsible=icon]:group-data-[state=collapsed]:bg-(--color-background)',
+      '!m-0',
     ),
   },
 };

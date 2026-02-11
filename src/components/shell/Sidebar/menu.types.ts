@@ -14,7 +14,7 @@ type MenuItemLeaf = MenuItemBase & {
 };
 type MenuItemGroup = MenuItemBase & {
   items: MenuSubItems[];
-  url?: string;
+  url: string;
 };
 type MenuItem = MenuItemLeaf | MenuItemGroup;
 export type MenuItems = Record<ROLE, MenuItem[]>;

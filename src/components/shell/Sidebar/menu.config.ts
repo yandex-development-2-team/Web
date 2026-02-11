@@ -68,7 +68,7 @@ export const menu_items: MenuItems = {
       icon: HomeIcon,
     },
     {
-      title: 'Коробочные решения',
+      title: 'Коробочные\n решения',
       url: ROUTES.BOX_SOLUTIONS,
       icon: BoxesMenuIcon,
     },

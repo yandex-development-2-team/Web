@@ -7,7 +7,7 @@ export type User = {
 };
 
 export const userInfo: User = {
-  role: 'ADMIN',
+  role: 'MANAGER',
   name: 'Анастасия',
   roleName: 'Администратор',
 };
