@@ -31,7 +31,7 @@ function Textarea({ className, id, label, error, ...props }: TextareaProps) {
         />
         {error && (
           <div
-            className={cn('xxs-text text-error absolute -bottom-4 left-0 z-10')}
+            className={cn('xxs-text text-error absolute -bottom-5 left-0 z-10')}
           >
             {error}
           </div>

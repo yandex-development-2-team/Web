@@ -41,7 +41,7 @@ function Input({
         />
 
         {error && (
-          <div className={cn('xxs-text text-error absolute -bottom-4 left-0')}>
+          <div className={cn('xxs-text text-error absolute -bottom-5 left-0')}>
             {error}
           </div>
         )}
