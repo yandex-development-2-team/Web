@@ -29,12 +29,12 @@ import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { userInfo } from '@/mock/mock-user-info';
 
-import ExitIcon from '@/assets/icons/exit.svg';
-import SupportIcon from '@/assets/icons/support.svg';
-import ArrowIcon from '@/assets/icons/arrow-down.svg';
+import ExitIcon from '@/assets/icons/exit.svg?react';
+import SupportIcon from '@/assets/icons/support.svg?react';
+import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
-import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg';
-import UploadUserImage from '@/assets/icons/upload-24.svg';
+import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
+import UploadUserImage from '@/assets/icons/upload-24.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
 import { useSidebar } from '@/hooks/use-sidebar';
 
@@ -70,7 +70,7 @@ export default function AppSidebar() {
             />
 
             <SidebarTrigger className={sidebarStyles.header.trigger}>
-              <img src={SidebarArrowIcon} className={sidebarStyles.header.triggerIcon} />
+              <SidebarArrowIcon className={sidebarStyles.header.triggerIcon} />
             </SidebarTrigger>
           </div>
           <SidebarSeparator className={cn(sidebarStyles.separator.line)} />
@@ -92,7 +92,7 @@ export default function AppSidebar() {
               />
               <AvatarFallback>AN</AvatarFallback>
               <div className={sidebarStyles.user.avatarMask}>
-                <img src={UploadUserImage} className="h-3 w-3"/>
+                <UploadUserImage className="h-3 w-3"/>
               </div>
             </Avatar>
           </label>
@@ -110,6 +110,7 @@ export default function AppSidebar() {
       <SidebarContent className='pt-2 group-data-[collapsible=icon]:pt-0'>
         <SidebarMenu>
           {items.map((item) => {
+            const Icon = item.icon;
             const key = item.title;
             const childActive = isActiveGroupChild(item);
             const selfActive = isActiveUrl(item.url);
@@ -146,12 +147,25 @@ export default function AppSidebar() {
                           onClick={() =>
                             setOpenGroup((p) => ({ ...p, [key]: true }))
                           }
-                          className="flex w-full items-center gap-3 pl-1"
+                          className={cn(
+                            "flex w-full items-center gap-3",
+                            'active:[&_.menuIcon]:text-(--color-primary)'
+                          )}
                         >
-                          <img src={item.icon} alt="" className="ml-2 group-data-[collapsible=icon]:ml-0 active:bg-(--color-primary)" />
+                          <div className='flex items-center justify-center h-15 w-15 p-2'>
+                            {Icon ? (
+                            <Icon
+                            className={cn(
+                              "menuIcon  ml-2 shrink-0 group-data-[collapsible=icon]:ml-0",
+                              selfActive ?? 'text-(--color-primary)',
+                              "stroke-current [&_path]:stroke-current",
+                              'viewBox'
+                            )} />
+                          ) : null}
+                          </div>
                           
                           {!collapsed && (
-                            <span className="ml-2">{item.title}</span>
+                            <span className="ml-3">{item.title}</span>
                           )}
                         </NavLink>
                       </SidebarMenuButton>
@@ -168,7 +182,7 @@ export default function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <img src={ArrowIcon} className={cn(
+                          <ArrowIcon className={cn(
                               sidebarStyles.menu.groupArrowIcon,
                               open ? 'rotate-180' : 'rotate-0',
                             )}/>
@@ -178,7 +192,7 @@ export default function AppSidebar() {
 
                     {!collapsed && (
                       <CollapsibleContent>
-                        <SidebarMenuSub className={sidebarStyles.menu.subMenu}>
+                        <SidebarMenuSub className={cn(sidebarStyles.menu.subMenu, 'pb-3.5')}>
                           {item.items?.map((sub) => (
                             <SidebarMenuSubItem
                               key={sub.title}
@@ -216,8 +230,21 @@ export default function AppSidebar() {
                   isActive={isActiveUrl(item.url)}
                   className={sidebarStyles.menu.linkButton}
                 >
-                  <NavLink to={item.url}>
-                    <img src={item.icon} alt="" className="w-15! h-15! group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:mt-1" />
+                  <NavLink to={item.url}
+                  className={cn(
+                    'active:[&_.menuIcon]:text-(--color-primary)'
+                  )}>
+                    <div className='flex items-center justify-center p-2 h-15 w-15'>
+                      {Icon ? (
+                      <Icon
+                      className={cn(
+                        "menuIcon group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:mt-1",
+                        selfActive ?? 'text-(--color-primary)',
+                        "stroke-current [&_path]:stroke-current"
+
+                      )} />
+                    ) : null}
+                    </div>
                     {!collapsed && (
                       <span className="whitespace-pre-line!">{item.title}</span>
                     )}
@@ -234,14 +261,16 @@ export default function AppSidebar() {
         <SidebarMenu className='group-data-[collapsible=icon]:gap-3.25 group-data-[collapsible=icon]:ml-0.5'>
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
             <SidebarMenuButton className={sidebarStyles.footer.supportButton}>
-              <img src={SupportIcon} className="h-6 w-6 pt-0"/>
+              <SupportIcon className={cn(
+                "h-6! w-6! pt-0",
+              )}/>
               {!collapsed && <span className="pl-2">Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
 
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
             <SidebarMenuButton className={sidebarStyles.footer.exitButton}>
-              <img src={ExitIcon} className="h-6 w-6" />
+              <ExitIcon className="h-6! w-6!" />
               {!collapsed && <span className="pl-2">Выход</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>

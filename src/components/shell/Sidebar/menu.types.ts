@@ -1,4 +1,7 @@
 import type { ROLE } from '@/mock/mock-user-info';
+import type { ComponentType, SVGProps } from 'react';
+
+export type MenuIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 type MenuSubItems = {
   title: string;
@@ -6,7 +9,7 @@ type MenuSubItems = {
 };
 type MenuItemBase = {
   title: string;
-  icon?: string;
+  icon?: MenuIcon;
 };
 type MenuItemLeaf = MenuItemBase & {
   url: string;

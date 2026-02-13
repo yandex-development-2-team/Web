@@ -84,7 +84,7 @@ export const sidebarStyles = {
     groupItem: iconOnlyItem,
     linkButton: cn(
       'p-0! pl-2!',
-      'mt-3 mb-1 ml-1 h-15 content-center text-[16px]',
+      'mb-4 ml-1 h-15 content-center text-[16px]',
       'rounded-xl data-[active=true]:bg-(--color-accent)',
       'transition-(--default-transition-timing-function) duration-150 data-[active=false]:hover:bg-(--color-background)',
       'group-data-[collapsible=icon]:w-20!',
