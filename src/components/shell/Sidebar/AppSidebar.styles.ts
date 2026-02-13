@@ -25,7 +25,7 @@ const footerButtonBase = cn(
 
 export const sidebarStyles = {
   header: {
-    root: cn('group-data-[collapsible=icon]:pb-5 pb-8.5'),
+    root: cn('pb-8.5 group-data-[collapsible=icon]:pb-5'),
     row: cn(
       'flex items-center justify-between',
       'group-data-[collapsible=icon]:flex-col',
@@ -62,7 +62,7 @@ export const sidebarStyles = {
       'group-data-[collapsible=icon]:mt-2',
       'group-data-[collapsible=icon]:pr-2',
       'group-data-[collapsible=icon]:mb-0',
-      'group-data-[state=collapsed]:pt-1.5'
+      'group-data-[state=collapsed]:pt-1.5',
     ),
     avatar: cn(
       'h-10 w-10',
@@ -89,7 +89,7 @@ export const sidebarStyles = {
       'transition-(--default-transition-timing-function) duration-150 data-[active=false]:hover:bg-(--color-background)',
       'group-data-[collapsible=icon]:w-20!',
       'group-data-[collapsible=icon]:h-15!',
-      'group-data-[collapsible=icon]:m-0 pl-2',
+      'pl-2 group-data-[collapsible=icon]:m-0',
       'group-data-[collapsible=icon]:p-0!',
       'group-data-[collapsible=icon]:pl-1.5!',
       'group-data-[collapsible=icon]:pb-1!',
