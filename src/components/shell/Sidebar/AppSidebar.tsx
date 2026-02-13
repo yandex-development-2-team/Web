@@ -77,13 +77,6 @@ export default function AppSidebar() {
         </div>
 
         <div className={sidebarStyles.user.row}>
-          <label className="cursor-pointer">
-            <Input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={() => {}}
-            />
             <Avatar className={cn(sidebarStyles.user.avatar, 'group/avatar')}>
               <AvatarImage
                 src={MockIcon}
@@ -91,11 +84,7 @@ export default function AppSidebar() {
                 className={sidebarStyles.user.avatarImage}
               />
               <AvatarFallback>AN</AvatarFallback>
-              <div className={sidebarStyles.user.avatarMask}>
-                <UploadUserImage className="h-3 w-3"/>
-              </div>
             </Avatar>
-          </label>
 
           {!collapsed && (
             <div className="ml-1">

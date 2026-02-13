@@ -72,11 +72,6 @@ export const sidebarStyles = {
     avatarImage: cn('object-cover'),
     name: cn('font-sans text-[16px] font-semibold'),
     role: cn('mt-1 text-[14px]'),
-    avatarMask: cn(
-      'pointer-events-none absolute inset-0 z-10 grid place-items-center',
-      'bg-black/50 opacity-0 transition-opacity duration-150 group-hover/avatar:opacity-100',
-      'shadow-[0_1px_4px_0_rgba(12, 12, 13, 0.005)]',
-    ),
   },
 
   menu: {
