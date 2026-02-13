@@ -30,3 +30,6 @@ coverage
 .env
 .env.*
 !.env.example
+
+# Памятка по командам Git
+git_command.txt
