@@ -7,8 +7,10 @@ import {
   type ComponentProps,
   type CSSProperties,
 } from 'react';
-
-import { SidebarContext, type SidebarContextValue } from '@/hooks/use-sidebar';
+import {
+  SidebarContext,
+  type SidebarContextValue,
+} from '@/hooks/sidebar-context';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

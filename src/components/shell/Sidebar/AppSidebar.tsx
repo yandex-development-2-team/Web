@@ -55,7 +55,7 @@ export default function AppSidebar() {
   return (
     <Sidebar
       collapsible="icon"
-      className="h-full overflow-x-hidden border-r-(--color-border-variant) bg-(--color-card) "
+      className="h-full overflow-x-hidden border-r-(--color-border-variant) bg-(--color-card)"
     >
       <SidebarHeader className={sidebarStyles.header.root}>
         <div>
@@ -75,14 +75,14 @@ export default function AppSidebar() {
         </div>
 
         <div className={sidebarStyles.user.row}>
-            <Avatar className={cn(sidebarStyles.user.avatar, 'group/avatar')}>
-              <AvatarImage
-                src={MockIcon}
-                alt="user"
-                className={sidebarStyles.user.avatarImage}
-              />
-              <AvatarFallback>AN</AvatarFallback>
-            </Avatar>
+          <Avatar className={cn(sidebarStyles.user.avatar, 'group/avatar')}>
+            <AvatarImage
+              src={MockIcon}
+              alt="user"
+              className={sidebarStyles.user.avatarImage}
+            />
+            <AvatarFallback>AN</AvatarFallback>
+          </Avatar>
 
           {!collapsed && (
             <div className="ml-1">
@@ -94,7 +94,7 @@ export default function AppSidebar() {
         <SidebarSeparator className={sidebarStyles.separator.line} />
       </SidebarHeader>
 
-      <SidebarContent className='pt-2 group-data-[collapsible=icon]:pt-0'>
+      <SidebarContent className="pt-2 group-data-[collapsible=icon]:pt-0">
         <SidebarMenu>
           {items.map((item) => {
             const Icon = item.icon;
@@ -135,22 +135,23 @@ export default function AppSidebar() {
                             setOpenGroup((p) => ({ ...p, [key]: true }))
                           }
                           className={cn(
-                            "flex w-full items-center gap-3",
-                            'active:[&_.menuIcon]:text-(--color-primary)'
+                            'flex w-full items-center gap-3',
+                            'active:[&_.menuIcon]:text-(--color-primary)',
                           )}
                         >
-                          <div className='flex items-center justify-center h-15 w-15 p-2'>
+                          <div className="flex h-15 w-15 items-center justify-center p-2">
                             {Icon ? (
-                            <Icon
-                            className={cn(
-                              "menuIcon  ml-2 shrink-0 group-data-[collapsible=icon]:ml-0",
-                              selfActive ?? 'text-(--color-primary)',
-                              "stroke-current [&_path]:stroke-current",
-                              'viewBox'
-                            )} />
-                          ) : null}
+                              <Icon
+                                className={cn(
+                                  'menuIcon ml-2 shrink-0 group-data-[collapsible=icon]:ml-0',
+                                  selfActive ?? 'text-(--color-primary)',
+                                  'stroke-current [&_path]:stroke-current',
+                                  'viewBox',
+                                )}
+                              />
+                            ) : null}
                           </div>
-                          
+
                           {!collapsed && (
                             <span className="ml-3">{item.title}</span>
                           )}
@@ -169,17 +170,21 @@ export default function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <ArrowIcon className={cn(
+                          <ArrowIcon
+                            className={cn(
                               sidebarStyles.menu.groupArrowIcon,
                               open ? 'rotate-180' : 'rotate-0',
-                            )}/>
+                            )}
+                          />
                         </button>
                       )}
                     </div>
 
                     {!collapsed && (
                       <CollapsibleContent>
-                        <SidebarMenuSub className={cn(sidebarStyles.menu.subMenu, 'pb-3.5')}>
+                        <SidebarMenuSub
+                          className={cn(sidebarStyles.menu.subMenu, 'pb-3.5')}
+                        >
                           {item.items?.map((sub) => (
                             <SidebarMenuSubItem
                               key={sub.title}
@@ -217,20 +222,22 @@ export default function AppSidebar() {
                   isActive={isActiveUrl(item.url)}
                   className={sidebarStyles.menu.linkButton}
                 >
-                  <NavLink to={item.url}
-                  className={cn(
-                    'active:[&_.menuIcon]:text-(--color-primary)'
-                  )}>
-                    <div className='flex items-center justify-center p-2 h-15 w-15'>
+                  <NavLink
+                    to={item.url}
+                    className={cn(
+                      'active:[&_.menuIcon]:text-(--color-primary)',
+                    )}
+                  >
+                    <div className="flex h-15 w-15 items-center justify-center p-2">
                       {Icon ? (
-                      <Icon
-                      className={cn(
-                        "menuIcon group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:mt-1",
-                        selfActive ?? 'text-(--color-primary)',
-                        "stroke-current [&_path]:stroke-current"
-
-                      )} />
-                    ) : null}
+                        <Icon
+                          className={cn(
+                            'menuIcon group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:ml-1',
+                            selfActive ?? 'text-(--color-primary)',
+                            'stroke-current [&_path]:stroke-current',
+                          )}
+                        />
+                      ) : null}
                     </div>
                     {!collapsed && (
                       <span className="whitespace-pre-line!">{item.title}</span>
@@ -243,14 +250,12 @@ export default function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      <SidebarFooter className='pb-8 group-data-[collapsible=icon]:pb-4.75'>
+      <SidebarFooter className="pb-8 group-data-[collapsible=icon]:pb-4.75">
         <SidebarSeparator className={sidebarStyles.separator.line} />
-        <SidebarMenu className='group-data-[collapsible=icon]:gap-3.25 group-data-[collapsible=icon]:ml-0.5'>
+        <SidebarMenu className="group-data-[collapsible=icon]:ml-0.5 group-data-[collapsible=icon]:gap-3.25">
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
             <SidebarMenuButton className={sidebarStyles.footer.supportButton}>
-              <SupportIcon className={cn(
-                "h-6! w-6! pt-0",
-              )}/>
+              <SupportIcon className={cn('h-6! w-6! pt-0')} />
               {!collapsed && <span className="pl-2">Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
