@@ -10,7 +10,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/Tooltip/Tooltip';
 import { type ComponentProps } from 'react';
-import { useSidebar } from '@/hooks/use-sidebar';
+import { useSidebar } from '@/app/providers/Sidebar/use-sidebar';
 
 function Sidebar({
   side = 'left',

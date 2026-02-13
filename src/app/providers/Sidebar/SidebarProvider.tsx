@@ -10,7 +10,7 @@ import {
 import {
   SidebarContext,
   type SidebarContextValue,
-} from '@/hooks/sidebar-context';
+} from '@/app/providers/Sidebar/sidebar-context';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

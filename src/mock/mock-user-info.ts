@@ -1,13 +1,32 @@
 export type ROLE = 'ADMIN' | 'MANAGER';
 
-export type User = {
-  role: ROLE;
+type UserBase = {
   name: string;
   roleName: string;
 };
 
-export const userInfo: User = {
-  role: 'ADMIN',
+type Admin = UserBase & {
+  role: 'ADMIN';
+};
+
+type Manager = UserBase & {
+  grade: number;
+  role: 'MANAGER';
+}
+
+export type User = Admin | Manager;
+
+export const adminInfo: User = {
   name: 'Анастасия',
+  role: 'ADMIN',
   roleName: 'Администратор',
 };
+
+export const managerInfo: User = {
+  name: 'Анастасия',
+  role: "MANAGER",
+  roleName: 'Менеджер',
+  grade: 2
+}
+
+export const userInfo: User = adminInfo;

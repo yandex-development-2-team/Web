@@ -34,7 +34,7 @@ import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
-import { useSidebar } from '@/hooks/use-sidebar';
+import { useSidebar } from '@/app/providers/Sidebar/use-sidebar';
 
 export default function AppSidebar() {
   const { state } = useSidebar();
@@ -87,7 +87,9 @@ export default function AppSidebar() {
           {!collapsed && (
             <div className="ml-1">
               <div className={sidebarStyles.user.name}>{userInfo.name}</div>
-              <div className={sidebarStyles.user.role}>{userInfo.roleName}</div>
+              <div className={sidebarStyles.user.role}>
+                {userInfo.role === 'MANAGER' ? `${userInfo.roleName} ${userInfo.grade} звена` : userInfo.roleName}
+              </div>
             </div>
           )}
         </div>
