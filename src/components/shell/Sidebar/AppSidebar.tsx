@@ -24,7 +24,6 @@ import {
   Collapsible,
   CollapsibleContent,
 } from '@/components/ui/Collapsible/Collapsible';
-import { Input } from '@/components/ui/Input/Input';
 import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { userInfo } from '@/mock/mock-user-info';
@@ -34,7 +33,6 @@ import SupportIcon from '@/assets/icons/support.svg?react';
 import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
-import UploadUserImage from '@/assets/icons/upload-24.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
 import { useSidebar } from '@/hooks/use-sidebar';
 
