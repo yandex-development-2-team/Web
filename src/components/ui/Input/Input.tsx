@@ -1,5 +1,4 @@
 import { useId, type ComponentProps } from 'react';
-
 import { cn } from '@/utils';
 import { Label } from '@/components/ui/Label';
 
@@ -21,7 +20,7 @@ function Input({
 
   return (
     <div className={cn('flex min-w-18 flex-col gap-1')}>
-      <Label htmlFor={inputId}>{label}</Label>
+      {label && <Label htmlFor={inputId}>{label}</Label>}
       <div className={cn('relative')}>
         <input
           id={inputId}
@@ -40,8 +39,13 @@ function Input({
           )}
           {...props}
         />
+
+        {error && (
+          <div className={cn('xxs-text text-error absolute -bottom-4 left-0')}>
+            {error}
+          </div>
+        )}
       </div>
-      {error && <div className={cn('xxs-text text-error')}>{error}</div>}
     </div>
   );
 }
