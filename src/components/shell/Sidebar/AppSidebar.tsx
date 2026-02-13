@@ -57,7 +57,7 @@ export default function AppSidebar() {
   return (
     <Sidebar
       collapsible="icon"
-      className="h-full overflow-x-hidden border-r-(--color-border-variant) bg-(--color-card)"
+      className="h-full overflow-x-hidden border-r-(--color-border-variant) bg-(--color-card) "
     >
       <SidebarHeader className={sidebarStyles.header.root}>
         <div>
@@ -70,10 +70,7 @@ export default function AppSidebar() {
             />
 
             <SidebarTrigger className={sidebarStyles.header.trigger}>
-              <img
-                src={SidebarArrowIcon}
-                className={sidebarStyles.header.triggerIcon}
-              />
+              <img src={SidebarArrowIcon} className={sidebarStyles.header.triggerIcon} />
             </SidebarTrigger>
           </div>
           <SidebarSeparator className={cn(sidebarStyles.separator.line)} />
@@ -95,7 +92,7 @@ export default function AppSidebar() {
               />
               <AvatarFallback>AN</AvatarFallback>
               <div className={sidebarStyles.user.avatarMask}>
-                <img src={UploadUserImage} className="h-3 w-3" />
+                <img src={UploadUserImage} className="h-3 w-3"/>
               </div>
             </Avatar>
           </label>
@@ -110,7 +107,7 @@ export default function AppSidebar() {
         <SidebarSeparator className={sidebarStyles.separator.line} />
       </SidebarHeader>
 
-      <SidebarContent className="pt-2 group-data-[collapsible=icon]:pt-0">
+      <SidebarContent className='pt-2 group-data-[collapsible=icon]:pt-0'>
         <SidebarMenu>
           {items.map((item) => {
             const key = item.title;
@@ -151,12 +148,8 @@ export default function AppSidebar() {
                           }
                           className="flex w-full items-center gap-3 pl-1"
                         >
-                          <img
-                            src={item.icon}
-                            alt=""
-                            className="ml-2 group-data-[collapsible=icon]:ml-0 active:bg-(--color-primary)"
-                          />
-
+                          <img src={item.icon} alt="" className="ml-2 group-data-[collapsible=icon]:ml-0 active:bg-(--color-primary)" />
+                          
                           {!collapsed && (
                             <span className="ml-2">{item.title}</span>
                           )}
@@ -175,13 +168,10 @@ export default function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <img
-                            src={ArrowIcon}
-                            className={cn(
+                          <img src={ArrowIcon} className={cn(
                               sidebarStyles.menu.groupArrowIcon,
                               open ? 'rotate-180' : 'rotate-0',
-                            )}
-                          />
+                            )}/>
                         </button>
                       )}
                     </div>
@@ -227,11 +217,7 @@ export default function AppSidebar() {
                   className={sidebarStyles.menu.linkButton}
                 >
                   <NavLink to={item.url}>
-                    <img
-                      src={item.icon}
-                      alt=""
-                      className="h-15! w-15! group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:ml-1"
-                    />
+                    <img src={item.icon} alt="" className="w-15! h-15! group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:mt-1" />
                     {!collapsed && (
                       <span className="whitespace-pre-line!">{item.title}</span>
                     )}
@@ -243,12 +229,12 @@ export default function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      <SidebarFooter className="pb-8 group-data-[collapsible=icon]:pb-4.75">
+      <SidebarFooter className='pb-8 group-data-[collapsible=icon]:pb-4.75'>
         <SidebarSeparator className={sidebarStyles.separator.line} />
-        <SidebarMenu className="group-data-[collapsible=icon]:ml-0.5 group-data-[collapsible=icon]:gap-3.25">
+        <SidebarMenu className='group-data-[collapsible=icon]:gap-3.25 group-data-[collapsible=icon]:ml-0.5'>
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
             <SidebarMenuButton className={sidebarStyles.footer.supportButton}>
-              <img src={SupportIcon} className="h-6 w-6 pt-0" />
+              <img src={SupportIcon} className="h-6 w-6 pt-0"/>
               {!collapsed && <span className="pl-2">Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
