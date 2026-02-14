@@ -9,9 +9,9 @@ export default function LoginPage() {
         {/* Весь контент внутри одного flex-контейнера с центрированием */}
         <div className="flex w-full flex-col items-center justify-center p-10 bg-secondary rounded-lg">
           {/* Логотип */}
-          <div className="gap-10 absolute left-17 top-6 text-left">
+          <div className="absolute left-17 top-6 text-left">
             <h1
-              className="text-[36px] font-bold tracking-normal text-accent-strong 
+              className="h1 text-accent-strong 
               text-stroke-white leading-none text-shadow-md font-arsenal"
             >
               Event
