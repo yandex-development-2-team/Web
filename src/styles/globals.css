@@ -125,6 +125,10 @@
     @apply bg-background text-foreground font-sans text-[16px] leading-[22px];
   }
 
+  h1 {
+    @apply text-[36px] leading-[49px] font-bold;
+  }
+
   h2 {
     @apply text-[32px] leading-[44px] font-bold;
   }
@@ -169,7 +173,7 @@
 
   .text-stroke-white {
     -webkit-text-stroke: 1px #FFFFFF;
-    -webkit-text-fill-color: var(--accent-strong); /* жёлтый текст */
-    color: var(--accent-strong); /* fallback для не-webkit браузеров */
+    -webkit-text-fill-color: var(--accent-strong);
+    color: var(--accent-strong);
   }
 }
