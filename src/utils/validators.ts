@@ -1,9 +1,5 @@
 import * as z from 'zod'
 
-// ----------------------
-// Login Form Validation
-// ----------------------
-
 export const loginSchema = z.object({
   login: z.string().min(1, 'Логин обязателен'),
   password: z
@@ -13,5 +9,4 @@ export const loginSchema = z.object({
     .regex(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру'),
 })
 
-// Тип формы
 export type LoginFormValues = z.infer<typeof loginSchema>
