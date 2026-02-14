@@ -4,20 +4,19 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff } from 'lucide-react'
 import { toast } from 'sonner'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/Input/Input'
+import { Button } from '@/components/ui/Button/Button'
 import { loginSchema, type LoginFormValues } from '@/utils/validators'
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null
-  return <p className="text-sm text-destructive mt-1">{message}</p>
-}
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<LoginFormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: { login: '', password: '' },
     mode: 'onChange',
@@ -27,9 +26,13 @@ export default function LoginForm() {
     setIsLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 1500))
-      toast.success('Вход выполнен', { description: `Добро пожаловать, ${data.login}!` })
+      toast.success('Вход выполнен', {
+        description: `Добро пожаловать, ${data.login}!`,
+      })
     } catch {
-      toast.error('Ошибка входа', { description: 'Неверный логин или пароль' })
+      toast.error('Ошибка входа', {
+        description: 'Неверный логин или пароль',
+      })
     } finally {
       setIsLoading(false)
     }
@@ -37,64 +40,66 @@ export default function LoginForm() {
 
   return (
     <Card variant="flat" className="w-full border-0 rounded-none shadow-none">
-      <CardHeader className="">
-        <CardTitle className="mb-13">
+      <CardHeader>
+        <CardTitle className="mb-12 leading-none">
           Вход
         </CardTitle>
       </CardHeader>
 
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-
-          <div className="">
+          <div className="flex flex-col gap-1">
             <Input
-              id="login"
               placeholder="Логин"
               aria-invalid={!!errors.login}
               {...register('login')}
-              className="rounded-lg h-11"
+              className="h-11 rounded-lg bg-input border-border placeholder:text-border placeholder:italic focus:border-ring focus:ring-0"
             />
-            <FieldError message={errors.login?.message} />
+            {errors.login && (
+              <p className="text-xs text-destructive">
+                {errors.login.message}
+              </p>
+            )}
           </div>
-
-          <div className="">
-            <div className="relative">
+          <div className="flex flex-col gap-1">
+            <div className="relative mb-1">
               <Input
-                id="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Введите пароль"
                 aria-invalid={!!errors.password}
                 {...register('password')}
-                className="rounded-xl h-11 pr-10"
+                className="h-11 border-border rounded-xl pr-10"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(p => !p)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
               </button>
             </div>
-            <FieldError message={errors.password?.message} />
-            <div className="text-left mt-1">
-              <a
-                href="#"
-                className="block text-xs text-muted-foreground hover:underline"
-              >
-                Забыли пароль?
-              </a>
-            </div>
-          </div>
 
+            {errors.password && (
+              <p className="text-xs text-destructive">
+                {errors.password.message}
+              </p>
+            )}
+
+            <a
+              href="#"
+              className="block text-left text-muted-foreground text-xs hover:underline"
+            >
+              Забыли пароль?
+            </a>
+          </div>
           <Button
             type="submit"
-            size="lg"
             disabled={!isValid || isLoading}
-            className="w-full h-12 mt-5  font-semibold text-base leading-4 items-center justify-center transition-all duration-200 active:translate-y-[1px]"
+            className="w-full h-12 mt-5 leading-4 items-center justify-center transition-all duration-200 active:translate-y-[1px]"
           >
             {isLoading ? (
               <span className="flex items-center gap-2">
-                <div className="h-5 w-5 border-5 border-t-transparent border-foreground rounded-full animate-spin" />
+                <div className="h-5 w-5 border-4 border-t-transparent border-foreground rounded-full animate-spin" />
                 Вход...
               </span>
             ) : (
