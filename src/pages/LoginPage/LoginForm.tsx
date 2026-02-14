@@ -46,7 +46,6 @@ export default function LoginForm() {
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 
-          {/* Login */}
           <div className="">
             <Input
               id="login"
@@ -58,7 +57,6 @@ export default function LoginForm() {
             <FieldError message={errors.login?.message} />
           </div>
 
-          {/* Password */}
           <div className="">
             <div className="relative">
               <Input
@@ -88,7 +86,6 @@ export default function LoginForm() {
             </div>
           </div>
 
-          {/* Submit */}
           <Button
             type="submit"
             size="lg"
