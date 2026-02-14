@@ -10,8 +10,10 @@ export default function LoginPage() {
         <div className="flex w-full flex-col items-center justify-center p-10 bg-secondary rounded-lg">
           {/* Логотип */}
           <div className="gap-10 absolute left-17 top-6 text-left">
-            <h1 className="text-[36px] font-bold tracking-normal text-accent-strong 
-            text-stroke-white leading-none text-shadow-md font-arsenal">
+            <h1
+              className="text-[36px] font-bold tracking-normal text-accent-strong 
+              text-stroke-white leading-none text-shadow-md font-arsenal"
+            >
               Event
             </h1>
           </div>
@@ -36,4 +38,4 @@ export default function LoginPage() {
   )
 }
 
-export const Component = LoginPage;
+export const Component = LoginPage
