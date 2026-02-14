@@ -2,29 +2,14 @@ import { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
+
 import { Eye, EyeOff } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-
-
-// ----------------------
-// Validation Schema
-// ----------------------
-
-const loginSchema = z.object({
-  login: z.string().min(1, 'Логин обязателен'),
-  password: z
-    .string()
-    .min(8, 'Пароль должен содержать минимум 8 символов')
-    .regex(/[A-Za-z]/, 'Пароль должен содержать хотя бы одну букву')
-    .regex(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру'),
-})
-
-type LoginFormValues = z.infer<typeof loginSchema>
+import { loginSchema, type LoginFormValues } from '@/utils/validators'
 
 // ----------------------
 // Reusable constants
@@ -46,15 +31,12 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<LoginFormValues>({
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: { login: '', password: '' },
     mode: 'onChange',
   })
+  
 
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true)
