@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Eye, EyeOff } from 'lucide-react'
+
 import { toast } from 'sonner'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card/Card'
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
 import { loginSchema, type LoginFormValues } from '@/utils/validators'
+
+import EyeIcon from '@/assets/icons/eye.svg'
+import EyeOffIcon from '@/assets/icons/eye-off.svg'
+
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -73,9 +77,13 @@ export default function LoginForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(p => !p)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 transition-colors"
               >
-                {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                <img
+                  src={showPassword ? EyeOffIcon : EyeIcon}
+                  alt=""
+                  className="w-8 h-8"
+                />
               </button>
             </div>
 
