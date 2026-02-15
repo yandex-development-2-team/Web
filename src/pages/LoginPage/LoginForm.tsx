@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { toast } from 'sonner'
+import { ROUTES } from '@/app/router'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card/Card'
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
+import { login } from '@/services/auth.service'
+import { navigate } from '@/services/navigation.service'
 import { loginSchema, type LoginFormValues } from '@/utils/validators'
 
 import EyeIcon from '@/assets/icons/eye.svg'
 import EyeOffIcon from '@/assets/icons/eye-off.svg'
-
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -27,21 +28,15 @@ export default function LoginForm() {
   })
 
   const onSubmit = async (data: LoginFormValues) => {
-    setIsLoading(true)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      toast.success('Вход выполнен', {
-        description: `Добро пожаловать, ${data.login}!`,
-      })
-    } catch {
-      toast.error('Ошибка входа', {
-        description: 'Неверный логин или пароль',
-      })
+      setIsLoading(true)
+      await login(data)
+      navigate(ROUTES.HOME)
+
     } finally {
       setIsLoading(false)
     }
   }
-
   return (
     <Card variant="flat" className="w-full border-0 rounded-none shadow-none">
       <CardHeader>
