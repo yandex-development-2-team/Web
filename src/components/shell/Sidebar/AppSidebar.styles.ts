@@ -14,7 +14,7 @@ const iconOnlyItemWithCenter = cn(
 
 const footerButtonBase = cn(
   'h-10 text-[16px]',
-  'p-0! pl-1.5!',
+  'p-0! pl-5!',
   'transition-(--default-transition-timing-function) duration-150 data-[active=false]:hover:bg-(--color-background)',
   'group-data-[collapsible=icon]:w-15!',
   'group-data-[collapsible=icon]:h-10!',
@@ -25,16 +25,22 @@ const footerButtonBase = cn(
 
 export const sidebarStyles = {
   header: {
-    root: cn('pb-8.5 group-data-[collapsible=icon]:pb-5'),
+    root: cn(
+      'pb-8.5 group-data-[collapsible=icon]:pb-5',
+      'pt-0',
+      'group-data-[collapsible=icon]:mt-5',
+      'group-data-[collapsible=icon]:mt-2',
+    ),
     row: cn(
       'flex items-center justify-between',
       'group-data-[collapsible=icon]:flex-col',
-      'pt-0!',
+      'h-14 pt-0!',
+      'group-data-[collapsible=icon]:h-27',
     ),
     brand: cn(
       'text-(--color-accent-strong)',
       'font-arsenal text-[36px] font-bold',
-      'h-11.25 content-center pb-1.5',
+      'h-11.25 content-center',
     ),
     trigger: cn(
       'h-12 w-12',
@@ -43,13 +49,16 @@ export const sidebarStyles = {
       'bg-(--color-card)',
       'group-data-[collapsible=icon]:w-20',
       'group-data-[collapsible=icon]:h-12',
-      'group-data-[collapsible=icon]:mt-4',
+      'group-data-[collapsible=icon]:mt-2',
+      'group-data-[collapsible=icon]:pl-2',
       'duration-150 hover:!bg-transparent hover:bg-(--color-background)',
       'duration-150 hover:bg-(--color-background)!',
     ),
     triggerIcon: cn(
       'h-5 w-5',
       'group-data-[collapsible=icon]:rotate-0',
+      'group-data-[collapsible=icon]:rotate-90',
+      'h-3! group-data-[collapsible=icon]:w-3!',
     ),
   },
 
@@ -71,6 +80,7 @@ export const sidebarStyles = {
       'h-10 w-10',
       'ring-1 ring-(--color-primary) ring-offset-3 ring-offset-(--color-card)',
       'mt-0.75',
+      'group-data-[collapsible=icon]:mt-2',
     ),
     avatarImage: cn('object-cover'),
     name: cn('font-sans text-[16px] font-semibold'),
@@ -81,8 +91,8 @@ export const sidebarStyles = {
     item: cn(iconOnlyItem, 'group-data-[collapsible=icon]:mb-3!'),
     groupItem: iconOnlyItem,
     linkButton: cn(
-      'p-0! pl-2!',
-      'mb-4 ml-1 h-15 content-center text-[16px]',
+      'p-0! pl-3!',
+      'mb-4 h-15 content-center text-[16px]',
       'rounded-xl data-[active=true]:bg-(--color-accent)',
       'transition-(--default-transition-timing-function) duration-150 data-[active=false]:hover:bg-(--color-background)',
       'group-data-[collapsible=icon]:w-20!',
@@ -97,11 +107,9 @@ export const sidebarStyles = {
     groupButton: cn(
       'mt-0 h-15 content-center gap-0! pt-5 pb-5 text-[16px]',
       'group-data-[collapsible=icon]:w-20!',
-      'group-data-[collapsible=icon]:h-15!'
+      'group-data-[collapsible=icon]:h-15!',
     ),
-    groupButtonActive: cn(
-      'rounded-[12px] bg-(--color-accent)',
-    ),
+    groupButtonActive: cn('rounded-[12px] bg-(--color-accent)'),
     groupButtonIdle: cn('hover:bg-muted'),
     groupArrowIcon: cn('h-[18px] w-[18px] rotate-180 duration-150'),
     subMenu: cn('w-full pt-3.5 pl-21.25', 'm-0.25 gap-3.5', 'border-l-0'),
@@ -129,7 +137,6 @@ export const sidebarStyles = {
     item: iconOnlyItemWithCenter,
 
     supportButton: cn(
-      'ml-3.5',
       'cursor-pointer',
       footerButtonBase,
       'group-data-[collapsible=icon]:m-0',
@@ -140,7 +147,6 @@ export const sidebarStyles = {
       'group-data-[collapsible=icon]:m-0!',
     ),
     exitButton: cn(
-      'mt-3 ml-3.5',
       'cursor-pointer',
       footerButtonBase,
       'group-data-[collapsible=icon]:m-0!',

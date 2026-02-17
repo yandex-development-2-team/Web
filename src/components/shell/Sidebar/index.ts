@@ -1,2 +1,2 @@
 export { AppSidebar } from './AppSidebar';
-export { SidebarInset } from "./ui"
+export { SidebarInset } from './ui';

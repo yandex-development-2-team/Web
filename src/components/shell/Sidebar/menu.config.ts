@@ -1,16 +1,16 @@
 import type { MenuItems } from './menu.types';
 import { ROUTES } from '@/app/router';
-import { 
-  AnalyticsIcon, 
-  HomeIcon, 
-  BoxIcon, 
-  SystemSettingsIcon, 
-  SpecialProjectsIcon, 
-  ControlUsersIcon, 
+import {
+  AnalyticsIcon,
+  HomeIcon,
+  BoxIcon,
+  SystemSettingsIcon,
+  SpecialProjectsIcon,
+  ControlUsersIcon,
   ControlTimesableIcon,
-  BoxesMenuIcon, 
+  BoxesMenuIcon,
   ApplicationIcon,
-  AfishaIcon
+  AfishaIcon,
 } from '@/assets/icons';
 
 export const menu_items: MenuItems = {

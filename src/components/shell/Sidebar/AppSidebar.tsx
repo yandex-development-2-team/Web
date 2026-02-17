@@ -1,15 +1,8 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import { useSidebar } from '@/app/providers/Sidebar';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/shell/Avatar';
-import {
-  Collapsible,
-  CollapsibleContent,
-} from '@/components/ui/Collapsible';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/shell/Avatar';
+import { Collapsible, CollapsibleContent } from '@/components/ui/Collapsible';
 import {
   Sidebar,
   SidebarHeader,
@@ -64,15 +57,25 @@ export function AppSidebar() {
               className={cn(sidebarStyles.separator.iconStyle)}
             />
 
-            <SidebarTrigger size={'icon-md'} className={sidebarStyles.header.trigger}>
+            <SidebarTrigger
+              size={'icon-md'}
+              className={sidebarStyles.header.trigger}
+            >
               {collapsed ? (
                 <ArrowDownIcon className={sidebarStyles.header.triggerIcon} />
               ) : (
-                <SidebarArrowIcon className={sidebarStyles.header.triggerIcon} />
+                <SidebarArrowIcon
+                  className={sidebarStyles.header.triggerIcon}
+                />
               )}
             </SidebarTrigger>
           </div>
-          <SidebarSeparator className={cn(sidebarStyles.separator.line, 'group-data-[collapsible=icon]:hidden')} />
+          <SidebarSeparator
+            className={cn(
+              sidebarStyles.separator.line,
+              'group-data-[collapsible=icon]:hidden',
+            )}
+          />
         </div>
 
         <div className={sidebarStyles.user.row}>
@@ -114,7 +117,7 @@ export function AppSidebar() {
               return (
                 <SidebarMenuItem
                   key={item.title}
-                  className={sidebarStyles.menu.groupItem}
+                  className={cn(sidebarStyles.menu.groupItem, 'mb-3.75')}
                 >
                   <Collapsible
                     defaultOpen
@@ -126,7 +129,8 @@ export function AppSidebar() {
                     <div className="relative">
                       <SidebarMenuButton
                         asChild
-                        className={cn('active:bg-(--color-card)',
+                        className={cn(
+                          'active:bg-(--color-card)',
                           sidebarStyles.menu.groupButton,
                           highlightParent
                             ? sidebarStyles.menu.groupButtonActive
@@ -188,7 +192,7 @@ export function AppSidebar() {
                     {!collapsed && (
                       <CollapsibleContent>
                         <SidebarMenuSub
-                          className={cn(sidebarStyles.menu.subMenu, 'pb-3.5')}
+                          className={cn(sidebarStyles.menu.subMenu)}
                         >
                           {item.items?.map((sub) => (
                             <SidebarMenuSubItem
@@ -255,14 +259,17 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      <SidebarFooter className="pb-8 group-data-[collapsible=icon]:pb-4.75">
+      <SidebarFooter className="pb-5.25 group-data-[collapsible=icon]:pb-4.75">
         <SidebarSeparator className={sidebarStyles.separator.line} />
-        <SidebarMenu className="group-data-[collapsible=icon]:ml-0.5 group-data-[collapsible=icon]:gap-3.25">
+        <SidebarMenu className="mt-2 gap-3.5 group-data-[collapsible=icon]:ml-0.5 group-data-[collapsible=icon]:gap-3.25">
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
-            <SidebarMenuButton className={cn(sidebarStyles.footer.supportButton, 'active:[&_svg]:stroke-(--color-primary)')}>
-              <SupportIcon className={cn(
-                'h-6! w-6! pt-0',
-                )} />
+            <SidebarMenuButton
+              className={cn(
+                sidebarStyles.footer.supportButton,
+                'active:[&_svg]:stroke-(--color-primary)',
+              )}
+            >
+              <SupportIcon className={cn('h-6! w-6!')} />
               {!collapsed && <span className="pl-2">Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>

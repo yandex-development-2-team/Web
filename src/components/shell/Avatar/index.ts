@@ -1,1 +1,8 @@
-export { Avatar, AvatarFallback, AvatarImage, AvatarBadge, AvatarGroup, AvatarGroupCount, } from "./Avatar"
+export {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  AvatarBadge,
+  AvatarGroup,
+  AvatarGroupCount,
+} from './Avatar';

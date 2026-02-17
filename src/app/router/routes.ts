@@ -28,8 +28,8 @@ export const ROUTES = {
   USER_PERMISSIONS: '/user-permissions',
   SYSTEM_SETTINGS: '/system-settings',
 
-  FORBIDDEN: "/403",
-  NOT_FOUND: "/404"
+  FORBIDDEN: '/403',
+  NOT_FOUND: '/404',
 } as const;
 
 export type PathParams = {
