@@ -9,7 +9,7 @@ interface ToggleListProps extends React.PropsWithChildren {
   onOpenChange: (isOpen: boolean) => void;
 }
 
-export function ToggleList({ items, onOpenChange }: ToggleListProps) {
+export function SectionToggle({ items, onOpenChange }: ToggleListProps) {
   const [openItemId, setOpenItemId] = useState<string | null>(null);
 
   const handleToggle = (itemId: string) => {
