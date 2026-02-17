@@ -76,7 +76,7 @@ export function AppSidebar() {
               )}
             </SidebarTrigger>
           </div>
-          <SidebarSeparator className={cn(sidebarStyles.separator.line)} />
+          <SidebarSeparator className={cn(sidebarStyles.separator.line, 'group-data-[collapsible=icon]:hidden')} />
         </div>
 
         <div className={sidebarStyles.user.row}>
