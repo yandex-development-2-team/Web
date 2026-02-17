@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
+import { useSidebar } from '@/app/providers/Sidebar';
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from '@/components/shell/Avatar';
+import {
+  Collapsible,
+  CollapsibleContent,
+} from '@/components/ui/Collapsible';
 import {
   Sidebar,
   SidebarHeader,
@@ -18,21 +23,16 @@ import {
   SidebarMenuSubButton,
   SidebarSeparator,
   SidebarMenuSub,
-} from '@/components/shell/Sidebar/Sidebar';
-import {
-  Collapsible,
-  CollapsibleContent,
-} from '@/components/ui/Collapsible/Collapsible';
+} from './ui';
+import { ExitIcon, SupportIcon, ArrowDownIcon } from '@/assets/icons';
 import { cn } from '@/utils';
 import { menu_items } from './menu.config';
+import { sidebarStyles } from './AppSidebar.styles';
+
 import { userInfo } from '@/mock/mock-user-info';
-import { ExitIcon, SupportIcon } from '@/assets/icons';
-import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
 import ArrowRight from '@/assets/icons/ArrowRight.svg?react';
-import { sidebarStyles } from './AppSidebar.styles';
-import { useSidebar } from '@/app/providers/Sidebar/useSidebar';
 
 export function AppSidebar() {
   const { state } = useSidebar();
@@ -176,7 +176,7 @@ export function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <ArrowIcon
+                          <ArrowDownIcon
                             className={cn(
                               sidebarStyles.menu.groupArrowIcon,
                               open ? 'rotate-180' : 'rotate-0',
