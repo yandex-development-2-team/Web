@@ -91,7 +91,9 @@ export const sidebarStyles = {
       'pl-2 group-data-[collapsible=icon]:m-0',
       'group-data-[collapsible=icon]:p-0!',
       'group-data-[collapsible=icon]:pl-1.5!',
-      'group-data-[collapsible=icon]:pb-1!'
+      'group-data-[collapsible=icon]:pb-1!',
+      'data-[active=true]:active:bg-(--color-card)',
+      'data-[active=false]:active:hover:bg-(--color-card)',
     ),
     groupButton: cn(
       'mt-0 h-15 content-center gap-0! pt-5 pb-5 text-[16px]',
@@ -108,13 +110,15 @@ export const sidebarStyles = {
     subButton: cn(
       'pt-2 pr-2 pb-2 pl-3',
       'relative h-13.5 w-full justify-start',
-      'transition-colors duration-150 data-[active=false]:hover:bg-(--color-background)',
+      'transition-colors duration-150',
+      'data-[active=false]:hover:bg-(--color-background)',
       'data-[active=true]:rounded-none',
       "after:absolute after:bottom-0 after:left-0 after:content-['']",
       'after:h-[1px] after:w-full after:bg-(--color-accent-strong)',
       'after:origin-left after:scale-x-0',
       'after:transition-transform after:duration-150 after:ease-out',
       'data-[active=true]:after:scale-x-100',
+      'active:!bg-[var(--color-card)]',
     ),
     subLink: cn(
       'group-data-[collapsible=icon]:w-20',

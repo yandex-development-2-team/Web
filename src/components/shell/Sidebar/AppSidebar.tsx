@@ -28,8 +28,8 @@ import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { userInfo } from '@/mock/mock-user-info';
 
-import ExitIcon from '@/assets/icons/exit.svg?react';
-import SupportIcon from '@/assets/icons/support.svg?react';
+import ExitIcon from '@/assets/icons//exit.svg?react';
+import SupportIcon from '@/assets/icons//support.svg?react';
 import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
@@ -263,8 +263,10 @@ export function AppSidebar() {
         <SidebarSeparator className={sidebarStyles.separator.line} />
         <SidebarMenu className="group-data-[collapsible=icon]:ml-0.5 group-data-[collapsible=icon]:gap-3.25">
           <SidebarMenuItem className={cn(sidebarStyles.footer.item, 'h-10!')}>
-            <SidebarMenuButton className={sidebarStyles.footer.supportButton}>
-              <SupportIcon className={cn('h-6! w-6! pt-0')} />
+            <SidebarMenuButton className={cn(sidebarStyles.footer.supportButton, 'active:[&_svg]:stroke-(--color-primary)')}>
+              <SupportIcon className={cn(
+                'h-6! w-6! pt-0',
+                )} />
               {!collapsed && <span className="pl-2">Поддержка</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
