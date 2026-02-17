@@ -91,14 +91,16 @@ export const sidebarStyles = {
       'pl-2 group-data-[collapsible=icon]:m-0',
       'group-data-[collapsible=icon]:p-0!',
       'group-data-[collapsible=icon]:pl-1.5!',
-      'group-data-[collapsible=icon]:pb-1!',
+      'group-data-[collapsible=icon]:pb-1!'
     ),
     groupButton: cn(
       'mt-0 h-15 content-center gap-0! pt-5 pb-5 text-[16px]',
       'group-data-[collapsible=icon]:w-20!',
-      'group-data-[collapsible=icon]:h-15!',
+      'group-data-[collapsible=icon]:h-15!'
     ),
-    groupButtonActive: cn('rounded-[12px] bg-(--color-accent)'),
+    groupButtonActive: cn(
+      'rounded-[12px] bg-(--color-accent)',
+    ),
     groupButtonIdle: cn('hover:bg-muted'),
     groupArrowIcon: cn('h-[25px] w-[25px] rotate-180 duration-150'),
     subMenu: cn('w-full pt-3.5 pl-21.25', 'm-0.25 gap-3.5', 'border-l-0'),

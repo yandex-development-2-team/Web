@@ -130,7 +130,7 @@ export function AppSidebar() {
                     <div className="relative">
                       <SidebarMenuButton
                         asChild
-                        className={cn(
+                        className={cn('active:bg-(--color-card)',
                           sidebarStyles.menu.groupButton,
                           highlightParent
                             ? sidebarStyles.menu.groupButtonActive
