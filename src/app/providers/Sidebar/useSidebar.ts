@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SidebarContext, type SidebarContextValue } from './sidebar-context';
+import { SidebarContext, type SidebarContextValue } from './SidebarContext';
 
 export function useSidebar(): SidebarContextValue {
   const ctx = useContext(SidebarContext);

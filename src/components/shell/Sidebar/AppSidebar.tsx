@@ -34,7 +34,7 @@ import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
-import { useSidebar } from '@/app/providers/Sidebar/use-sidebar';
+import { useSidebar } from '@/app/providers/Sidebar/useSidebar';
 
 export function AppSidebar() {
   const { state } = useSidebar();
