@@ -13,7 +13,7 @@ import {
   SidebarMenuSubButton,
   SidebarSeparator,
   SidebarMenuSub,
-} from '@/components/shell/Sidebar';
+} from '@/components/shell/Sidebar/Sidebar';
 
 import {
   Avatar,
@@ -36,7 +36,7 @@ import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
 import { useSidebar } from '@/app/providers/Sidebar/use-sidebar';
 
-export default function AppSidebar() {
+export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const collapsed = state === 'collapsed';
@@ -88,7 +88,9 @@ export default function AppSidebar() {
             <div className="ml-1">
               <div className={sidebarStyles.user.name}>{userInfo.name}</div>
               <div className={sidebarStyles.user.role}>
-                {userInfo.role === 'MANAGER' ? `${userInfo.roleName} ${userInfo.grade} звена` : userInfo.roleName}
+                {userInfo.role === 'MANAGER'
+                  ? `${userInfo.roleName} ${userInfo.grade} звена`
+                  : userInfo.roleName}
               </div>
             </div>
           )}

@@ -12,7 +12,7 @@ type Admin = UserBase & {
 type Manager = UserBase & {
   grade: number;
   role: 'MANAGER';
-}
+};
 
 export type User = Admin | Manager;
 
@@ -24,9 +24,9 @@ export const adminInfo: User = {
 
 export const managerInfo: User = {
   name: 'Анастасия',
-  role: "MANAGER",
+  role: 'MANAGER',
   roleName: 'Менеджер',
-  grade: 2
-}
+  grade: 2,
+};
 
 export const userInfo: User = adminInfo;
