@@ -1,6 +1,5 @@
 import { Switch as SwitchPrimitive } from 'radix-ui';
-
-import { cn } from '@/utils/index';
+import { cn } from '@/utils';
 
 function Switch({
   className,
