@@ -32,7 +32,6 @@ import { sidebarStyles } from './AppSidebar.styles';
 import { userInfo } from '@/mock/mock-user-info';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
-import ArrowRight from '@/assets/icons/ArrowRight.svg?react';
 
 export function AppSidebar() {
   const { state } = useSidebar();
@@ -67,7 +66,7 @@ export function AppSidebar() {
 
             <SidebarTrigger size={'icon-md'} className={sidebarStyles.header.trigger}>
               {collapsed ? (
-                <ArrowRight className={sidebarStyles.header.triggerIcon} />
+                <ArrowDownIcon className={sidebarStyles.header.triggerIcon} />
               ) : (
                 <SidebarArrowIcon className={sidebarStyles.header.triggerIcon} />
               )}
