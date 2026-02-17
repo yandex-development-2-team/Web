@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/components/shell/Avatar';
+import {
   Sidebar,
   SidebarHeader,
   SidebarContent,
@@ -14,12 +19,6 @@ import {
   SidebarSeparator,
   SidebarMenuSub,
 } from '@/components/shell/Sidebar/Sidebar';
-
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/Avatar/Avatar';
 import {
   Collapsible,
   CollapsibleContent,
@@ -43,6 +42,8 @@ export function AppSidebar() {
   const collapsed = state === 'collapsed';
   const items = menu_items[userInfo.role];
   const [openGroup, setOpenGroup] = useState<Record<string, boolean>>({});
+
+  console.log(userInfo.role)
 
   const isActiveUrl = (url: string) => {
     if (!url) return false;
