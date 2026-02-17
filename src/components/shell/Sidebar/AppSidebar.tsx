@@ -35,7 +35,7 @@ import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
 import ArrowRight from '@/assets/icons/withoutSvgOmg/ArrowRight.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
-import { useSidebar } from '@/app/providers/Sidebar/UseSidebar';
+import { useSidebar } from '@/app/providers/Sidebar/useSidebar';
 
 export function AppSidebar() {
   const { state } = useSidebar();
@@ -68,7 +68,7 @@ export function AppSidebar() {
               className={cn(sidebarStyles.separator.iconStyle)}
             />
 
-            <SidebarTrigger className={sidebarStyles.header.trigger}>
+            <SidebarTrigger size={'icon-md'} className={sidebarStyles.header.trigger}>
               {collapsed ? (
                 <ArrowRight className={sidebarStyles.header.triggerIcon} />
               ) : (
@@ -170,7 +170,7 @@ export function AppSidebar() {
                       {!collapsed && (
                         <button
                           type="button"
-                          className="absolute top-1/2 right-0.5 -translate-y-1/2 p-2"
+                          className="absolute top-1/2 right-0 -translate-y-4 p-2"
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();

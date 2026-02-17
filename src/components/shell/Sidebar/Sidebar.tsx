@@ -1,16 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { PanelLeftIcon } from 'lucide-react';
+import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import { Slot } from 'radix-ui';
 import { cn } from '@/utils/index';
 import { Button } from '@/components/ui/Button/Button';
 import { Separator } from '@/components/ui/Separator/Separator';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/Tooltip/Tooltip';
 import { type ComponentProps } from 'react';
-import { useSidebar } from '@/app/providers/Sidebar/UseSidebar';
+import { useSidebar } from '@/app/providers/Sidebar/useSidebar';
 
 function Sidebar({
   side = 'left',
@@ -100,7 +95,6 @@ function SidebarTrigger({
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
-      size="icon"
       className={cn('size-7', className)}
       onClick={(event) => {
         onClick?.(event);
@@ -108,7 +102,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      {children ?? <PanelLeftIcon />}
+      {children ?? <ArrowIcon />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
@@ -252,44 +246,22 @@ function SidebarMenuButton({
   isActive = false,
   variant = 'default',
   size = 'default',
-  tooltip,
   className,
   ...props
 }: ComponentProps<'button'> & {
   asChild?: boolean;
   isActive?: boolean;
-  tooltip?: string | ComponentProps<typeof TooltipContent>;
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot.Root : 'button';
-  const { state } = useSidebar();
 
-  const button = (
+  return (
     <Comp
       data-slot="sidebar-menu-button"
       data-sidebar="menu-button"
-      data-size={size}
       data-active={isActive}
       className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
       {...props}
     />
-  );
-
-  if (!tooltip) return button;
-
-  if (typeof tooltip === 'string') {
-    tooltip = { children: tooltip };
-  }
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>{button}</TooltipTrigger>
-      <TooltipContent
-        side="right"
-        align="center"
-        hidden={state !== 'collapsed'}
-        {...tooltip}
-      />
-    </Tooltip>
   );
 }
 

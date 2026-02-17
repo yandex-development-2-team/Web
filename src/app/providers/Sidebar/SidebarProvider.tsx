@@ -1,5 +1,4 @@
 import { cn } from '@/utils/index';
-import { TooltipProvider } from '@/components/ui/Tooltip/Tooltip';
 import {
   useCallback,
   useEffect,
@@ -74,7 +73,6 @@ export function SidebarProvider({
 
   return (
     <SidebarContext.Provider value={contextValue}>
-      <TooltipProvider delayDuration={0}>
         <div
           data-slot="sidebar-wrapper"
           style={
@@ -92,7 +90,6 @@ export function SidebarProvider({
         >
           {children}
         </div>
-      </TooltipProvider>
     </SidebarContext.Provider>
   );
 }

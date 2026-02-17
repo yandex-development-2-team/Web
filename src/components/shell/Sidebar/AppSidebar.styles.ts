@@ -45,7 +45,7 @@ export const sidebarStyles = {
       'group-data-[collapsible=icon]:h-12',
       'group-data-[collapsible=icon]:mt-4',
       'duration-150 hover:!bg-transparent hover:bg-(--color-background)',
-      'pl-0.5',
+      'pl-0.75 pb-2',
       'duration-150 hover:bg-(--color-background)!',
     ),
     triggerIcon: cn(
