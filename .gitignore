@@ -33,3 +33,5 @@ coverage
 
 # Памятка по командам Git
 git_command.txt
+
+*.tsbuildinfo
