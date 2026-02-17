@@ -1,14 +1,16 @@
 import { Outlet } from 'react-router';
-import { cn } from '@/utils';
+import { SidebarProvider } from './app/providers/Sidebar';
+import { AppSidebar, SidebarInset } from './components/shell/Sidebar';
 
 function App() {
   return (
-    <div className="p-5">
-      <h1 className={cn('text-brand mb-4 bg-violet-300')}>
-        Админ панель. Яндекс развитие
-      </h1>
-      <Outlet />
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+
+      <SidebarInset>
+        <Outlet />
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
 
