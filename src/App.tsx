@@ -1,11 +1,16 @@
 import { Outlet } from 'react-router';
-import { cn } from '@/utils';
+import { SidebarProvider } from './app/providers/Sidebar';
+import { AppSidebar, SidebarInset } from './components/shell/Sidebar';
 
 function App() {
   return (
-    <div className={cn('h-full p-5')}>
-      <Outlet />
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+
+      <SidebarInset>
+        <Outlet />
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
 
