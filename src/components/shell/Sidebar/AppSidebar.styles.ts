@@ -56,9 +56,8 @@ export const sidebarStyles = {
     ),
     triggerIcon: cn(
       'h-5 w-5',
-      'group-data-[collapsible=icon]:rotate-0',
       'group-data-[collapsible=icon]:rotate-90',
-      'h-3! group-data-[collapsible=icon]:w-3!',
+      'group-data-[collapsible=icon]:w-3!',
     ),
   },
 
