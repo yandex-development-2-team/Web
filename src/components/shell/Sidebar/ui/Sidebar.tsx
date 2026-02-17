@@ -1,11 +1,11 @@
+import { type ComponentProps } from 'react';
+import { Slot } from 'radix-ui';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { useSidebar } from '@/app/providers/Sidebar';
+import { Button } from '@/components/ui/Button';
+import { Separator } from '@/components/ui/Separator';
 import { ArrowDownIcon } from '@/assets/icons';
-import { Slot } from 'radix-ui';
 import { cn } from '@/utils/index';
-import { Button } from '@/components/ui/Button/Button';
-import { Separator } from '@/components/ui/Separator/Separator';
-import { type ComponentProps } from 'react';
 
 function Sidebar({
   side = 'left',
