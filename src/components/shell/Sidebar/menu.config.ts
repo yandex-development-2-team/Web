@@ -1,15 +1,15 @@
 import type { MenuItems } from './menu.types';
 import { ROUTES } from '@/app/router';
-import AnalyticsIcon from '@/assets/icons/withoutSvgOmg/analytics-60.svg?react';
-import BoxIcon from '@/assets/icons/withoutSvgOmg/control-box-60.svg?react';
-import SystemSettingsIcon from '@/assets/icons/withoutSvgOmg/system-settings-60.svg?react';
-import SpecialProjectsIcon from '@/assets/icons/withoutSvgOmg/special-projects-60.svg?react';
-import HomeIcon from '@/assets/icons/withoutSvgOmg/home-60.svg?react';
-import ControlUsersIcon from '@/assets/icons/withoutSvgOmg/control-users-60.svg?react';
-import ControlTimesableIcon from '@/assets/icons/withoutSvgOmg/control-timetable-60.svg?react';
-import BoxesMenuIcon from '@/assets/icons/withoutSvgOmg/boxes-menu-60.svg?react';
-import ApplicationIcon from '@/assets/icons/withoutSvgOmg/application-60.svg?react';
-import AfishaIcon from '@/assets/icons/withoutSvgOmg/afisha-60.svg?react';
+import AnalyticsIcon from '@/assets/icons/analytics.svg?react';
+import BoxIcon from '@/assets/icons/control-box.svg?react';
+import SystemSettingsIcon from '@/assets/icons/system-settings.svg?react';
+import SpecialProjectsIcon from '@/assets/icons/special-projects.svg?react';
+import HomeIcon from '@/assets/icons/home.svg?react';
+import ControlUsersIcon from '@/assets/icons/control-users.svg?react';
+import ControlTimesableIcon from '@/assets/icons/control-timetable.svg?react';
+import BoxesMenuIcon from '@/assets/icons/boxes-menu.svg?react';
+import ApplicationIcon from '@/assets/icons/application.svg?react';
+import AfishaIcon from '@/assets/icons/afisha.svg?react';
 
 export const menu_items: MenuItems = {
   ADMIN: [

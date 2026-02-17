@@ -33,7 +33,7 @@ import SupportIcon from '@/assets/icons//support.svg?react';
 import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
-import ArrowRight from '@/assets/icons/withoutSvgOmg/ArrowRight.svg?react';
+import ArrowRight from '@/assets/icons/ArrowRight.svg?react';
 import { sidebarStyles } from './AppSidebar.styles';
 import { useSidebar } from '@/app/providers/Sidebar/useSidebar';
 
