@@ -24,7 +24,7 @@ const SystemSettingsPage = () => {
   };
 
   return (
-    <div className={cn('flex h-full flex-col gap-5', 'pl-82')}>
+    <div className={cn('flex h-full flex-col gap-5')}>
       <div className={cn('bg-card rounded-lg p-5')}>
         <h2>Системные настройки</h2>
       </div>
