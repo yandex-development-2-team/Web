@@ -103,7 +103,7 @@ export const sidebarStyles = {
       'rounded-[12px] bg-(--color-accent)',
     ),
     groupButtonIdle: cn('hover:bg-muted'),
-    groupArrowIcon: cn('h-[25px] w-[25px] rotate-180 duration-150'),
+    groupArrowIcon: cn('h-[18px] w-[18px] rotate-180 duration-150'),
     subMenu: cn('w-full pt-3.5 pl-21.25', 'm-0.25 gap-3.5', 'border-l-0'),
     subMenuList: cn('flex'),
     subButton: cn(

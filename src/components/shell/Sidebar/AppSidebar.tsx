@@ -28,8 +28,8 @@ import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { userInfo } from '@/mock/mock-user-info';
 
-import ExitIcon from '@/assets/icons//exit.svg?react';
-import SupportIcon from '@/assets/icons//support.svg?react';
+import ExitIcon from '@/assets/icons/exit.svg?react';
+import SupportIcon from '@/assets/icons/support.svg?react';
 import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
@@ -170,7 +170,7 @@ export function AppSidebar() {
                       {!collapsed && (
                         <button
                           type="button"
-                          className="absolute top-1/2 right-0 -translate-y-4 p-2"
+                          className="absolute top-1/2 right-1.5 -translate-y-4 p-2"
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();

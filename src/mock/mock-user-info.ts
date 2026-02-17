@@ -29,4 +29,4 @@ export const managerInfo: User = {
   grade: 2,
 };
 
-export const userInfo: User = managerInfo;
+export const userInfo: User = adminInfo;
