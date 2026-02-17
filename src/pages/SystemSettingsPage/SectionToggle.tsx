@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react';
 import { capitalizeFirst, cn } from '@/utils';
-import { ChevronUpIcon } from 'lucide-react';
 import type { AccessItem } from './systemSettingsPage.constants';
 import { PersmissionList } from './PermissionList';
+import ArrowDown from '@/assets/icons/arrow-down.svg';
 
 interface ToggleListProps extends React.PropsWithChildren {
   items: AccessItem[];
@@ -46,12 +46,12 @@ export function SectionToggle({ items, onOpenChange }: ToggleListProps) {
               </h4>
             </div>
             <div
-              className={cn('mr-1.75', {
-                ['rotate-0']: openItemId === item.id,
-                ['rotate-180']: openItemId !== item.id,
+              className={cn('mr-1.75 size-6', {
+                ['rotate-180']: openItemId === item.id,
+                ['rotate-0']: openItemId !== item.id,
               })}
             >
-              <ChevronUpIcon />
+              <img src={ArrowDown} alt="arrow-down" />
             </div>
           </div>
 

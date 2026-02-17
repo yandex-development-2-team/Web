@@ -5,11 +5,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function capitalizeFirst(str: string) {
+export function capitalizeFirst(str: string): string {
   if (typeof str !== 'string') {
-    console.error(`${str} - is not a string`);
-    return;
+    console.error(
+      `[capitalizeFirst Error]: Expected string, but received: `,
+      str,
+    );
+    return '';
   }
+
+  if (!str) return '';
 
   return str.charAt(0).toLocaleUpperCase() + str.slice(1);
 }
