@@ -17,13 +17,12 @@ import {
   SidebarSeparator,
   SidebarMenuSub,
 } from './ui';
-import { ExitIcon, SupportIcon, ArrowDownIcon } from '@/assets/icons';
+import { ExitIcon, SupportIcon, ArrowDownIcon, SidebarArrowIcon } from '@/assets/icons';
 import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { sidebarStyles } from './AppSidebar.styles';
 import { userInfo } from '@/mock/mock-user-info';
 import MockIcon from '@/mock/mock-avatar.jpg';
-import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
 
 export function AppSidebar() {
   const { state } = useSidebar();
