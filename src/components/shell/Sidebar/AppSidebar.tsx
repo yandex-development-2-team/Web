@@ -26,9 +26,7 @@ import {
 import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { userInfo } from '@/mock/mock-user-info';
-
-import ExitIcon from '@/assets/icons//exit.svg?react';
-import SupportIcon from '@/assets/icons//support.svg?react';
+import { ExitIcon, SupportIcon } from '@/assets/icons';
 import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
 import MockIcon from '@/mock/mock-avatar.jpg';
 import SidebarArrowIcon from '@/assets/icons/exit-arrow-right-20.svg?react';
@@ -42,8 +40,6 @@ export function AppSidebar() {
   const collapsed = state === 'collapsed';
   const items = menu_items[userInfo.role];
   const [openGroup, setOpenGroup] = useState<Record<string, boolean>>({});
-
-  console.log(userInfo.role)
 
   const isActiveUrl = (url: string) => {
     if (!url) return false;
