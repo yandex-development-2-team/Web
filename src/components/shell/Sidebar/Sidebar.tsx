@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import ArrowIcon from '@/assets/icons/arrow-down.svg?react';
+import { ArrowIcon } from '@/assets/icons';
 import { Slot } from 'radix-ui';
 import { cn } from '@/utils/index';
 import { Button } from '@/components/ui/Button/Button';

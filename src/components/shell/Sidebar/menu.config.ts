@@ -1,10 +1,9 @@
 import type { MenuItems } from './menu.types';
 import { ROUTES } from '@/app/router';
-import AnalyticsIcon from '@/assets/icons/analytics.svg?react';
+import { AnalyticsIcon, HomeIcon } from '@/assets/icons';
 import BoxIcon from '@/assets/icons/control-box.svg?react';
 import SystemSettingsIcon from '@/assets/icons/system-settings.svg?react';
 import SpecialProjectsIcon from '@/assets/icons/special-projects.svg?react';
-import HomeIcon from '@/assets/icons/home.svg?react';
 import ControlUsersIcon from '@/assets/icons/control-users.svg?react';
 import ControlTimesableIcon from '@/assets/icons/control-timetable.svg?react';
 import BoxesMenuIcon from '@/assets/icons/boxes-menu.svg?react';
