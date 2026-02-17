@@ -38,6 +38,7 @@ export const sidebarStyles = {
     ),
     trigger: cn(
       'h-12 w-12',
+      'cursor-pointer',
       'border-1 border-solid border-(--color-muted)',
       'bg-(--color-card)',
       'group-data-[collapsible=icon]:w-20',
@@ -47,7 +48,10 @@ export const sidebarStyles = {
       'pl-0.5',
       'duration-150 hover:bg-(--color-background)!',
     ),
-    triggerIcon: cn('h-5 w-5', 'group-data-[collapsible=icon]:rotate-0'),
+    triggerIcon: cn(
+      'h-5 w-5',
+      'group-data-[collapsible=icon]:rotate-0',
+    ),
   },
 
   user: {
@@ -121,6 +125,7 @@ export const sidebarStyles = {
 
     supportButton: cn(
       'ml-3.5',
+      'cursor-pointer',
       footerButtonBase,
       'group-data-[collapsible=icon]:m-0',
     ),
@@ -131,6 +136,7 @@ export const sidebarStyles = {
     ),
     exitButton: cn(
       'mt-3 ml-3.5',
+      'cursor-pointer',
       footerButtonBase,
       'group-data-[collapsible=icon]:m-0!',
     ),
