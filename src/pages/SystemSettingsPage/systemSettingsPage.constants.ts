@@ -6,7 +6,6 @@ import {
   type PermissinGoupType,
 } from '@/mock/systemSettingsPage.mock';
 
-// ********************************************** TABS
 export type TabId = 'access' | 'content';
 
 export const TABS_ID: Record<TabId, TabId> = {
@@ -24,7 +23,6 @@ export const TABS: TabItem[] = [
   { id: 'content', label: 'Настройка текстов' },
 ];
 
-// ********************************************** SECTION TOOGGLE
 export interface AccessItem {
   id: 'admin' | 'manager1' | 'manager2' | 'manager3';
   title: string;
@@ -57,4 +55,3 @@ export const ACCESS_ITEMS: AccessItem[] = [
     content: managerThirdPermissionSettings,
   },
 ];
-// **********************************************
