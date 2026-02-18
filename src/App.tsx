@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 import { cn } from '@/utils';
+import { Calendar } from './components/common/Calendar';
 
 function App() {
   return (
@@ -8,6 +9,9 @@ function App() {
         Админ панель. Яндекс развитие
       </h1>
       <Outlet />
+
+      <Calendar mode='single'/>
+
     </div>
   );
 }
