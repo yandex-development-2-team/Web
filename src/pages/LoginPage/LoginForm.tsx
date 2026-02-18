@@ -1,21 +1,18 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-import { ROUTES } from '@/app/router'
+import { useLogin } from '@/hooks/useLogin'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card/Card'
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
-import { login } from '@/services/auth.service'
-import { navigate } from '@/services/navigation.service'
 import { loginSchema, type LoginFormValues } from '@/utils/validators'
-
 import EyeIcon from '@/assets/icons/eye.svg'
 import EyeOffIcon from '@/assets/icons/eye-off.svg'
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+
+  const { mutate, isPending } = useLogin()
 
   const {
     register,
@@ -27,16 +24,10 @@ export default function LoginForm() {
     mode: 'onChange',
   })
 
-  const onSubmit = async (data: LoginFormValues) => {
-    try {
-      setIsLoading(true)
-      await login(data)
-      navigate(ROUTES.HOME)
-
-    } finally {
-      setIsLoading(false)
-    }
+  const onSubmit = (data: LoginFormValues) => {
+    mutate(data)
   }
+
   return (
     <Card variant="flat" className="w-full border-0 rounded-none shadow-none">
       <CardHeader>
@@ -97,10 +88,10 @@ export default function LoginForm() {
           </div>
           <Button
             type="submit"
-            disabled={!isValid || isLoading}
+            disabled={!isValid || isPending}
             className="w-full h-12 mt-5 leading-4 items-center justify-center transition-all duration-200 active:translate-y-[1px]"
           >
-            {isLoading ? (
+            {isPending ? (
               <span className="flex items-center gap-2">
                 <div className="h-5 w-5 border-4 border-t-transparent border-foreground rounded-full animate-spin" />
                 Вход...
