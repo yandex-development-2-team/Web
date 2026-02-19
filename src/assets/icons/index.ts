@@ -12,4 +12,6 @@ export { default as BoxesMenuIcon } from './boxes-menu.svg?react';
 export { default as ApplicationIcon } from './application.svg?react';
 export { default as AfishaIcon } from './afisha.svg?react';
 export { default as SidebarArrowIcon } from './exit-arrow-right-20.svg?react';
-export { default as Arrange } from './arrange.svg?react';
+export { default as ArrangeIcon } from './arrange.svg?react';
+export { default as UploadArrowIcon } from './download-arrow.svg?react';
+export { default as SlidersIcon } from './sliders.svg?react';

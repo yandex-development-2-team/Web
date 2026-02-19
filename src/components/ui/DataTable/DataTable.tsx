@@ -1,8 +1,8 @@
 import { Cell } from './Cell';
 import { useMemo, useState } from 'react';
 import type { DataTableProps } from './Table.types';
-import { nextDirection, sortRows, type SortState } from './DataTable.helpers';
-import { Arrange } from '@/assets/icons';
+import { nextDirection, sortRows, type SortState } from './SortTable.helpers';
+import { ArrangeIcon } from '@/assets/icons';
 
 export function DataTable<T>({ data, columns }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
@@ -35,7 +35,7 @@ export function DataTable<T>({ data, columns }: DataTableProps<T>) {
             >
               <span className="flex flex-row items-center gap-1">
                 {column.title}
-                {column.isSort && <Arrange className='size-4'/>}
+                {column.isSort && <ArrangeIcon className="size-4" />}
               </span>
             </th>
           ))}

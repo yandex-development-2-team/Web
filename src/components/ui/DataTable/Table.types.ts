@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-interface Column<T, K extends keyof T = keyof T> {
+type Column<T, K extends keyof T = keyof T> = {
   id: string;
   title: string;
   key: K;
@@ -8,23 +8,40 @@ interface Column<T, K extends keyof T = keyof T> {
   width?: string;
   getValue?: (row: T) => ReactNode;
   sortValue?: (row: T) => string | null | undefined;
-}
+};
 
-interface DataTableProps<T> {
+type DataTableProps<T> = {
   data: T[];
   columns: Column<T>[];
   rowKey: keyof T;
-}
+};
 
 type SortDirection = 'asc' | 'desc';
 
-interface AnalyticUser {
+type AnalyticUserTable = {
   id?: string;
   name: string;
   numEntries: number;
   numVisited: number;
   boxes: string;
   cancelling: number;
-}
+};
 
-export type { Column, DataTableProps, SortDirection, AnalyticUser };
+type ControlTimeTable = {
+  id?: string;
+  placeName: string;
+  place: string;
+  date: string;
+  time: string;
+  name: string;
+  countPlaces: number;
+  countBooked: number;
+};
+
+export type {
+  Column,
+  DataTableProps,
+  SortDirection,
+  AnalyticUserTable,
+  ControlTimeTable,
+};

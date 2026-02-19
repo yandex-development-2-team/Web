@@ -6,7 +6,7 @@ type SortState<T> = {
 };
 
 function compareColumn(a: string, b: string): number {
-  return a.localeCompare(b, 'ru', {numeric: true, sensitivity: 'base'})
+  return a.localeCompare(b, 'ru', { numeric: true, sensitivity: 'base' });
 }
 
 function sortRows<T>(
@@ -25,11 +25,11 @@ function sortRows<T>(
       typeof column.sortValue === 'function'
         ? column.sortValue(b)
         : b[column.key];
-    if(sortA == null && sortB == null) return 0;
-    if(sortA == null) return 1;
-    if(sortB == null) return -1;
-    if(typeof sortA !== 'string' || typeof sortB !== 'string') {
-        return 0
+    if (sortA == null && sortB == null) return 0;
+    if (sortA == null) return 1;
+    if (sortB == null) return -1;
+    if (typeof sortA !== 'string' || typeof sortB !== 'string') {
+      return 0;
     }
 
     return dir * compareColumn(sortA, sortB);
