@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Modal from './Modal';
+import { deleteItemById } from '@/services/deleteItem.service';
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
@@ -14,10 +16,19 @@ const DeleteConfirmationModal = ({
   onConfirm,
   itemId,
 }: DeleteConfirmationModalProps) => {
-  const handleDelete = () => {
-    console.log(`Fake DELETE request for item ${itemId}: success`);
-    onConfirm();
-    onClose();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteItemById(itemId);
+      onConfirm();
+      onClose();
+    } catch (error) {
+      console.error('Delete failed:', error);
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   return (
@@ -25,14 +36,26 @@ const DeleteConfirmationModal = ({
       isOpen={isOpen}
       onClose={onClose}
       title="Удалить заявку?"
+      variant="delete"
       buttons={[
-        { text: 'Отмена', onClick: onClose, variant: 'cancel' },
-        { text: 'Удалить', onClick: handleDelete, variant: 'delete' },
+        {
+          text: 'Отмена',
+          onClick: onClose,
+          variant: 'cancel',
+          disabled: isDeleting,
+        },
+        {
+          text: 'Удалить',
+          onClick: handleDelete,
+          variant: 'delete',
+          disabled: isDeleting,
+        },
       ]}
     >
-      <p>
-        Вы действительно хотите удалить эту заявку? 
-        <br />Действие нельзя отменить.
+      <p className="text-gray-700">
+        Вы действительно хотите удалить эту заявку?
+        <br />
+        Действие нельзя отменить.
       </p>
     </Modal>
   );
