@@ -10,10 +10,15 @@ type Column<T, K extends keyof T = keyof T> = {
   sortValue?: (row: T) => string | null | undefined;
 };
 
+type ControlsTable = 'showBy' | 'showMore';
+
 type DataTableProps<T> = {
   data: T[];
   columns: Column<T>[];
   rowKey: keyof T;
+  defaultRowCount?: number;
+  showMoreCountRows?: number;
+  showControls?: ControlsTable;
 };
 
 type SortDirection = 'asc' | 'desc';

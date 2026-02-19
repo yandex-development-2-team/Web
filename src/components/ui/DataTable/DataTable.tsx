@@ -3,9 +3,20 @@ import { useMemo, useState } from 'react';
 import type { DataTableProps } from './Table.types';
 import { nextDirection, sortRows, type SortState } from './SortTable.helpers';
 import { ArrangeIcon } from '@/assets/icons';
+import { Button } from '../Button';
+import { Input } from '../Input';
 
-export function DataTable<T>({ data, columns }: DataTableProps<T>) {
+export function DataTable<T>({
+  data,
+  columns,
+  defaultRowCount = 11,
+  showMoreCountRows = 5,
+  showControls,
+}: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
+  const [rowCount, setRowCount] = useState<number>(defaultRowCount);
+  const [visibleCountRow, setVisibleCountRow] =
+    useState<number>(defaultRowCount);
 
   const activeColumn = useMemo(() => {
     return columns.find((col) => col.key == sortState?.columnKey) ?? null;
@@ -16,40 +27,83 @@ export function DataTable<T>({ data, columns }: DataTableProps<T>) {
     return sortRows(data, activeColumn, sortState.direction);
   }, [data, activeColumn, sortState]);
 
+  const visibleRows = useMemo(
+    () => rows.slice(0, visibleCountRow),
+    [rows, visibleCountRow],
+  );
+  const canShowMore = visibleCountRow < rows.length;
+
   return (
-    <table className="m-5 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
-      <thead className="bg-(--color-border)">
-        <tr>
-          {columns.map((column) => (
-            <th
-              key={column.id}
-              style={{ width: column.width }}
-              className={
-                'h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal' +
-                (column.isSort ? 'cursor-pointer select-none' : '')
-              }
-              onClick={() => {
-                if (!column.isSort) return;
-                setSortState((prev) => nextDirection(prev, column));
-              }}
-            >
-              <span className="flex flex-row items-center gap-1">
-                {column.title}
-                {column.isSort && <ArrangeIcon className="size-4" />}
-              </span>
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
-        {rows.map((row, rowIndex) => (
-          <tr key={rowIndex} className="h-13 align-middle">
+    <>
+      <table className="m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
+        <thead className="bg-(--color-border)">
+          <tr>
             {columns.map((column) => (
-              <Cell key={column.id} row={row} column={column} />
+              <th
+                key={column.id}
+                style={{ width: column.width }}
+                className={
+                  'h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal' +
+                  (column.isSort ? 'cursor-pointer select-none' : '')
+                }
+                onClick={() => {
+                  if (!column.isSort) return;
+                  setSortState((prev) => nextDirection(prev, column));
+                }}
+              >
+                <span className="flex flex-row items-center gap-1">
+                  {column.title}
+                  {column.isSort && <ArrangeIcon className="size-4" />}
+                </span>
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
+          {visibleRows.map((row, rowIndex) => (
+            <tr key={rowIndex} className="h-13 align-middle">
+              {columns.map((column) => (
+                <Cell key={column.id} row={row} column={column} />
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {showControls && (
+        <div className="flex flex-row items-center justify-end">
+          {showControls === 'showBy' && (
+            <div className='flex flex-row items-center gap-3'>
+              <span className='text-(--color-muted-foreground)'>Показывать по</span>
+              <Input
+                type="number"
+                value={rowCount}
+                min={1}
+                className='border border-(--color-muted-foreground) text-(--color-muted-foreground) w-12 h-12 text-center'
+                onChange={(e) => {
+                  const count = Math.max(1, Number(e.target.value) || 1);
+                  setRowCount(count);
+                  setVisibleCountRow(count);
+                }}
+              />
+            </div>
+          )}
+          {showControls === 'showMore' && (
+            <Button
+              disabled={!canShowMore}
+              variant={'ghost'}
+              className='text-(--color-muted-foreground)  font-normal p-0 mr-5'
+              onClick={() =>
+                setVisibleCountRow((v) =>
+                  Math.min(v + showMoreCountRows, rows.length),
+                )
+              }
+            >
+              Показать больше
+            </Button>
+          )}
+        </div>
+      )}
+    </>
   );
 }
