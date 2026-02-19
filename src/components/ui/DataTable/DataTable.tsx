@@ -5,6 +5,7 @@ import { nextDirection, sortRows, type SortState } from './SortTable.helpers';
 import { ArrangeIcon } from '@/assets/icons';
 import { Button } from '../Button';
 import { Input } from '../Input';
+import { cn } from '@/utils';
 
 export function DataTable<T>({
   data,
@@ -53,7 +54,13 @@ export function DataTable<T>({
               >
                 <span className="flex flex-row items-center gap-1">
                   {column.title}
-                  {column.isSort && <ArrangeIcon className="size-4" />}
+                  {column.isSort && (
+                    <ArrangeIcon className={cn(
+                      "size-4",
+                      sortState?.direction === 'asc' ? '**:data-[arrow="up"]:stroke-(--color-primary)' : '',
+                      sortState?.direction === 'desc' ? '**:data-[arrow="down"]:stroke-(--color-primary)' : ''
+                    )} />
+                    )}
                 </span>
               </th>
             ))}
