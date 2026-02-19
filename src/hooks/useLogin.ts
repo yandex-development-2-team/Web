@@ -4,10 +4,10 @@ import { navigate } from '@/services/navigation.service'
 import { ROUTES } from '@/app/router/routes.ts'
 
 export const useLogin = () => {
-    return useMutation({
-        mutationFn: login,
-        onSuccess: () => {
-            navigate(ROUTES.HOME)
-        },
-    })
+  return useMutation({
+    mutationFn: login,
+    onSuccess: () => {
+      navigate(ROUTES.HOME)
+    },
+  })
 }
