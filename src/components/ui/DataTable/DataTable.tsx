@@ -81,16 +81,16 @@ export function DataTable<T>({
                   setSortState((prev) => nextDirection(prev, column));
                 }}
               >
-                <span className="flex flex-row items-center gap-1">
+                <span className="flex flex-row items-center gap-1 font-normal">
                   {column.title}
                   {column.isSort && (
                     <ArrangeIcon
                       className={cn(
                         'size-4',
-                        sortState?.direction === 'asc'
+                        sortState?.direction === 'asc' && sortState?.columnKey === column.key
                           ? '**:data-[arrow="up"]:stroke-(--color-primary)'
                           : '',
-                        sortState?.direction === 'desc'
+                        sortState?.direction === 'desc' && sortState?.columnKey === column.key
                           ? '**:data-[arrow="down"]:stroke-(--color-primary)'
                           : '',
                       )}
