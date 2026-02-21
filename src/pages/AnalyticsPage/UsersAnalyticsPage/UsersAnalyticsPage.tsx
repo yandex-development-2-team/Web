@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const UsersAnalyticsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isError] = useState(false);
 
   return (
     <div className="m-5 flex flex-col gap-5">
@@ -40,6 +41,7 @@ const UsersAnalyticsPage = () => {
           columns={COLUMNS_ANALYTIC_USER}
           rowKey="id"
           isLoading={isLoading}
+          isError={isError}
         />
       </div>
     </div>

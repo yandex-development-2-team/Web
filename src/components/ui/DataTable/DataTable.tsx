@@ -6,7 +6,7 @@ import { ArrangeIcon } from '@/assets/icons';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { cn } from '@/utils';
-import { SkeletonRow } from './ui';
+import { SkeletonRow, TableRowState, TableShell } from './ui';
 
 export function DataTable<T>({
   data,
@@ -15,6 +15,7 @@ export function DataTable<T>({
   showMoreCountRows = 5,
   showControls,
   isLoading = false,
+  isError = false,
 }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
@@ -38,26 +39,27 @@ export function DataTable<T>({
 
   if (isLoading) {
     return (
-      <table className="m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
-        <thead className="bg-(--color-border)">
-          <tr>
-            {columns.map((column) => (
-              <th
-                key={column.id}
-                style={{ width: column.width }}
-                className="h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal"
-              >
-                {column.title}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
-          {Array.from({ length: 5 }).map((_, id) => (
-            <SkeletonRow key={`skeleton-${id}`} columns={columns} />
-          ))}
-        </tbody>
-      </table>
+      <TableShell columns={columns}>
+        {Array.from({ length: 5 }).map((_, id) => (
+          <SkeletonRow key={`skeleton-${id}`} columns={columns} />
+        ))}
+      </TableShell>
+    );
+  }
+
+  if (isError) {
+    return (
+      <TableShell columns={columns}>
+        <TableRowState columns={columns} text="Не удалось загрузить данные" />
+      </TableShell>
+    );
+  }
+
+  if (rows.length === 0) {
+    return (
+      <TableShell columns={columns}>
+        <TableRowState columns={columns} text="Нет данных" />
+      </TableShell>
     );
   }
 
