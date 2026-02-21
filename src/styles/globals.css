@@ -163,3 +163,9 @@
     @apply text-[12px] leading-[16px];
   }
 }
+
+html,
+body,
+#root {
+  height: 100%;
+}
