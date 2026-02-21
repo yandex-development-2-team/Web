@@ -40,7 +40,7 @@ export function DataTable<T>({
   if (isLoading) {
     return (
       <TableShell columns={columns}>
-        {Array.from({ length: 5 }).map((_, id) => (
+        {Array.from({ length: defaultRowCount }).map((_, id) => (
           <SkeletonRow key={`skeleton-${id}`} columns={columns} />
         ))}
       </TableShell>

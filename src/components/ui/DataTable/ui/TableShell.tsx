@@ -9,7 +9,7 @@ export function TableShell<T>({
   children: ReactNode;
 }) {
   return (
-    <table>
+    <table className="m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
       <thead className="bg-(--color-border)">
         <tr>
           {columns.map((column) => (
