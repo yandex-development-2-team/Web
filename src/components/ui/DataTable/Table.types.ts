@@ -19,6 +19,7 @@ type DataTableProps<T> = {
   defaultRowCount?: number;
   showMoreCountRows?: number;
   showControls?: ControlsTable;
+  isLoading: boolean;
 };
 
 type SortDirection = 'asc' | 'desc';

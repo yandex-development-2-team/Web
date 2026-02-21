@@ -6,6 +6,7 @@ import { ArrangeIcon } from '@/assets/icons';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { cn } from '@/utils';
+import { SkeletonRow } from './ui';
 
 export function DataTable<T>({
   data,
@@ -13,6 +14,7 @@ export function DataTable<T>({
   defaultRowCount = 11,
   showMoreCountRows = 5,
   showControls,
+  isLoading = false,
 }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
@@ -33,6 +35,31 @@ export function DataTable<T>({
     [rows, visibleCountRow],
   );
   const canShowMore = visibleCountRow < rows.length;
+
+  if (isLoading) {
+    return (
+      <table className="m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
+        <thead className="bg-(--color-border)">
+          <tr>
+            {columns.map((column) => (
+              <th
+                key={column.id}
+                style={{ width: column.width }}
+                className="h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal"
+              >
+                {column.title}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
+          {Array.from({ length: 5 }).map((_, id) => (
+            <SkeletonRow key={`skeleton-${id}`} columns={columns} />
+          ))}
+        </tbody>
+      </table>
+    );
+  }
 
   return (
     <>
@@ -55,12 +82,18 @@ export function DataTable<T>({
                 <span className="flex flex-row items-center gap-1">
                   {column.title}
                   {column.isSort && (
-                    <ArrangeIcon className={cn(
-                      "size-4",
-                      sortState?.direction === 'asc' ? '**:data-[arrow="up"]:stroke-(--color-primary)' : '',
-                      sortState?.direction === 'desc' ? '**:data-[arrow="down"]:stroke-(--color-primary)' : ''
-                    )} />
-                    )}
+                    <ArrangeIcon
+                      className={cn(
+                        'size-4',
+                        sortState?.direction === 'asc'
+                          ? '**:data-[arrow="up"]:stroke-(--color-primary)'
+                          : '',
+                        sortState?.direction === 'desc'
+                          ? '**:data-[arrow="down"]:stroke-(--color-primary)'
+                          : '',
+                      )}
+                    />
+                  )}
                 </span>
               </th>
             ))}
@@ -80,13 +113,15 @@ export function DataTable<T>({
       {showControls && (
         <div className="flex flex-row items-center justify-end">
           {showControls === 'showBy' && (
-            <div className='flex flex-row items-center gap-3'>
-              <span className='text-(--color-muted-foreground)'>Показывать по</span>
+            <div className="flex flex-row items-center gap-3">
+              <span className="text-(--color-muted-foreground)">
+                Показывать по
+              </span>
               <Input
                 type="number"
                 value={rowCount}
                 min={1}
-                className='border border-(--color-muted-foreground) text-(--color-muted-foreground) w-12 h-12 text-center'
+                className="h-12 w-12 border border-(--color-muted-foreground) text-center text-(--color-muted-foreground)"
                 onChange={(e) => {
                   const count = Math.max(1, Number(e.target.value) || 1);
                   setRowCount(count);
@@ -99,7 +134,7 @@ export function DataTable<T>({
             <Button
               disabled={!canShowMore}
               variant={'ghost'}
-              className='text-(--color-muted-foreground)  font-normal p-0 mr-5'
+              className="mr-5 p-0 font-normal text-(--color-muted-foreground)"
               onClick={() =>
                 setVisibleCountRow((v) =>
                   Math.min(v + showMoreCountRows, rows.length),

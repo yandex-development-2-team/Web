@@ -12,21 +12,25 @@ type TableStateContent = 'name' | 'place';
 type TableStateConrols = 'showBy' | 'showMore';
 const controlsByContent: Record<TableStateContent, TableStateConrols> = {
   name: 'showMore',
-  place: 'showBy'
-}
+  place: 'showBy',
+};
 
 const ScheduleManagementPage = () => {
   const [stateContent, setStateContent] = useState<TableStateContent>('name');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const choiceStateColumns = stateContent === 'name' ? COLUMNS_CONTROL_TIME_NAME : COLUMNS_CONTROL_TIME_PLACE;
+  const choiceStateColumns =
+    stateContent === 'name'
+      ? COLUMNS_CONTROL_TIME_NAME
+      : COLUMNS_CONTROL_TIME_PLACE;
   const stateControls = controlsByContent[stateContent];
 
   return (
-    <div className="flex flex-col gap-5 h-screen">
-      <div className="rounded-lg bg-(--color-card) m-5 mb-0">
+    <div className="flex h-screen flex-col gap-5">
+      <div className="m-5 mb-0 rounded-lg bg-(--color-card)">
         <h2 className="p-5">Управление расписанием</h2>
       </div>
-      <div className="rounded-lg bg-(--color-card) m-5 mt-0 h-full">
+      <div className="m-5 mt-0 h-full rounded-lg bg-(--color-card)">
         <div className="m-5 flex flex-row justify-between">
           <div className="flex flex-row gap-2.5">
             <Button>Таблица</Button>
@@ -36,7 +40,9 @@ const ScheduleManagementPage = () => {
             <Button
               variant={'shadow'}
               className="h-11.5 w-11.5 border border-(--color-border) p-1.5 shadow-none"
-              onClick={() => setStateContent((s) => (s === 'name' ? 'place' : 'name'))}
+              onClick={() =>
+                setStateContent((s) => (s === 'name' ? 'place' : 'name'))
+              }
             >
               <SlidersIcon className="size-8" />
             </Button>
@@ -54,6 +60,7 @@ const ScheduleManagementPage = () => {
           rowKey={'id'}
           showControls={stateControls}
           defaultRowCount={5}
+          isLoading={isLoading}
         />
       </div>
     </div>

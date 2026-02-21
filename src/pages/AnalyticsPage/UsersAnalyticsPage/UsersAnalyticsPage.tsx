@@ -3,8 +3,11 @@ import { Button } from '@/components/ui/Button';
 import { DataTable } from '@/components/ui/DataTable';
 import { MetricCard } from '@/components/ui/MetricCard/MetricCard';
 import { COLUMNS_ANALYTIC_USER, DATA_ANALYTIC_USER } from '@/mock/mock-table';
+import { useState } from 'react';
 
 const UsersAnalyticsPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div className="m-5 flex flex-col gap-5">
       <div className="rounded-lg bg-(--color-card)">
@@ -36,6 +39,7 @@ const UsersAnalyticsPage = () => {
           data={DATA_ANALYTIC_USER}
           columns={COLUMNS_ANALYTIC_USER}
           rowKey="id"
+          isLoading={isLoading}
         />
       </div>
     </div>
