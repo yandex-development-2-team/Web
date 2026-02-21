@@ -78,6 +78,9 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-line: var(--chart-line);
+  --color-calendar-foreground: var(--calendar-foreground);
+  --color-calendar-secondary: var(--calendar-secondary);
+  --color-calendar-muted: var(--calendar-muted);
 }
 
 :root {
@@ -115,6 +118,9 @@
   --chart-3: oklch(0.8216 0.1707 78.98);
   --chart-4: oklch(0.613 0.1631 267.89);
   --chart-line: oklch(0.4273 0.1168 254.64);
+  --calendar-foreground: oklch(0.235 0 0); /* rgba(30, 30, 30, 1) */
+  --calendar-secondary: oklch(0.5624 0 0); /* rgba(117, 117, 117, 1) */
+  --calendar-muted: oklch(0.7668 0 0); /* rgba(179, 179, 179, 1) */
 }
 
 @layer base {
@@ -143,6 +149,10 @@
 }
 
 @layer utilities {
+  .body-text {
+    @apply text-[16px] leading-[22px];
+  }
+
   .h4-sm-text {
     @apply text-[20px] leading-[27px] font-semibold;
   }
