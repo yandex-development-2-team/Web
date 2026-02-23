@@ -1,12 +1,17 @@
 import { Cell } from './Cell';
 import { useMemo, useState } from 'react';
 import type { DataTableProps } from './Table.types';
-import { nextDirection, sortRows, type SortState } from './SortTable.helpers';
+import {
+  nextDirection,
+  sortRows,
+  type SortState,
+} from './helpers/SortTable.helpers';
 import { ArrangeIcon } from '@/assets/icons';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { cn } from '@/utils';
 import { SkeletonRow, TableRowState, TableShell } from './ui';
+import { filterRows } from './helpers/FilterTable.helpers';
 
 export function DataTable<T>({
   data,
@@ -16,6 +21,7 @@ export function DataTable<T>({
   showControls,
   isLoading = false,
   isError = false,
+  filter = '',
 }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
@@ -26,10 +32,14 @@ export function DataTable<T>({
     return columns.find((col) => col.key == sortState?.columnKey) ?? null;
   }, [columns, sortState]);
 
+  const filteredRows = useMemo(() => {
+    return filterRows(data, columns, filter);
+  }, [data, columns, filter]);
+
   const rows = useMemo(() => {
-    if (!sortState || !activeColumn) return data;
-    return sortRows(data, activeColumn, sortState.direction);
-  }, [data, activeColumn, sortState]);
+    if (!sortState || !activeColumn) return filteredRows;
+    return sortRows(filteredRows, activeColumn, sortState.direction);
+  }, [filteredRows, activeColumn, sortState]);
 
   const visibleRows = useMemo(
     () => rows.slice(0, visibleCountRow),
@@ -87,10 +97,12 @@ export function DataTable<T>({
                     <ArrangeIcon
                       className={cn(
                         'size-4',
-                        sortState?.direction === 'asc' && sortState?.columnKey === column.key
+                        sortState?.direction === 'asc' &&
+                          sortState?.columnKey === column.key
                           ? '**:data-[arrow="up"]:stroke-(--color-primary)'
                           : '',
-                        sortState?.direction === 'desc' && sortState?.columnKey === column.key
+                        sortState?.direction === 'desc' &&
+                          sortState?.columnKey === column.key
                           ? '**:data-[arrow="down"]:stroke-(--color-primary)'
                           : '',
                       )}

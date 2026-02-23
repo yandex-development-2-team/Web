@@ -1,4 +1,4 @@
-import type { Column, SortDirection } from './Table.types';
+import type { Column, SortDirection } from '../Table.types';
 
 type SortState<T> = {
   columnKey: Column<T>['key'];

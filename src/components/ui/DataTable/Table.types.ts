@@ -8,6 +8,7 @@ type Column<T, K extends keyof T = keyof T> = {
   width?: string;
   getValue?: (row: T) => ReactNode;
   sortValue?: (row: T) => string | null | undefined;
+  filterValue?: (row: T) => string | null | undefined;
 };
 
 type ControlsTable = 'showBy' | 'showMore';
@@ -21,6 +22,7 @@ type DataTableProps<T> = {
   showControls?: ControlsTable;
   isLoading: boolean;
   isError: boolean;
+  filter?: string;
 };
 
 type SortDirection = 'asc' | 'desc';
