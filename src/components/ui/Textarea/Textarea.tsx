@@ -1,6 +1,6 @@
 import { useId, type ComponentProps } from 'react';
 import { cn } from '@/utils';
-import { Label } from '@/components/ui/Label';
+import { Label } from '@/components/ui/Label/Label';
 
 interface TextareaProps extends ComponentProps<'textarea'> {
   label?: string;
