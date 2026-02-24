@@ -7,7 +7,7 @@ export default function LoginPage() {
       <div className="relative flex h-full max-w-[445px] min-w-[445px] flex-shrink-0">
         <div className="bg-secondary flex w-full flex-col items-center justify-center rounded-lg p-10">
           <div className="absolute top-6 left-17 text-left">
-            <h1 className="h1 text-accent-strong text-stroke-white font-arsenal leading-none text-shadow-md">
+            <h1 className="h1 text-accent-strong font-arsenal leading-none">
               Event
             </h1>
           </div>
