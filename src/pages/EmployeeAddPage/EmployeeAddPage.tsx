@@ -1,5 +1,8 @@
 import { EmployeeAddForm } from './EmployeeAddForm'
 
-export default function EmployeeAddPage() {
+function EmployeeAddPage() {
   return <EmployeeAddForm />
 }
+
+export const Component = EmployeeAddPage
+export default EmployeeAddPage
