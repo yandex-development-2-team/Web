@@ -83,6 +83,7 @@
 :root {
   --background: oklch(0.9642 0 0); /* figma: rgba(243, 243, 243, 1) */
   --foreground: oklch(0.326 0.0014 17.23); /* rgba(53,52,52,1) */
+  --modal-backdrop: oklch(0.326 0.0014 17.23 / 0.4); /* rgba(53, 52, 52, 0.4) */
   --card: oklch(1 0 0); /* rgba(255, 255, 255, 1) */
   --card-foreground: oklch(0.326 0.0014 17.23);
   --popover: oklch(1 0 0);

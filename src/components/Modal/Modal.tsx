@@ -59,22 +59,22 @@ const Modal = ({
     disabled?: boolean,
   ) => {
     const baseClass =
-      'text-base text-weight-[600] px-8 py-3 rounded-lg cursor-pointer transition-colors';
+      'text-base font-semibold px-8 py-3 rounded-lg cursor-pointer transition-colors';
     const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : '';
 
     if (variant === 'delete' && buttonVariant === 'delete') {
-      return `${baseClass} ${disabledClass} bg-[#F05252] text-white hover:bg-[#e04a4a] border-none`;
+      return `${baseClass} ${disabledClass} bg-destructive text-white hover:bg-[#e04a4a] border-none`;
     }
 
     switch (buttonVariant) {
       case 'save':
-        return `${baseClass} ${disabledClass} bg-[#F4DB54] text-black hover:bg-[#e5cc4a]`;
+        return `${baseClass} ${disabledClass} bg-primary text-foreground hover:bg-[#e5cc4a]`;
       case 'cancel':
-        return `${baseClass} ${disabledClass} bg-white text-black border border-[#F4DB54] hover:bg-gray-50`;
+        return `${baseClass} ${disabledClass} bg-white text-foreground border border-primary hover:bg-gray-50`;
       case 'delete':
-        return `${baseClass} ${disabledClass} bg-white text-[#F05252] border border-[#F05252] hover:bg-red-50`;
+        return `${baseClass} ${disabledClass} bg-white text-destructive border border-destructive hover:bg-red-50`;
       default:
-        return `${baseClass} ${disabledClass} bg-gray-200 text-black hover:bg-gray-300`;
+        return `${baseClass} ${disabledClass} bg-muted text-foreground hover:bg-gray-300`;
     }
   };
 
@@ -87,7 +87,7 @@ const Modal = ({
 
   return createPortal(
     <div
-      className="bg-opacity-40 fixed inset-0 z-50 flex items-center justify-center bg-[#35343466]"
+      className="bg-opacity-40 fixed inset-0 z-50 flex items-center justify-center bg-modal-backdrop"
       onClick={handleBackdropClick}
     >
       <div
@@ -98,12 +98,12 @@ const Modal = ({
         <div
           className={`flex items-center justify-between p-4 ${variant !== 'delete' ? 'border-b' : ''}`}
         >
-          <h2 className="font-open-sans text-weight-[700] text-[24px] text-[#353434]">
+          <h2 className="font-open-sans text-weight-[700] text-[24px] text-foreground">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="mr-[10px] cursor-pointer text-[#353434] hover:text-gray-700"
+            className="mr-[10px] cursor-pointer text-foreground"
             disabled={buttons.some(
               (btn) => btn.variant === 'delete' && btn.disabled,
             )}
