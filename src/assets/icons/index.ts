@@ -12,3 +12,10 @@ export { default as BoxesMenuIcon } from './boxes-menu.svg?react';
 export { default as ApplicationIcon } from './application.svg?react';
 export { default as AfishaIcon } from './afisha.svg?react';
 export { default as SidebarArrowIcon } from './exit-arrow-right-20.svg?react';
+
+export { default as TrashOpenIcon } from './trash-open-icon.svg?react';
+export { default as UploadIcon } from './upload-icon.svg?react';
+export { default as Box1Icon } from './box-icon.svg?react';
+export { default as UserIcon } from './user-icon.svg?react';
+export { default as UserPlusIcon } from './user-plus-icon.svg?react';
+export { default as CloseIcon } from './close-icon.svg?react';
