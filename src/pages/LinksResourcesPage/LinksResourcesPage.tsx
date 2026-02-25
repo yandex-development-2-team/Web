@@ -134,7 +134,7 @@ const LinksResourcesPage = () => {
               className={cn("w-full h-[60px]")}
             />
           </div>
-          <div className={cn("flex gap-5 justify-end")}>
+          <div className={cn("flex gap-3 justify-end")}>
             <Button
   type="button"
   variant="default-secondary"
