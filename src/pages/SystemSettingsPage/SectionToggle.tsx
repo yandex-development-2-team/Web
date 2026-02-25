@@ -65,11 +65,13 @@ export function SectionToggle({ items, onOpenChange }: ToggleListProps) {
                 'gap-x-25 gap-y-11.25',
               )}
             >
-              {item.content.map((group) => (
+              {item.content.map((group, idx) => (
                 <PersmissionList
                   key={group.id}
                   permissionItems={group.options}
                   title={group.groupTitle}
+                  groupIdx={idx}
+                  sectionName={item.id}
                 />
               ))}
             </div>

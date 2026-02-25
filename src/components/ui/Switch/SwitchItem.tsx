@@ -7,8 +7,9 @@ interface SwitchItemProps {
   label?: string;
   name?: string;
   checked?: boolean;
-  onToggle?: () => string;
+  onToggle?: () => void;
   className?: string;
+  defaultValue?: boolean;
 }
 
 export function SwitchItem({
@@ -18,6 +19,8 @@ export function SwitchItem({
   name,
   checked,
   onToggle,
+  defaultValue = false,
+  ...props
 }: SwitchItemProps) {
   const gegerateId = useId();
   const switchId = id || gegerateId;
@@ -25,10 +28,12 @@ export function SwitchItem({
   return (
     <div className={cn('flex items-center gap-3', className)}>
       <Switch
+        {...props}
         id={switchId}
         name={name}
-        defaultChecked={checked}
+        defaultChecked={defaultValue}
         onCheckedChange={onToggle}
+        checked={checked}
       />
       {label && <label htmlFor={switchId}>{label}</label>}
     </div>
