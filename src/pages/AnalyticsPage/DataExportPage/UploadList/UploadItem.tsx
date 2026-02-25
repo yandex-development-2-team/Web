@@ -27,7 +27,6 @@ export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
     setIsOpen(true);
   };
   const handleConfirmRemove = () => {
-    console.log(`remove ${item.id}`);
     onRemoveItem?.(item.id);
     setTimeout(() => {
       showNotification({ message: 'Файл успешно удален', type: 'success' });

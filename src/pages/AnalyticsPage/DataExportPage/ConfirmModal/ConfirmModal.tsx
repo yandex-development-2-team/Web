@@ -22,7 +22,6 @@ export function ModalBase({ children, isOpen, onClose }: ModalProps) {
     e.stopPropagation();
 
     onClose?.();
-    console.log('overlay event atach');
   };
 
   return (
@@ -55,12 +54,10 @@ export function ConfirmModal({
   onConfirmRemoveItem: () => void;
 }) {
   const handleRemoveItem = () => {
-    console.log('remove btn event atach');
     onConfirmRemoveItem();
   };
 
   const handleCancelAction = () => {
-    console.log('cancel btn event atach');
     onClose();
   };
   return (
@@ -68,7 +65,6 @@ export function ConfirmModal({
       <div
         className={cn('bg-card min-w-100 rounded-lg p-6')}
         onClick={(e) => {
-          console.log('content block event atach');
           e.stopPropagation();
         }}
       >
