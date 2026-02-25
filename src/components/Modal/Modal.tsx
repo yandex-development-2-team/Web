@@ -1,19 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-interface IButtonConfig {
-  text: string;
-  onClick: () => void;
-  variant?: 'save' | 'cancel' | 'delete';
-  disabled?: boolean;
-}
-
 interface IModalProps {
   title: string;
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  buttons?: IButtonConfig[];
   variant?: 'default' | 'delete';
 }
 
@@ -22,16 +14,13 @@ const Modal = ({
   isOpen,
   onClose,
   children,
-  buttons = [],
   variant = 'default',
 }: IModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
 
     if (isOpen) {
@@ -49,40 +38,7 @@ const Modal = ({
   if (!isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
-  const getButtonClassWithContext = (
-    buttonVariant?: string,
-    disabled?: boolean,
-  ) => {
-    const baseClass =
-      'text-base font-semibold px-8 py-3 rounded-lg cursor-pointer transition-colors';
-    const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : '';
-
-    if (variant === 'delete' && buttonVariant === 'delete') {
-      return `${baseClass} ${disabledClass} bg-destructive text-white hover:bg-[#e04a4a] border-none`;
-    }
-
-    switch (buttonVariant) {
-      case 'save':
-        return `${baseClass} ${disabledClass} bg-primary text-foreground hover:bg-[#e5cc4a]`;
-      case 'cancel':
-        return `${baseClass} ${disabledClass} bg-white text-foreground border border-primary hover:bg-gray-50`;
-      case 'delete':
-        return `${baseClass} ${disabledClass} bg-white text-destructive border border-destructive hover:bg-red-50`;
-      default:
-        return `${baseClass} ${disabledClass} bg-muted text-foreground hover:bg-gray-300`;
-    }
-  };
-
-  const getButtonsContainerClass = () => {
-    if (variant === 'delete') {
-      return 'flex justify-end gap-2 p-4';
-    }
-    return 'flex items-center justify-between gap-4 border-t p-4';
+    if (e.target === e.currentTarget) onClose();
   };
 
   return createPortal(
@@ -96,78 +52,24 @@ const Modal = ({
         tabIndex={-1}
       >
         <div
-          className={`flex items-center justify-between p-4 ${variant !== 'delete' ? 'border-b' : ''}`}
+          className={`flex items-center justify-between p-4 ${
+            variant !== 'delete' ? 'border-b' : ''
+          }`}
         >
-          <h2 className="font-open-sans text-weight-[700] text-[24px] text-foreground">
+          <h2 className="font-open-sans font-bold text-2xl text-foreground">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="mr-[10px] cursor-pointer text-foreground"
-            disabled={buttons.some(
-              (btn) => btn.variant === 'delete' && btn.disabled,
-            )}
+            className="mr-2.5 cursor-pointer text-foreground text-xl"
           >
             ✕
           </button>
         </div>
 
-        <div className="max-h-[677vh] overflow-y-auto px-6 py-5">
+        <div className="max-h-[70vh] overflow-y-auto px-6 py-5">
           {children}
         </div>
-
-        {buttons.length > 0 && (
-          <div className={getButtonsContainerClass()}>
-            {variant === 'delete' ? (
-              <div className="flex gap-2">
-                {buttons.map((btn, i) => (
-                  <button
-                    key={i}
-                    onClick={btn.onClick}
-                    className={getButtonClassWithContext(
-                      btn.variant,
-                      btn.disabled,
-                    )}
-                    disabled={btn.disabled}
-                  >
-                    {btn.text}
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <>
-                {buttons.length >= 1 && (
-                  <button
-                    onClick={buttons[0].onClick}
-                    className={getButtonClassWithContext(
-                      buttons[0].variant,
-                      buttons[0].disabled,
-                    )}
-                    disabled={buttons[0].disabled}
-                  >
-                    {buttons[0].text}
-                  </button>
-                )}
-
-                <div className="flex items-center gap-2">
-                  {buttons.slice(1).map((btn, i) => (
-                    <button
-                      key={i + 1}
-                      onClick={btn.onClick}
-                      className={getButtonClassWithContext(
-                        btn.variant,
-                        btn.disabled,
-                      )}
-                      disabled={btn.disabled}
-                    >
-                      {btn.text}
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        )}
       </div>
     </div>,
     document.body,
