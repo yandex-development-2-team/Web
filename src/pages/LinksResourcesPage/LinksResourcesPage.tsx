@@ -1,10 +1,10 @@
-import { useForm, useFieldArray } from "react-hook-form";
-import { useState } from "react";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "@/components/ui/Textarea";
+import { useForm, useFieldArray } from 'react-hook-form';
+import { useState } from 'react';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
 // import { DeleteConfirmModal } from "./DeleteConfirmModal";
-import { cn } from "@/utils";
+import { cn } from '@/utils';
 
 interface LinkItem {
   id: string;
@@ -22,7 +22,7 @@ interface FormData {
 const LinksResourcesPage = () => {
   const { register, control, handleSubmit, watch } = useForm<FormData>({
     defaultValues: {
-      organizationInfo: "",
+      organizationInfo: '',
       usefulLinks: [],
       faqLinks: [],
       partnerRelationsLinks: [],
@@ -35,7 +35,7 @@ const LinksResourcesPage = () => {
     remove: removeUsefulLink,
   } = useFieldArray({
     control,
-    name: "usefulLinks",
+    name: 'usefulLinks',
   });
 
   const {
@@ -44,7 +44,7 @@ const LinksResourcesPage = () => {
     remove: removeFaqLink,
   } = useFieldArray({
     control,
-    name: "faqLinks",
+    name: 'faqLinks',
   });
 
   const {
@@ -53,7 +53,7 @@ const LinksResourcesPage = () => {
     remove: removePartnerRelation,
   } = useFieldArray({
     control,
-    name: "partnerRelationsLinks",
+    name: 'partnerRelationsLinks',
   });
 
   const [deleteModal, setDeleteModal] = useState<{
@@ -64,9 +64,9 @@ const LinksResourcesPage = () => {
     onConfirm: () => {},
   });
 
-  const [newUsefulLink, setNewUsefulLink] = useState({ title: "", url: "" });
-  const [newFaqLink, setNewFaqLink] = useState("");
-  const [newPartnerRelationLink, setNewPartnerRelationLink] = useState("");
+  const [newUsefulLink, setNewUsefulLink] = useState({ title: '', url: '' });
+  const [newFaqLink, setNewFaqLink] = useState('');
+  const [newPartnerRelationLink, setNewPartnerRelationLink] = useState('');
 
   const handleDeleteClick = (callback: () => void) => {
     setDeleteModal({
@@ -85,7 +85,7 @@ const LinksResourcesPage = () => {
         title: newUsefulLink.title,
         url: newUsefulLink.url,
       });
-      setNewUsefulLink({ title: "", url: "" });
+      setNewUsefulLink({ title: '', url: '' });
     }
   };
 
@@ -93,10 +93,10 @@ const LinksResourcesPage = () => {
     if (newFaqLink.trim()) {
       appendFaqLink({
         id: Date.now().toString(),
-        title: "",
+        title: '',
         url: newFaqLink,
       });
-      setNewFaqLink("");
+      setNewFaqLink('');
     }
   };
 
@@ -104,15 +104,15 @@ const LinksResourcesPage = () => {
     if (newPartnerRelationLink.trim()) {
       appendPartnerRelation({
         id: Date.now().toString(),
-        title: "",
+        title: '',
         url: newPartnerRelationLink,
       });
-      setNewPartnerRelationLink("");
+      setNewPartnerRelationLink('');
     }
   };
 
   const onSubmit = (data: FormData) => {
-    console.log("Form data:", data);
+    console.log('Form data:', data);
     // TODO: Отправка на бэк
   };
 
@@ -121,65 +121,84 @@ const LinksResourcesPage = () => {
   };
 
   return (
-    <div className={cn("flex h-full flex-col gap-5")}>
-      <form onSubmit={handleSubmit(onSubmit)} className={cn("flex flex-col gap-5")}>
+    <div className={cn('flex h-full flex-col gap-5')}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={cn('flex flex-col gap-5')}
+      >
         {/* Информация об организации */}
-        <section className={cn("bg-card rounded-lg p-5")}>
-          <h2 className={cn("mb-5")}>Информация об организации</h2>
-          <div className={cn("mb-4")}>
-            <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>Текст</label>
+        <section className={cn('bg-card rounded-lg p-5')}>
+          <h2 className={cn('mb-5')}>Информация об организации</h2>
+          <div className={cn('mb-4')}>
+            <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+              Текст
+            </label>
             <Textarea
-              {...register("organizationInfo")}
+              {...register('organizationInfo')}
               placeholder="Введите текст..."
-              className={cn("w-full h-[60px]")}
+              className={cn('h-[60px] w-full')}
             />
           </div>
-          <div className={cn("flex gap-3 justify-end")}>
+          <div className={cn('flex justify-end gap-3')}>
             <Button
-  type="button"
-  variant="default-secondary"
-  onClick={() => handleDeleteClick(handleDeleteOrganizationInfo)}
-  className={cn("w-[196px] border-[#F4DB54]")}
->
-  Удалить
-</Button>
-            <Button type="submit" className={cn("w-[196px]")}>
+              type="button"
+              variant="default-secondary"
+              onClick={() => handleDeleteClick(handleDeleteOrganizationInfo)}
+              className={cn('w-[196px] border-[#F4DB54]')}
+            >
+              Удалить
+            </Button>
+            <Button type="submit" className={cn('w-[196px]')}>
               Сохранить
             </Button>
           </div>
         </section>
 
         {/* Полезные ссылки */}
-        <section className={cn("bg-card rounded-lg p-5")}>
-          <h2 className={cn("mb-5")}>Полезные ссылки</h2>
-          
+        <section className={cn('bg-card rounded-lg p-5')}>
+          <h2 className={cn('mb-5')}>Полезные ссылки</h2>
+
           {/* Форма добавления новой ссылки */}
-          <div className={cn("mb-6")}>
-            <div className={cn("flex gap-5 items-end")}>
-              <div className={cn("flex-1 space-y-5")}>
+          <div className={cn('mb-6')}>
+            <div className={cn('flex items-end gap-5')}>
+              <div className={cn('flex-1 space-y-5')}>
                 <div>
-                  <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>Название</label>
+                  <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+                    Название
+                  </label>
                   <Input
                     value={newUsefulLink.title}
-                    onChange={(e) => setNewUsefulLink({ ...newUsefulLink, title: e.target.value })}
+                    onChange={(e) =>
+                      setNewUsefulLink({
+                        ...newUsefulLink,
+                        title: e.target.value,
+                      })
+                    }
                     placeholder="Название"
-                    className={cn("w-full")}
+                    className={cn('w-full')}
                   />
                 </div>
                 <div>
-                  <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>URL</label>
+                  <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+                    URL
+                  </label>
                   <Input
                     value={newUsefulLink.url}
-                    onChange={(e) => setNewUsefulLink({ ...newUsefulLink, url: e.target.value })}
+                    onChange={(e) =>
+                      setNewUsefulLink({
+                        ...newUsefulLink,
+                        url: e.target.value,
+                      })
+                    }
                     placeholder="Ссылка"
-                    className={cn("w-full")}
+                    className={cn('w-full')}
                   />
                 </div>
               </div>
               <Button
                 type="button"
                 onClick={handleAddUsefulLink}
-                className={cn("w-[196px] h-10")}
+                className={cn('h-[46px] w-[196px]')}
               >
                 Загрузить
               </Button>
@@ -188,21 +207,25 @@ const LinksResourcesPage = () => {
 
           {/* Список загруженных ссылок */}
           {usefulLinksFields.length > 0 && (
-            <div className={cn("space-y-2")}>
+            <div className={cn('space-y-2')}>
               {usefulLinksFields.map((field, index) => (
-                <div key={field.id} className={cn("flex items-center gap-2")}>
+                <div key={field.id} className={cn('flex items-center gap-2')}>
                   <a
                     href={field.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn("inline-block px-3 py-1.5 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-sm")}
+                    className={cn(
+                      'inline-block rounded-md bg-gray-100 px-3 py-1.5 text-sm transition-colors hover:bg-gray-200',
+                    )}
                   >
                     {field.title}
                   </a>
                   <button
                     type="button"
-                    onClick={() => handleDeleteClick(() => removeUsefulLink(index))}
-                    className={cn("text-gray-400 hover:text-gray-600")}
+                    onClick={() =>
+                      handleDeleteClick(() => removeUsefulLink(index))
+                    }
+                    className={cn('text-gray-400 hover:text-gray-600')}
                   >
                     <svg
                       width="20"
@@ -226,21 +249,23 @@ const LinksResourcesPage = () => {
         </section>
 
         {/* FAQ */}
-        <section className={cn("bg-card rounded-lg p-5")}>
-          <h2 className={cn("mb-5")}>FAQ</h2>
-          <div className={cn("mb-4")}>
-            <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>Вставьте ссылку</label>
-            <div className={cn("flex gap-5")}>
+        <section className={cn('bg-card rounded-lg p-5')}>
+          <h2 className={cn('mb-5')}>FAQ</h2>
+          <div className={cn('mb-4')}>
+            <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+              Вставьте ссылку
+            </label>
+            <div className={cn('flex gap-5')}>
               <Input
                 value={newFaqLink}
                 onChange={(e) => setNewFaqLink(e.target.value)}
                 placeholder="Ссылка"
-                className={cn("w-[803px]")}
+                className={cn('w-[803px]')}
               />
               <Button
                 type="button"
                 onClick={handleAddFaqLink}
-                className={cn("w-[196px]")}
+                className={cn('w-[196px]')}
               >
                 Загрузить
               </Button>
@@ -248,28 +273,33 @@ const LinksResourcesPage = () => {
           </div>
 
           {faqLinksFields.map((field, index) => (
-            <div key={field.id} className={cn("space-y-3")}>
-              <div className={cn("flex gap-5 items-start")}>
-                <div className={cn("w-[803px] space-y-3")}>
-                  <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>Название</label>
+            <div key={field.id} className={cn('space-y-3')}>
+              <div className={cn('flex items-start gap-5')}>
+                <div className={cn('w-[803px] space-y-3')}>
+                  <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+                    Название
+                  </label>
                   <Input
                     {...register(`faqLinks.${index}.title`)}
                     placeholder="Название"
-                    className={cn("w-full")}
+                    className={cn('w-full')}
                   />
                   <a
                     href={watch(`faqLinks.${index}.url`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn("inline-block px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-sm")}
+                    className={cn(
+                      'inline-block rounded-md bg-gray-100 px-4 py-2 text-sm transition-colors hover:bg-gray-200',
+                    )}
                   >
-                    {watch(`faqLinks.${index}.title`) || watch(`faqLinks.${index}.url`)}
+                    {watch(`faqLinks.${index}.title`) ||
+                      watch(`faqLinks.${index}.url`)}
                   </a>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleDeleteClick(() => removeFaqLink(index))}
-                  className={cn("text-gray-400 hover:text-gray-600 p-2")}
+                  className={cn('p-2 text-gray-400 hover:text-gray-600')}
                 >
                   <svg
                     width="20"
@@ -292,21 +322,23 @@ const LinksResourcesPage = () => {
         </section>
 
         {/* Афиша Partner Relations */}
-        <section className={cn("bg-card rounded-lg p-5")}>
-          <h2 className={cn("mb-5")}>Афиша Partner Relations</h2>
-          <div className={cn("mb-4")}>
-            <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>Вставьте ссылку</label>
-            <div className={cn("flex gap-5")}>
+        <section className={cn('bg-card rounded-lg p-5')}>
+          <h2 className={cn('mb-5')}>Афиша Partner Relations</h2>
+          <div className={cn('mb-4')}>
+            <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+              Вставьте ссылку
+            </label>
+            <div className={cn('flex gap-5')}>
               <Input
                 value={newPartnerRelationLink}
                 onChange={(e) => setNewPartnerRelationLink(e.target.value)}
                 placeholder="Ссылка"
-                className={cn("w-[805px]")}
+                className={cn('w-[805px]')}
               />
               <Button
                 type="button"
                 onClick={handleAddPartnerRelationLink}
-                className={cn("w-[196px]")}
+                className={cn('w-[196px]')}
               >
                 Загрузить
               </Button>
@@ -314,20 +346,24 @@ const LinksResourcesPage = () => {
           </div>
 
           {partnerRelationsFields.map((field, index) => (
-            <div key={field.id} className={cn("space-y-3")}>
-              <div className={cn("flex gap-5 items-start")}>
-                <div className={cn("w-[805px] space-y-3")}>
-                  <label className={cn("block text-[#8B8C8B] text-xs mb-1")}>Название</label>
+            <div key={field.id} className={cn('space-y-3')}>
+              <div className={cn('flex items-start gap-5')}>
+                <div className={cn('w-[805px] space-y-3')}>
+                  <label className={cn('mb-1 block text-xs text-[#8B8C8B]')}>
+                    Название
+                  </label>
                   <Input
                     {...register(`partnerRelationsLinks.${index}.title`)}
                     placeholder="Название"
-                    className={cn("w-full")}
+                    className={cn('w-full')}
                   />
                   <a
                     href={watch(`partnerRelationsLinks.${index}.url`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn("inline-block px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-sm")}
+                    className={cn(
+                      'inline-block rounded-md bg-gray-100 px-4 py-2 text-sm transition-colors hover:bg-gray-200',
+                    )}
                   >
                     {watch(`partnerRelationsLinks.${index}.title`) ||
                       watch(`partnerRelationsLinks.${index}.url`)}
@@ -335,8 +371,10 @@ const LinksResourcesPage = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={() => handleDeleteClick(() => removePartnerRelation(index))}
-                  className={cn("text-gray-400 hover:text-gray-600 p-2")}
+                  onClick={() =>
+                    handleDeleteClick(() => removePartnerRelation(index))
+                  }
+                  className={cn('p-2 text-gray-400 hover:text-gray-600')}
                 >
                   <svg
                     width="20"
