@@ -62,6 +62,11 @@ export const menu_items: MenuItems = {
       url: ROUTES.SYSTEM_SETTINGS,
       icon: SystemSettingsIcon,
     },
+    {
+      title: 'Ссылки и ресурсы',
+      url: ROUTES.LINKS_RESOURCES,
+      icon: AfishaIcon,
+    },
   ],
   MANAGER: [
     {
