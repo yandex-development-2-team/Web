@@ -1,1 +1,2 @@
-export { cn } from './utils';
+export { cn } from './clsxUtils';
+export { capitalizeFirst } from './capitalizeFirst';
