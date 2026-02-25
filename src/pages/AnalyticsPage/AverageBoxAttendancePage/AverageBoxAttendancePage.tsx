@@ -35,6 +35,7 @@ const AverageBoxAttendancePage = () => {
           defaultRowCount={5}
           rowKey={'id'}
           filter={filter}
+          showControls="pagination"
         />
       </div>
     </div>

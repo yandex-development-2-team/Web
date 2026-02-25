@@ -1,17 +1,12 @@
 import { Cell } from './Cell';
 import { useMemo, useState } from 'react';
 import type { DataTableProps } from './Table.types';
-import {
-  nextDirection,
-  sortRows,
-  type SortState,
-} from './helpers/SortTable.helpers';
-import { ArrangeIcon } from '@/assets/icons';
+import { ArrangeIcon, ArrowRghtIcon } from '@/assets/icons';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { cn } from '@/utils';
 import { SkeletonRow, TableRowState, TableShell } from './ui';
-import { filterRows } from './helpers/FilterTable.helpers';
+import { filterRows, getPaginationRange, nextDirection, paginateRows, sortRows, type SortState } from './helpers';
 
 export function DataTable<T>({
   data,
@@ -27,6 +22,7 @@ export function DataTable<T>({
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
   const [visibleCountRow, setVisibleCountRow] =
     useState<number>(defaultRowCount);
+  const [page, setPage] = useState(1);
 
   const activeColumn = useMemo(() => {
     return columns.find((col) => col.key == sortState?.columnKey) ?? null;
@@ -45,7 +41,31 @@ export function DataTable<T>({
     () => rows.slice(0, visibleCountRow),
     [rows, visibleCountRow],
   );
+
   const canShowMore = visibleCountRow < rows.length;
+
+  const pagination = useMemo(() => {
+    if (showControls !== 'pagination') {
+      return {
+        paginatedRows: rows,
+        totalPage: 1,
+        safePage: 1,
+      };
+    }
+    return paginateRows({
+      rows,
+      currentPage: page,
+      pageSize: rowCount,
+    });
+  }, [rows, page, rowCount, showControls]);
+
+  const displayRows = useMemo(() => {
+    if (showControls === 'pagination') {
+      return pagination.paginatedRows;
+    }
+
+    return visibleRows;
+  }, [showControls, pagination.paginatedRows, visibleRows]);
 
   if (isLoading) {
     return (
@@ -114,7 +134,7 @@ export function DataTable<T>({
           </tr>
         </thead>
         <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
-          {visibleRows.map((row, rowIndex) => (
+          {displayRows.map((row, rowIndex) => (
             <tr key={rowIndex} className="h-13 align-middle">
               {columns.map((column) => (
                 <Cell key={column.id} row={row} column={column} />
@@ -122,6 +142,55 @@ export function DataTable<T>({
             </tr>
           ))}
         </tbody>
+        {showControls === 'pagination' && (
+          <tfoot className="font-normal text-(--color-muted-foreground)">
+            <tr>
+              <td colSpan={columns.length} className="border-t">
+                <div className="m-3 mb-4 flex items-center justify-end gap-1">
+                  <Button
+                    variant="ghost"
+                    disabled={pagination.safePage === 1}
+                    className="p-2.5"
+                    onClick={() => setPage((page) => page - 1)}
+                  >
+                    <ArrowRghtIcon className="size-3 stroke-(--color-muted-foreground)" />
+                  </Button>
+
+                  {getPaginationRange({
+                    currentPage: pagination.safePage,
+                    totalPages: pagination.totalPage,
+                    nearCount: 2,
+                  }).map((item, index) =>
+                    item === 'dots' ? (
+                      <span key={`dots-${index}`}>...</span>
+                    ) : (
+                      <Button
+                        variant={
+                          item === pagination.safePage
+                            ? 'default-secondary'
+                            : 'ghost'
+                        }
+                        className={cn('h-8 w-8 p-0')}
+                        onClick={() => setPage(item)}
+                      >
+                        {item}
+                      </Button>
+                    ),
+                  )}
+
+                  <Button
+                    variant="ghost"
+                    className="p-2.5"
+                    disabled={pagination.safePage === pagination.totalPage}
+                    onClick={() => setPage((page) => page + 1)}
+                  >
+                    <ArrowRghtIcon className="size-3 rotate-180 stroke-(--color-muted-foreground)" />
+                  </Button>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        )}
       </table>
 
       {showControls && (

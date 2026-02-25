@@ -15,3 +15,4 @@ export { default as SidebarArrowIcon } from './exit-arrow-right-20.svg?react';
 export { default as ArrangeIcon } from './arrange.svg?react';
 export { default as UploadArrowIcon } from './download-arrow.svg?react';
 export { default as SlidersIcon } from './sliders.svg?react';
+export { default as ArrowRghtIcon } from './arrow-right-fix.svg?react';

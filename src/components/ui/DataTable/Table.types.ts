@@ -11,7 +11,7 @@ type Column<T, K extends keyof T = keyof T> = {
   filterValue?: (row: T) => string | null | undefined;
 };
 
-type ControlsTable = 'showBy' | 'showMore';
+type ControlsTable = 'showBy' | 'showMore' | 'pagination';
 
 type DataTableProps<T> = {
   data: T[];
@@ -47,10 +47,28 @@ type ControlTimeTable = {
   countBooked: number;
 };
 
+type PaginationItem = number | 'dots';
+
+type PaginationRangeArgs = {
+  currentPage: number;
+  totalPages: number;
+  nearCount?: number;
+};
+
+type PaginateArgs<T> = {
+  rows: T[];
+  currentPage: number;
+  pageSize: number;
+};
+
 export type {
   Column,
   DataTableProps,
   SortDirection,
   AnalyticUserTable,
   ControlTimeTable,
+  ControlsTable,
+  PaginationItem,
+  PaginationRangeArgs,
+  PaginateArgs,
 };

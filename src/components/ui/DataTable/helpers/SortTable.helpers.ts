@@ -53,4 +53,4 @@ function nextDirection<T>(
   return null;
 }
 
-export { compareColumn, sortRows, nextDirection, type SortState };
+export { sortRows, nextDirection, type SortState };
