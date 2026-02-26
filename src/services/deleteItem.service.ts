@@ -1,5 +1,5 @@
 import { showNotification } from '@/services/notification.service';
-import {api} from '@/services/api.service'
+import { api } from '@/services/api.service';
 
 export async function deleteItemById(id: string | number, path: string) {
   return api

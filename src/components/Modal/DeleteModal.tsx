@@ -22,15 +22,12 @@ const DeleteModal = ({
 
   const handleDelete = async () => {
     setIsDeleting(true);
-    try {
-      await deleteItemById(itemId, deletePath);
-      onConfirm();
-      onClose();
-    } catch (error) {
-      console.error('Delete failed:', error);
-    } finally {
-      setIsDeleting(false);
-    }
+
+    await deleteItemById(itemId, deletePath);
+    onConfirm();
+    onClose();
+
+    setIsDeleting(false);
   };
 
   return (
@@ -51,7 +48,7 @@ const DeleteModal = ({
           <button
             onClick={onClose}
             disabled={isDeleting}
-            className="px-6 py-2.5 rounded-lg border border-primary text-foreground hover:bg-gray-50 disabled:opacity-50"
+            className="border-primary text-foreground rounded-lg border px-6 py-2.5 hover:bg-gray-50 disabled:opacity-50"
           >
             Отмена
           </button>
@@ -59,7 +56,7 @@ const DeleteModal = ({
           <button
             onClick={handleDelete}
             disabled={isDeleting}
-            className="px-6 py-2.5 rounded-lg bg-destructive text-white hover:bg-red-600 disabled:opacity-50"
+            className="bg-destructive rounded-lg px-6 py-2.5 text-white hover:bg-red-600 disabled:opacity-50"
           >
             {isDeleting ? 'Удаление...' : 'Удалить'}
           </button>

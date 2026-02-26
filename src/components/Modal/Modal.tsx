@@ -43,7 +43,7 @@ const Modal = ({
 
   return createPortal(
     <div
-      className="bg-opacity-40 fixed inset-0 z-50 flex items-center justify-center bg-modal-backdrop"
+      className="bg-opacity-40 bg-modal-backdrop fixed inset-0 z-50 flex items-center justify-center"
       onClick={handleBackdropClick}
     >
       <div
@@ -56,20 +56,18 @@ const Modal = ({
             variant !== 'delete' ? 'border-b' : ''
           }`}
         >
-          <h2 className="font-open-sans font-bold text-2xl text-foreground">
+          <h2 className="font-open-sans text-foreground text-2xl font-bold">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="mr-2.5 cursor-pointer text-foreground text-xl"
+            className="text-foreground mr-2.5 cursor-pointer text-xl"
           >
             ✕
           </button>
         </div>
 
-        <div className="max-h-[70vh] overflow-y-auto px-6 py-5">
-          {children}
-        </div>
+        <div className="max-h-[70vh] overflow-y-auto px-6 py-5">{children}</div>
       </div>
     </div>,
     document.body,

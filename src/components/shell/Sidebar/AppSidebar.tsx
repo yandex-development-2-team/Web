@@ -17,7 +17,12 @@ import {
   SidebarSeparator,
   SidebarMenuSub,
 } from './ui';
-import { ExitIcon, SupportIcon, ArrowDownIcon, SidebarArrowIcon } from '@/assets/icons';
+import {
+  ExitIcon,
+  SupportIcon,
+  ArrowDownIcon,
+  SidebarArrowIcon,
+} from '@/assets/icons';
 import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { sidebarStyles } from './AppSidebar.styles';
