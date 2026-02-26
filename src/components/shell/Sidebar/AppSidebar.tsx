@@ -20,7 +20,7 @@ import {
 import {
   ExitIcon,
   SupportIcon,
-  ArrowDownIcon,
+  ArrowUpIcon,
   SidebarArrowIcon,
 } from '@/assets/icons';
 import { cn } from '@/utils';
@@ -65,7 +65,7 @@ export function AppSidebar() {
               className={sidebarStyles.header.trigger}
             >
               {collapsed ? (
-                <ArrowDownIcon className={sidebarStyles.header.triggerIcon} />
+                <ArrowUpIcon className={sidebarStyles.header.triggerIcon} />
               ) : (
                 <SidebarArrowIcon
                   className={sidebarStyles.header.triggerIcon}
@@ -182,10 +182,10 @@ export function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <ArrowDownIcon
+                          <ArrowUpIcon
                             className={cn(
                               sidebarStyles.menu.groupArrowIcon,
-                              open ? 'rotate-180' : 'rotate-0',
+                              open ? 'rotate-0' : 'rotate-180',
                             )}
                           />
                         </button>

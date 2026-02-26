@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { useSidebar } from '@/app/providers/Sidebar';
 import { Button } from '@/components/ui/Button';
 import { Separator } from '@/components/ui/Separator';
-import { ArrowDownIcon } from '@/assets/icons';
+import { ArrowUpIcon } from '@/assets/icons';
 import { cn } from '@/utils/index';
 
 function Sidebar({
@@ -102,7 +102,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      {children ?? <ArrowDownIcon />}
+      {children ?? <ArrowUpIcon />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
@@ -138,7 +138,7 @@ function SidebarInset({ className, ...props }: ComponentProps<'main'>) {
     <main
       data-slot="sidebar-inset"
       className={cn(
-        'bg-background relative flex w-full flex-1 flex-col',
+        'bg-background relative flex w-full flex-1 flex-col p-5',
         'md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2',
         className,
       )}
