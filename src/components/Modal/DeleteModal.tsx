@@ -1,67 +1,68 @@
-import { useState } from 'react';
+import { useApiDelete } from '@/hooks';
 import Modal from './Modal';
-import { deleteItemById } from '@/services/deleteItem.service';
+import { Button } from '@/components/ui/Button';
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
   itemId: string | number;
-  itemName?: string;
   deletePath: string;
+  titleModal?: string
+  descriptionModal?: string
 }
 
 const DeleteModal = ({
   isOpen,
+  titleModal = "Удалить заявку?",
+  descriptionModal = "Вы действительно хотите удалить эту заявку?",
   onClose,
   onConfirm,
   itemId,
   deletePath,
 }: DeleteConfirmationModalProps) => {
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const handleDelete = async () => {
-    setIsDeleting(true);
-
-    await deleteItemById(itemId, deletePath);
-    onConfirm();
-    onClose();
-
-    setIsDeleting(false);
-  };
+  const { mutate: handleDelete, isPending } = useApiDelete({
+    deletePath,
+    onSuccess: () => {
+      onConfirm();
+      onClose();
+    },
+  });
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Удалить заявку?"
-      variant="delete"
+      title={titleModal}
     >
-      <div className="space-y-6">
+      <>
         <p className="text-gray-700">
-          Вы действительно хотите удалить эту заявку?
+          {descriptionModal}
           <br />
           Действие нельзя отменить.
         </p>
 
         <div className="flex justify-end gap-3 pt-2">
-          <button
+          <Button
+            type="button"
+            variant="default-secondary"
+            className="px-6 py-2.5"
             onClick={onClose}
-            disabled={isDeleting}
-            className="border-primary text-foreground rounded-lg border px-6 py-2.5 hover:bg-gray-50 disabled:opacity-50"
+            disabled={isPending}
           >
             Отмена
-          </button>
-
-          <button
-            onClick={handleDelete}
-            disabled={isDeleting}
-            className="bg-destructive rounded-lg px-6 py-2.5 text-white hover:bg-red-600 disabled:opacity-50"
+          </Button>
+          <Button
+            type="button"
+            variant="danger-primary"
+            className="px-6 py-2.5"
+            onClick={() => handleDelete({ id: itemId })}
+            disabled={isPending}
           >
-            {isDeleting ? 'Удаление...' : 'Удалить'}
-          </button>
+            {isPending ? 'Удаление...' : 'Удалить'}
+          </Button>
         </div>
-      </div>
+      </>
     </Modal>
   );
 };
