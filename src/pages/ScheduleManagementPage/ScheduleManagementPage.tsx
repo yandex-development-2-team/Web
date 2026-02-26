@@ -17,7 +17,7 @@ const controlsByContent: Record<TableStateContent, TableStateConrols> = {
 
 const ScheduleManagementPage = () => {
   const [stateContent, setStateContent] = useState<TableStateContent>('name');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   const choiceStateColumns =
     stateContent === 'name'

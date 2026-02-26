@@ -36,6 +36,12 @@ const AverageBoxAttendancePage = () => {
           rowKey={'id'}
           filter={filter}
           showControls="pagination"
+          rowSelected={{
+            enabled: true,
+            onChange(ids) {
+              console.log(ids);
+            },
+          }}
         />
       </div>
     </div>

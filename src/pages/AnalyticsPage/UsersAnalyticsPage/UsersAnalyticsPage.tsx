@@ -6,7 +6,7 @@ import { COLUMNS_ANALYTIC_USER, DATA_ANALYTIC_USER } from '@/mock/mock-table';
 import { useState } from 'react';
 
 const UsersAnalyticsPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [isError] = useState(false);
 
   return (

@@ -34,6 +34,7 @@ export const COLUMNS_ANALYTIC_USER: Column<AnalyticUserTable>[] = [
 
 export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
   {
+    id: uuid(),
     name: '@serg',
     numEntries: 5,
     numVisited: 5,
@@ -41,6 +42,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 0,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,
@@ -48,6 +50,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 1,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,
@@ -55,6 +58,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 1,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,
@@ -62,6 +66,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 1,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,
@@ -69,6 +74,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 1,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,
@@ -76,6 +82,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 1,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,
@@ -83,6 +90,7 @@ export const DATA_ANALYTIC_USER: AnalyticUserTable[] = [
     cancelling: 1,
   },
   {
+    id: uuid(),
     name: '@dfxfsah',
     numEntries: 3,
     numVisited: 2,

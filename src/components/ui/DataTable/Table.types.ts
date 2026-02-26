@@ -13,6 +13,11 @@ type Column<T, K extends keyof T = keyof T> = {
 
 type ControlsTable = 'showBy' | 'showMore' | 'pagination';
 
+type RowSelectionProps = {
+  enabled?: boolean;
+  onChange?: (ids: string[]) => void;
+};
+
 type DataTableProps<T> = {
   data: T[];
   columns: Column<T>[];
@@ -23,12 +28,13 @@ type DataTableProps<T> = {
   isLoading: boolean;
   isError: boolean;
   filter?: string;
+  rowSelected?: RowSelectionProps;
 };
 
 type SortDirection = 'asc' | 'desc';
 
 type AnalyticUserTable = {
-  id?: string;
+  id: string;
   name: string;
   numEntries: number;
   numVisited: number;

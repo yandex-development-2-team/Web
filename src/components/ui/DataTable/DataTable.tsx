@@ -6,7 +6,18 @@ import { Button } from '../Button';
 import { Input } from '../Input';
 import { cn } from '@/utils';
 import { SkeletonRow, TableRowState, TableShell } from './ui';
-import { filterRows, getPaginationRange, nextDirection, paginateRows, sortRows, type SortState } from './helpers';
+import {
+  filterRows,
+  getPaginationRange,
+  isAllSelected,
+  nextDirection,
+  paginateRows,
+  selectAll,
+  selectRow,
+  sortRows,
+  type SortState,
+} from './helpers';
+import { Checkbox } from '../Checkbox/checkbox';
 
 export function DataTable<T>({
   data,
@@ -17,12 +28,17 @@ export function DataTable<T>({
   isLoading = false,
   isError = false,
   filter = '',
+  rowKey,
+  rowSelected,
 }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
   const [visibleCountRow, setVisibleCountRow] =
     useState<number>(defaultRowCount);
   const [page, setPage] = useState(1);
+  const [selected, setSelected] = useState<Set<string | number>>(
+    new Set<string>(),
+  );
 
   const activeColumn = useMemo(() => {
     return columns.find((col) => col.key == sortState?.columnKey) ?? null;
@@ -67,6 +83,20 @@ export function DataTable<T>({
     return visibleRows;
   }, [showControls, pagination.paginatedRows, visibleRows]);
 
+  const displayIds = useMemo(
+    () => displayRows.map((row) => String(row[rowKey])),
+    [displayRows, rowKey],
+  );
+  const selectedAll = isAllSelected(displayIds, selected);
+
+  const handleSelectAllRows = (checked: boolean) => {
+    setSelected((prev) => selectAll(prev, displayIds, checked));
+  };
+
+  const handleSelectRow = (id: string, checked: boolean) => {
+    setSelected((prev) => selectRow(prev, id, checked));
+  };
+
   if (isLoading) {
     return (
       <TableShell columns={columns}>
@@ -98,6 +128,16 @@ export function DataTable<T>({
       <table className="m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
         <thead className="bg-(--color-border)">
           <tr>
+            {rowSelected?.enabled === true && (
+              <th className="w-10 pr-3 pl-3">
+                <Checkbox
+                  checked={selectedAll}
+                  onCheckedChange={(check) =>
+                    handleSelectAllRows(check === true)
+                  }
+                />
+              </th>
+            )}
             {columns.map((column) => (
               <th
                 key={column.id}
@@ -134,13 +174,26 @@ export function DataTable<T>({
           </tr>
         </thead>
         <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
-          {displayRows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="h-13 align-middle">
-              {columns.map((column) => (
-                <Cell key={column.id} row={row} column={column} />
-              ))}
-            </tr>
-          ))}
+          {displayRows.map((row) => {
+            return (
+              <tr key={String(row[rowKey])} className="h-13 align-middle">
+                {rowSelected?.enabled && (
+                  <td className="w-10 pr-3 pl-3">
+                    <Checkbox
+                      checked={selected.has(String(row[rowKey]))}
+                      onCheckedChange={(check) =>
+                        handleSelectRow(String(row[rowKey]), check === true)
+                      }
+                    />
+                  </td>
+                )}
+
+                {columns.map((column) => (
+                  <Cell key={column.id} row={row} column={column} />
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
         {showControls === 'pagination' && (
           <tfoot className="font-normal text-(--color-muted-foreground)">
@@ -165,6 +218,7 @@ export function DataTable<T>({
                       <span key={`dots-${index}`}>...</span>
                     ) : (
                       <Button
+                        key={`page-${item}`}
                         variant={
                           item === pagination.safePage
                             ? 'default-secondary'
