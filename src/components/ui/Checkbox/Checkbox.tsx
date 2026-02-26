@@ -6,21 +6,17 @@ import { CheckMarkIcon, MinusIcon } from '@/assets/icons';
 type CheckedState = 'Minus' | 'CheckMark';
 
 type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root> & {
-  icon?: CheckedState
-}
+  icon?: CheckedState;
+};
 
-function Checkbox({
-  className,
-  icon,
-  ...props
-}: CheckboxProps) {
+function Checkbox({ className, icon, ...props }: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        'border border-[#353434] rounded-xs',
+        'rounded-xs border border-[#353434]',
         'bg-(--color-card)',
-        'w-4.5 h-4.5',
+        'h-4.5 w-4.5',
         'data-[state=checked]:bg-[#353434]',
         'data-[state=indeterminate]:bg-[#353434]',
         'inline-flex items-center justify-center',
@@ -29,11 +25,7 @@ function Checkbox({
       {...props}
     >
       <CheckboxPrimitive.Indicator>
-        {icon === 'CheckMark' ? (
-          <CheckMarkIcon />
-        ) : (
-          <MinusIcon />
-        )}
+        {icon === 'CheckMark' ? <CheckMarkIcon /> : <MinusIcon />}
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

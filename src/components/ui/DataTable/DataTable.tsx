@@ -2,8 +2,8 @@ import { Cell } from './Cell';
 import { useMemo, useState } from 'react';
 import type { DataTableProps } from './Table.types';
 import { ArrangeIcon, ArrowRghtIcon } from '@/assets/icons';
-import { Button } from '../Button';
-import { Input } from '../Input';
+import { Button } from '@/components/ui/Button/index';
+import { Input } from '@/components/ui/Input/index';
 import { cn } from '@/utils';
 import { SkeletonRow, TableRowState, TableShell } from './ui';
 import {
@@ -17,7 +17,7 @@ import {
   sortRows,
   type SortState,
 } from './helpers';
-import { Checkbox } from '../Checkbox/checkbox';
+import { Checkbox } from '@/components/ui/Checkbox/index';
 
 export function DataTable<T>({
   data,
@@ -131,7 +131,7 @@ export function DataTable<T>({
             {rowSelected?.enabled === true && (
               <th className="w-10 pr-3 pl-3">
                 <Checkbox
-                  icon='CheckMark'
+                  icon="CheckMark"
                   checked={selectedAll}
                   onCheckedChange={(check) =>
                     handleSelectAllRows(check === true)
@@ -181,7 +181,7 @@ export function DataTable<T>({
                 {rowSelected?.enabled && (
                   <td className="w-10 pr-3 pl-3">
                     <Checkbox
-                    icon='CheckMark'
+                      icon="CheckMark"
                       checked={selected.has(String(row[rowKey]))}
                       onCheckedChange={(check) =>
                         handleSelectRow(String(row[rowKey]), check === true)
