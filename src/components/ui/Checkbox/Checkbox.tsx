@@ -1,20 +1,41 @@
 import { Checkbox as CheckboxPrimitive } from 'radix-ui';
 import { cn } from '@/utils/index';
 import type { ComponentProps } from 'react';
+import { CheckMarkIcon, MinusIcon } from '@/assets/icons';
+
+type CheckedState = 'Minus' | 'CheckMark';
+
+type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root> & {
+  icon?: CheckedState
+}
 
 function Checkbox({
   className,
+  icon,
   ...props
-}: ComponentProps<typeof CheckboxPrimitive.Root>) {
+}: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        'peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        'border border-[#353434] rounded-xs',
+        'bg-(--color-card)',
+        'w-4.5 h-4.5',
+        'data-[state=checked]:bg-[#353434]',
+        'data-[state=indeterminate]:bg-[#353434]',
+        'inline-flex items-center justify-center',
         className,
       )}
       {...props}
-    ></CheckboxPrimitive.Root>
+    >
+      <CheckboxPrimitive.Indicator>
+        {icon === 'CheckMark' ? (
+          <CheckMarkIcon />
+        ) : (
+          <MinusIcon />
+        )}
+      </CheckboxPrimitive.Indicator>
+    </CheckboxPrimitive.Root>
   );
 }
 

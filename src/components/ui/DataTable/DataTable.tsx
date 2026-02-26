@@ -131,6 +131,7 @@ export function DataTable<T>({
             {rowSelected?.enabled === true && (
               <th className="w-10 pr-3 pl-3">
                 <Checkbox
+                  icon='CheckMark'
                   checked={selectedAll}
                   onCheckedChange={(check) =>
                     handleSelectAllRows(check === true)
@@ -180,6 +181,7 @@ export function DataTable<T>({
                 {rowSelected?.enabled && (
                   <td className="w-10 pr-3 pl-3">
                     <Checkbox
+                    icon='CheckMark'
                       checked={selected.has(String(row[rowKey]))}
                       onCheckedChange={(check) =>
                         handleSelectRow(String(row[rowKey]), check === true)
