@@ -5,7 +5,7 @@ import {
   COLUMNS_CONTROL_TIME_NAME,
   COLUMNS_CONTROL_TIME_PLACE,
   DATA_CONTROL_TIME,
-} from '@/mock/mock-table';
+} from '@/mock/table/mock-table';
 import { useState } from 'react';
 
 type TableStateContent = 'name' | 'place';

@@ -53,6 +53,50 @@ type ControlTimeTable = {
   countBooked: number;
 };
 
+type RequrestBoxes = {
+  id: string;
+  name: string;
+  tg: string;
+  date: string;
+  namePlace: string;
+  status: string;
+  manager: string;
+};
+
+type MainPage = {
+  id?: string;
+  date: string;
+  tg: string;
+  name: string;
+  service: string;
+  projectName: string;
+  status: string;
+};
+
+type Traffic = {
+  id?: string;
+  period: string;
+  trafficDay: string;
+  dynamicsPeriod: string;
+};
+
+type Applications = {
+  id?: string;
+  period: string;
+  numberEnties: string;
+  visits: string;
+};
+
+type UsersManagement = {
+  id?: string;
+  name: string;
+  department: string;
+  post: string;
+  level: string | number;
+  number: string;
+  email: string;
+};
+
 type PaginationItem = number | 'dots';
 
 type PaginationRangeArgs = {
@@ -77,4 +121,9 @@ export type {
   PaginationItem,
   PaginationRangeArgs,
   PaginateArgs,
+  RequrestBoxes,
+  MainPage,
+  Traffic,
+  Applications,
+  UsersManagement,
 };

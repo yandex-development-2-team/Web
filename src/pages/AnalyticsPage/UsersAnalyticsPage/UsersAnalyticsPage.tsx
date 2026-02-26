@@ -2,7 +2,10 @@ import { UploadArrowIcon } from '@/assets/icons';
 import { Button } from '@/components/ui/Button';
 import { DataTable } from '@/components/ui/DataTable';
 import { MetricCard } from '@/components/ui/MetricCard/MetricCard';
-import { COLUMNS_ANALYTIC_USER, DATA_ANALYTIC_USER } from '@/mock/mock-table';
+import {
+  COLUMNS_ANALYTIC_USER,
+  DATA_ANALYTIC_USER,
+} from '@/mock/table/mock-table';
 import { useState } from 'react';
 
 const UsersAnalyticsPage = () => {
