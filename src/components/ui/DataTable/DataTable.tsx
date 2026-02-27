@@ -134,11 +134,11 @@ export function DataTable<T>({
 
   return (
     <>
-      <table className="m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)">
-        <thead className="bg-(--color-border)">
+      <table className={cn("m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)")}>
+        <thead className={cn("bg-(--color-border)")}>
           <tr>
             {rowSelected?.enabled === true && (
-              <th className="w-10 pr-3 pl-3">
+              <th className={cn("w-10 pr-3 pl-3")}>
                 <Checkbox
                   icon="CheckMark"
                   checked={selectedAll}
@@ -152,16 +152,13 @@ export function DataTable<T>({
               <th
                 key={column.id}
                 style={{ width: column.width }}
-                className={
-                  'h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal' +
-                  (column.isSort ? 'cursor-pointer select-none' : '')
-                }
+                className={cn('h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal' + (column.isSort ? 'cursor-pointer select-none' : ''))}
                 onClick={() => {
                   if (!column.isSort) return;
                   setSortState((prev) => nextDirection(prev, column));
                 }}
               >
-                <span className="flex flex-row items-center gap-1 font-normal">
+                <span className={cn("flex flex-row items-center gap-1 font-normal")}>
                   {column.title}
                   {column.isSort && (
                     <ArrangeIcon
@@ -184,12 +181,12 @@ export function DataTable<T>({
             {rowSelected?.enabled === true && <th></th>}
           </tr>
         </thead>
-        <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
+        <tbody className={cn("[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)")}>
           {displayRows.map((row) => {
             return (
-              <tr key={String(row[rowKey])} className="h-13 align-middle">
+              <tr key={String(row[rowKey])} className={cn("h-13 align-middle")}>
                 {rowSelected?.enabled && (
-                  <td className="w-10 pr-3 pl-3">
+                  <td className={cn("w-10 pr-3 pl-3")}>
                     <Checkbox
                       icon="CheckMark"
                       checked={selected.has(String(row[rowKey]))}
@@ -228,17 +225,17 @@ export function DataTable<T>({
           })}
         </tbody>
         {showControls === 'pagination' && (
-          <tfoot className="font-normal text-(--color-muted-foreground)">
+          <tfoot className={cn("font-normal text-(--color-muted-foreground)")}>
             <tr>
-              <td colSpan={columns.length} className="border-t">
-                <div className="m-3 mb-4 flex items-center justify-end gap-1">
+              <td colSpan={columns.length} className={cn("border-t")}>
+                <div className={cn("m-3 mb-4 flex items-center justify-end gap-1")}>
                   <Button
                     variant="ghost"
                     disabled={pagination.safePage === 1}
-                    className="p-2.5"
+                    className={cn("p-2.5")}
                     onClick={() => setPage((page) => page - 1)}
                   >
-                    <ArrowRghtIcon className="size-3 stroke-(--color-muted-foreground)" />
+                    <ArrowRghtIcon className={cn("size-3 stroke-(--color-muted-foreground)")} />
                   </Button>
 
                   {getPaginationRange({
@@ -266,11 +263,11 @@ export function DataTable<T>({
 
                   <Button
                     variant="ghost"
-                    className="p-2.5"
+                    className={cn("p-2.5")}
                     disabled={pagination.safePage === pagination.totalPage}
                     onClick={() => setPage((page) => page + 1)}
                   >
-                    <ArrowRghtIcon className="size-3 rotate-180 stroke-(--color-muted-foreground)" />
+                    <ArrowRghtIcon className={cn("size-3 rotate-180 stroke-(--color-muted-foreground)")} />
                   </Button>
                 </div>
               </td>
@@ -280,17 +277,17 @@ export function DataTable<T>({
       </table>
 
       {showControls && (
-        <div className="flex flex-row items-center justify-end">
+        <div className={cn("flex flex-row items-center justify-end")}>
           {showControls === 'showBy' && (
-            <div className="flex flex-row items-center gap-3">
-              <span className="text-(--color-muted-foreground)">
+            <div className={cn("flex flex-row items-center gap-3")}>
+              <span className={cn("text-(--color-muted-foreground)")}>
                 Показывать по
               </span>
               <Input
                 type="number"
                 value={rowCount}
                 min={1}
-                className="h-12 w-12 border border-(--color-muted-foreground) text-center text-(--color-muted-foreground)"
+                className={cn("h-12 w-12 border border-(--color-muted-foreground) text-center text-(--color-muted-foreground)")}
                 onChange={(e) => {
                   const count = Math.max(1, Number(e.target.value) || 1);
                   setRowCount(count);
@@ -303,7 +300,7 @@ export function DataTable<T>({
             <Button
               disabled={!canShowMore}
               variant={'ghost'}
-              className="mr-5 p-0 font-normal text-(--color-muted-foreground)"
+              className={cn("mr-5 p-0 font-normal text-(--color-muted-foreground)")}
               onClick={() =>
                 setVisibleCountRow((v) =>
                   Math.min(v + showMoreCountRows, rows.length),

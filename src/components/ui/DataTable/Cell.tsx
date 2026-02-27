@@ -1,4 +1,5 @@
 import type { Column } from '@/components/ui/DataTable/Table.types';
+import { cn } from '@/utils';
 import type { ReactNode } from 'react';
 
 function Cell<T>({ row, column }: { row: T; column: Column<T> }) {
@@ -7,7 +8,7 @@ function Cell<T>({ row, column }: { row: T; column: Column<T> }) {
       ? column.getValue(row)
       : (row[column.key] as ReactNode);
 
-  return <td className="pl-3 font-sans font-normal">{value}</td>;
+  return <td className={cn("pl-3 font-sans font-normal")}>{value}</td>;
 }
 
 export { Cell };
