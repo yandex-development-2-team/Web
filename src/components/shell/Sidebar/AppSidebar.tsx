@@ -17,7 +17,12 @@ import {
   SidebarSeparator,
   SidebarMenuSub,
 } from './ui';
-import { ExitIcon, SupportIcon, ArrowDownIcon, SidebarArrowIcon } from '@/assets/icons';
+import {
+  ExitIcon,
+  SupportIcon,
+  ArrowUpIcon,
+  SidebarArrowIcon,
+} from '@/assets/icons';
 import { cn } from '@/utils';
 import { menu_items } from './menu.config';
 import { sidebarStyles } from './AppSidebar.styles';
@@ -60,7 +65,7 @@ export function AppSidebar() {
               className={sidebarStyles.header.trigger}
             >
               {collapsed ? (
-                <ArrowDownIcon className={sidebarStyles.header.triggerIcon} />
+                <ArrowUpIcon className={sidebarStyles.header.triggerIcon} />
               ) : (
                 <SidebarArrowIcon
                   className={sidebarStyles.header.triggerIcon}
@@ -177,10 +182,10 @@ export function AppSidebar() {
                           aria-label={open ? 'Свернуть' : 'Развернуть'}
                           aria-expanded={open}
                         >
-                          <ArrowDownIcon
+                          <ArrowUpIcon
                             className={cn(
                               sidebarStyles.menu.groupArrowIcon,
-                              open ? 'rotate-180' : 'rotate-0',
+                              open ? 'rotate-0' : 'rotate-180',
                             )}
                           />
                         </button>
