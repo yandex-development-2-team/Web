@@ -1,5 +1,5 @@
 import { useApiDelete } from '@/hooks';
-import Modal from './Modal';
+import { Modal } from './Modal';
 import { Button } from '@/components/ui/Button';
 
 interface DeleteConfirmationModalProps {
@@ -12,7 +12,7 @@ interface DeleteConfirmationModalProps {
   descriptionModal?: string
 }
 
-const DeleteModal = ({
+export const DeleteModal = ({
   isOpen,
   titleModal = "Удалить заявку?",
   descriptionModal = "Вы действительно хотите удалить эту заявку?",
@@ -66,5 +66,3 @@ const DeleteModal = ({
     </Modal>
   );
 };
-
-export default DeleteModal;
