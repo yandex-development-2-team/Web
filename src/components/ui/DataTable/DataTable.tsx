@@ -1,7 +1,13 @@
 import { Cell } from './Cell';
 import { useMemo, useState } from 'react';
 import type { DataTableProps } from './Table.types';
-import { ArrangeIcon, ArrowRghtIcon } from '@/assets/icons';
+import {
+  ArrangeIcon,
+  ArrowRghtIcon,
+  DeleteIcon,
+  DownloadIcon,
+  EditIcon,
+} from '@/assets/icons';
 import { Button } from '@/components/ui/Button/index';
 import { Input } from '@/components/ui/Input/index';
 import { cn } from '@/utils';
@@ -30,6 +36,9 @@ export function DataTable<T>({
   filter = '',
   rowKey,
   rowSelected,
+  onDeleteRow,
+  onDownloadRow,
+  onEditRow,
 }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
@@ -172,6 +181,7 @@ export function DataTable<T>({
                 </span>
               </th>
             ))}
+            {rowSelected?.enabled === true && <th></th>}
           </tr>
         </thead>
         <tbody className="[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)">
@@ -193,6 +203,26 @@ export function DataTable<T>({
                 {columns.map((column) => (
                   <Cell key={column.id} row={row} column={column} />
                 ))}
+
+                {rowSelected?.enabled === true && (
+                  <td>
+                    {onEditRow && (
+                      <Button variant={'ghost'} className={cn('h-10 w-10 p-2')}>
+                        <EditIcon />
+                      </Button>
+                    )}
+                    {onDeleteRow && (
+                      <Button variant={'ghost'} className={cn('h-10 w-10 p-2')}>
+                        <DeleteIcon />
+                      </Button>
+                    )}
+                    {onDownloadRow && (
+                      <Button variant={'ghost'} className={cn('h-10 w-10 p-2')}>
+                        <DownloadIcon />
+                      </Button>
+                    )}
+                  </td>
+                )}
               </tr>
             );
           })}

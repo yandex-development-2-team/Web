@@ -1,11 +1,14 @@
 import { DataTable } from '@/components/ui/DataTable';
 import { SearchBarTable } from '@/components/ui/DataTable/ui/SearchBarTable';
 import { MetricCard } from '@/components/ui/MetricCard';
-import { COLUMNS_ANALYTIC_USER, DATA_ANALYTIC_USER } from '@/mock/mock-table';
+import {
+  COLUMNS_ANALYTIC_USER,
+  DATA_ANALYTIC_USER,
+} from '@/mock/table/mock-analitic-users';
 import { useState } from 'react';
 
 const AverageBoxAttendancePage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [isError] = useState(false);
   const [filter, setFilter] = useState('');
 

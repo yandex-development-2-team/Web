@@ -1,5 +1,5 @@
-export { nextDirection, sortRows } from './SortTable.helpers';
-export type { SortState } from './SortTable.helpers';
-export { getPaginationRange, paginateRows } from './Pagination.helper';
-export { filterRows } from './FilterTable.helpers';
+export { nextDirection, sortRows } from './SortTableHelper';
+export type { SortState } from './SortTableHelper';
+export { getPaginationRange, paginateRows } from './PaginationHelper';
+export { filterRows } from './FilterTableHelper';
 export { isAllSelected, selectAll, selectRow } from './CheckboxTableHelper';

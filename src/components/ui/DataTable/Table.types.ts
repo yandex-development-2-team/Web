@@ -29,6 +29,9 @@ type DataTableProps<T> = {
   isError: boolean;
   filter?: string;
   rowSelected?: RowSelectionProps;
+  onEditRow?: (id: string) => void;
+  onDeleteRow?: (id: string) => void;
+  onDownloadRow?: (id: string) => void;
 };
 
 type SortDirection = 'asc' | 'desc';

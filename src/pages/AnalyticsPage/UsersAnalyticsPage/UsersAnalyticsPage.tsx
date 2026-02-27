@@ -5,7 +5,7 @@ import { MetricCard } from '@/components/ui/MetricCard/MetricCard';
 import {
   COLUMNS_ANALYTIC_USER,
   DATA_ANALYTIC_USER,
-} from '@/mock/table/mock-table';
+} from '@/mock/table/mock-analitic-users';
 import { useState } from 'react';
 
 const UsersAnalyticsPage = () => {
@@ -45,6 +45,10 @@ const UsersAnalyticsPage = () => {
           rowKey="id"
           isLoading={isLoading}
           isError={isError}
+          rowSelected={{ enabled: true }}
+          onDeleteRow={() => console.log('')}
+          onEditRow={() => console.log('')}
+          onDownloadRow={() => console.log('')}
         />
       </div>
     </div>
