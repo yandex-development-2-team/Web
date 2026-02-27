@@ -5,23 +5,23 @@ type NotificationType = 'success' | 'error' | 'info';
 const notificationCustomConfig = {
   success: {
     style: {
-      background: '#f0fdf4',
-      border: '1px solid #bbf7d0',
-      color: '#166534',
+      background: 'var(--in-work)',
+      border: '1px solid var(--in-work-foreground)',
+      color: 'var(--foreground)',
     },
   },
   error: {
     style: {
-      background: '#fef2f2',
-      border: '1px solid #fecaca',
-      color: '#991b1b',
+      background: 'var(--destructive-light)',
+      border: '1px solid var(--destructive)',
+      color: 'var(--foreground)',
     },
   },
   info: {
     style: {
-      background: '#eff6ff',
-      border: '1px solid #bfdbfe',
-      color: '#1e40af',
+      background: 'var(--completed)',
+      border: '1px solid var(--completed-foreground)',
+      color: 'var(--foreground)',
     },
   },
 };
