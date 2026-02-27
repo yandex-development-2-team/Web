@@ -1,14 +1,13 @@
-import { type ComponentProps } from 'react';
-import { useRef, useEffect } from 'react';
+import { type ComponentProps, useRef, useLayoutEffect } from 'react';
 import ArrowIcon from '@/assets/icons/arrow-right.svg?react';
 import {
   DayPicker,
   getDefaultClassNames,
   type DayButton,
 } from 'react-day-picker';
-
 import { cn } from '@/utils/index';
-import { Button, buttonVariants } from '@/components/ui/Button/Button';
+import { Button, buttonVariants } from '@/components/ui/Button';
+import { toISODate } from '@/utils/dateHelpers';
 
 function Calendar({
   className,
@@ -184,7 +183,7 @@ function CalendarDayButton({
 
   const ref = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
 
@@ -193,7 +192,7 @@ function CalendarDayButton({
       ref={ref}
       variant="ghost"
       size="icon-md"
-      data-day={day.date.toLocaleDateString()}
+      data-day={toISODate(day.date)}
       data-selected-single={
         modifiers.selected &&
         !modifiers.range_start &&
