@@ -4,9 +4,9 @@ import { cn } from '@/utils';
 import { Button } from '@/components/ui/Button';
 import { UploadIcon, CloseIcon, TrashOpenIcon } from '@/assets/icons';
 import { Progress } from '@/components/ui/Progress';
-import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
 import { showNotification } from '@/services/notification.service';
 import { useFakeDownload } from '../useFakeDownload';
+import { DeleteModal } from '@/components/ui/Modal';
 
 interface UploadItemProps {
   item: FileType;
@@ -28,10 +28,6 @@ export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
   };
   const handleConfirmRemove = () => {
     onRemoveItem?.(item.id);
-    setTimeout(() => {
-      showNotification({ message: 'Файл успешно удален', type: 'success' });
-      setIsOpen(false);
-    }, 200);
   };
 
   const handleUpload = () => {
@@ -44,10 +40,12 @@ export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
 
   return (
     <>
-      <ConfirmModal
+      <DeleteModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        onConfirmRemoveItem={handleConfirmRemove}
+        onConfirm={handleConfirmRemove}
+        itemId={item.id}
+        deletePath="#"
       />
       <div
         className={cn(
