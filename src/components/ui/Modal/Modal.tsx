@@ -11,7 +11,7 @@ interface IModalProps {
   footer?: ModalFooter;
 }
 
-const Modal = ({
+export const Modal = ({
   title,
   isOpen,
   onClose,
@@ -140,5 +140,3 @@ const Modal = ({
     document.body,
   );
 };
-
-export default Modal;
