@@ -7,7 +7,7 @@ export function FormCard({ className, ...props }: Props) {
   return (
     <div
       className={cn(
-        'bg-card rounded-xl border shadow-sm p-6',
+        'rounded-xl shadow-sm',
         className
       )}
       {...props}
