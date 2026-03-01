@@ -1,5 +1,6 @@
 import { Textarea } from '@/components/ui/Textarea';
 import { cn } from '@/utils';
+import { useFormContext } from 'react-hook-form';
 
 interface TextSettingsFormProps {
   className?: string;
@@ -14,11 +15,14 @@ export function TextSettingsForm({
   textFormData = [],
   className,
 }: TextSettingsFormProps) {
+  const { register } = useFormContext();
+
   return (
     <form className={cn('flex flex-col gap-4', className)}>
       {textFormData.map((item) => {
         return (
           <Textarea
+            {...register(`${item.id}`)}
             key={item.id}
             placeholder={item.placeholder}
             label={item.label}
