@@ -16,7 +16,7 @@ export const Modal = ({
   isOpen,
   onClose,
   children,
-  footer
+  footer,
 }: IModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -103,12 +103,11 @@ export const Modal = ({
     }
 
     return null;
-  }
-
+  };
 
   return createPortal(
     <div
-      className="bg-opacity-40 bg-modal-backdrop fixed inset-0 z-50 flex items-center justify-center"
+      className="bg-foreground/40 bg-modal-backdrop fixed inset-0 z-50 flex items-center justify-center"
       onClick={handleBackdropClick}
     >
       <div
