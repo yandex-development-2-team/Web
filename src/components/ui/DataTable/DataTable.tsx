@@ -1,6 +1,6 @@
-import { Cell } from './Cell';
+import { Cell } from '@/components/ui/DataTable/Cell';
 import { useMemo, useState } from 'react';
-import type { DataTableProps } from './Table.types';
+import type { DataTableProps } from '@/components/ui/DataTable/Table.types';
 import {
   ArrangeIcon,
   ArrowRghtIcon,

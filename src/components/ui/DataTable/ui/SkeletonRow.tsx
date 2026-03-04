@@ -1,5 +1,5 @@
 import { cn } from '@/utils';
-import { Skeleton } from '../../Skeleton';
+import { Skeleton } from '@/components/ui/Skeleton';
 import type { Column } from '../Table.types';
 
 export function SkeletonRow<T>({ columns }: { columns: Column<T>[] }) {

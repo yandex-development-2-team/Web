@@ -1,5 +1,5 @@
 import { cn } from '@/utils';
-import type { Column } from '../Table.types';
+import type { Column } from '@/components/ui/DataTable/Table.types';
 
 export function TableRowState<T>({
   text,

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { Column } from '../Table.types';
+import type { Column } from '@/components/ui/DataTable/Table.types';
 import { cn } from '@/utils';
 
 export function TableShell<T>({

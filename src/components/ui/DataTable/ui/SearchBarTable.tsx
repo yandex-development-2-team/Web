@@ -1,4 +1,4 @@
-import { Input } from '../../Input';
+import { Input } from '@/components/ui/Input';
 
 type SearchBarTableProps = {
   value: string;
