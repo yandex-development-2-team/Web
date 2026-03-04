@@ -10,8 +10,8 @@ export function TableShell<T>({
   children: ReactNode;
 }) {
   return (
-    <table className={cn("m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-(--color-border-variant)")}>
-      <thead className={cn("bg-(--color-border)")}>
+    <table className={cn("m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-border-variant")}>
+      <thead className={cn("bg-border")}>
         <tr>
           {columns.map((column) => (
             <th
@@ -24,7 +24,7 @@ export function TableShell<T>({
           ))}
         </tr>
       </thead>
-      <tbody className={cn("[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-(--color-border)")}>
+      <tbody className={cn("[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-border")}>
         {children}
       </tbody>
     </table>

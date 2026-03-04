@@ -12,8 +12,8 @@ export function MetricCard({
       <Label className="font-sans text-black">{label}</Label>
       <div
         className={cn(
-          'flex h-38 w-full items-center justify-center rounded-lg border border-(--color-border) text-6xl font-bold',
-          variant === 'danger' && 'text-red-500',
+          'flex h-38 w-full items-center justify-center rounded-lg border border-border text-6xl font-bold',
+          {['text-error']: variant === 'danger'}
         )}
       >
         {metric}

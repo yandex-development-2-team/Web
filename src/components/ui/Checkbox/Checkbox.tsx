@@ -14,8 +14,8 @@ function Checkbox({ className, icon, ...props }: CheckboxProps) {
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        'rounded-xs border border-[#353434]',
-        'bg-(--color-card)',
+        'rounded-xs border border-(--color-foreground)',
+        'bg-card',
         'h-4.5 w-4.5',
         'data-[state=checked]:bg-[#353434]',
         'data-[state=indeterminate]:bg-[#353434]',
