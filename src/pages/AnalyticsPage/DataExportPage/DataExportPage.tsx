@@ -1,5 +1,10 @@
 import { cn } from '@/utils';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './Tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/TabsLine';
 import { EXPORT_PAGE_TABS, TABS_ID } from './dataExportPage.constants';
 
 const DataExportPage = () => {
