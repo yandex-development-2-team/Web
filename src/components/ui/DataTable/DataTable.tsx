@@ -4,7 +4,9 @@ import type { DataTableProps } from '@/components/ui/DataTable/Table.types';
 import { ArrangeIcon } from '@/assets/icons';
 import { cn } from '@/utils';
 import {
+  DataTableControls,
   DataTablePagination,
+  DataTableRowActions,
   SkeletonRow,
   TableRowState,
   TableShell,
@@ -20,8 +22,6 @@ import {
   type SortState,
 } from './helpers';
 import { Checkbox } from '@/components/ui/Checkbox/index';
-import { DataTableControls } from './ui/DataTableControls';
-import { DataTableRowActions } from './ui/DataTableRowActions';
 
 export function DataTable<T>({
   data,
