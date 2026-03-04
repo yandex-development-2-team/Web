@@ -1,26 +1,26 @@
-import { useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Input } from '@/components/ui/Input'
-import { Select } from '@/components/ui/Select'
-import { Switch } from '@/components/ui/Switch/Switch'
-import { Button } from '@/components/ui/Button'
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Switch } from '@/components/ui/Switch/Switch';
+import { Button } from '@/components/ui/Button';
 
-import { FormCard } from './components/FormCard'
-import { Section } from './components/Section'
-import { DateInput } from './components/DateInput'
-import { UploadPhoto } from './components/UploadPhoto'
+import { FormCard } from './components/FormCard';
+import { Section } from './components/Section';
+import { DateInput } from './components/DateInput';
+import { UploadPhoto } from './components/UploadPhoto';
 
 import {
   employeeAddSchema as employeeSchema,
   type EmployeeAddFormValues as EmployeeFormValues,
-} from '@/utils/validators'
+} from '@/utils/validators';
 
-import { useAddEmployee } from '@/hooks/useAddEmployee'
-import { Label } from '@/components/ui/Label'
+import { useAddEmployee } from '@/hooks/useAddEmployee';
+import { Label } from '@/components/ui/Label';
 
 export function EmployeeAddForm() {
-  const { mutate: addEmployee, isPending: isSaving } = useAddEmployee()
+  const { mutate: addEmployee, isPending: isSaving } = useAddEmployee();
 
   const {
     register,
@@ -34,14 +34,14 @@ export function EmployeeAddForm() {
     defaultValues: {
       gender: '',
     },
-  })
+  });
 
   const onSubmit = (data: EmployeeFormValues) => {
-    addEmployee(data)
-  }
+    addEmployee(data);
+  };
 
   return (
-    <FormCard className="w-full min-w-[445px] border-0 shadow-none mx-auto space-y-3">
+    <FormCard className="mx-auto w-full min-w-[445px] space-y-3 border-0 shadow-none">
       <Section className="pb-4" title="" withIcon={false}>
         <h1 className="ml-4 text-3xl tracking-[0.04em]">Добавить сотрудника</h1>
       </Section>
@@ -49,17 +49,27 @@ export function EmployeeAddForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* Первый ряд: Фото + Личные данные */}
         <div className="grid grid-cols-12 gap-5">
-          <Section className="col-span-3 flex justify-center items-start" title="" withIcon={false}>
+          <Section
+            className="col-span-3 flex items-start justify-center"
+            title=""
+            withIcon={false}
+          >
             <Controller
               name="photo"
               control={control}
-              render={({ field }) => <UploadPhoto value={field.value} onChange={field.onChange} />}
+              render={({ field }) => (
+                <UploadPhoto value={field.value} onChange={field.onChange} />
+              )}
             />
           </Section>
 
-          <Section className="col-span-9 p-5 pt-3 pl-4" title="Персональная информация">
+          <Section
+            className="col-span-9 p-5 pt-3 pl-4"
+            title="Персональная информация"
+          >
             <div className="grid grid-rows-3 gap-3">
-              <Label>Фамилия
+              <Label>
+                Фамилия
                 <Input
                   className="mt-1"
                   placeholder="Фамилия"
@@ -67,7 +77,8 @@ export function EmployeeAddForm() {
                   {...register('lastName')}
                 />
               </Label>
-              <Label>Имя
+              <Label>
+                Имя
                 <Input
                   className="mt-1"
                   placeholder="Имя"
@@ -75,10 +86,13 @@ export function EmployeeAddForm() {
                   {...register('firstName')}
                 />
               </Label>
-              <Label>Отчество
+              <Label>
+                Отчество
                 <Input
                   className="mt-1"
-                  placeholder="Отчество" {...register('middleName')} />
+                  placeholder="Отчество"
+                  {...register('middleName')}
+                />
               </Label>
             </div>
           </Section>
@@ -87,18 +101,22 @@ export function EmployeeAddForm() {
         {/* Второй ряд: Паспортные данные + Контакты */}
         <Section className="p-4 pt-0" title="" withIcon={false}>
           <div className="grid grid-cols-8 gap-10 pb-2">
-            <Section className="border-0 shadow-none col-span-4 pt-0 pb-0 space-y-2 pr-0" title="Паспортные данные">
+            <Section
+              className="col-span-4 space-y-2 border-0 pt-0 pr-0 pb-0 shadow-none"
+              title="Паспортные данные"
+            >
               <div className="">
-                <Label>Гражданство
-                  <Select className=" mt-1" {...register('citizenship')}>
+                <Label>
+                  Гражданство
+                  <Select className="mt-1" {...register('citizenship')}>
                     <option value="ru">РФ</option>
                     <option value="kz">Другое</option>
-
                   </Select>
                 </Label>
               </div>
               <div className="grid grid-cols-2 gap-2 pt-1">
-                <Label className="">Датa рождения
+                <Label className="">
+                  Датa рождения
                   <DateInput
                     className="mt-1"
                     error={errors.birthDate?.message}
@@ -121,7 +139,8 @@ export function EmployeeAddForm() {
                 </Label>
               </div>
               <div className="grid grid-cols-2 gap-2 pt-1">
-                <Label>Серия паспорта
+                <Label>
+                  Серия паспорта
                   <Input
                     className="mt-1"
                     placeholder="Серия"
@@ -129,7 +148,8 @@ export function EmployeeAddForm() {
                     {...register('passportSeries')}
                   />
                 </Label>
-                <Label>Номер паспорта
+                <Label>
+                  Номер паспорта
                   <Input
                     className="mt-1"
                     placeholder="Номер"
@@ -140,8 +160,12 @@ export function EmployeeAddForm() {
               </div>
             </Section>
 
-            <Section className="border-0 shadow-none col-span-3 pt-0 space-y-2 pr-2" title="Контактная информация">
-              <Label>Номер телефона
+            <Section
+              className="col-span-3 space-y-2 border-0 pt-0 pr-2 shadow-none"
+              title="Контактная информация"
+            >
+              <Label>
+                Номер телефона
                 <Input
                   className="mt-1 mb-2"
                   placeholder="+7 (999) 999-66-77"
@@ -149,7 +173,8 @@ export function EmployeeAddForm() {
                   {...register('phone')}
                 />
               </Label>
-              <Label>E-mail
+              <Label>
+                E-mail
                 <Input
                   className=""
                   placeholder="E-mail"
@@ -163,9 +188,18 @@ export function EmployeeAddForm() {
 
         {/* Третий ряд: Должность + Уровень доступа */}
         <div className="grid grid-cols-12 gap-4">
-          <Section className="p-5 pt-3 pb-3 col-span-5 space-y-2" title="Должностная информация">
-            <Label>Отдел
-              <Select size="sm" className="mt-1 mb-2" defaultValue="" {...register('department')}>
+          <Section
+            className="col-span-5 space-y-2 p-5 pt-3 pb-3"
+            title="Должностная информация"
+          >
+            <Label>
+              Отдел
+              <Select
+                size="sm"
+                className="mt-1 mb-2"
+                defaultValue=""
+                {...register('department')}
+              >
                 <option value="" disabled>
                   Отдел
                 </option>
@@ -173,8 +207,14 @@ export function EmployeeAddForm() {
                 <option value="department-2">Отдел 2</option>
               </Select>
             </Label>
-            <Label>Должность
-              <Select size="sm" className="mt-1 mb-2" defaultValue="Должность" {...register('position')} >
+            <Label>
+              Должность
+              <Select
+                size="sm"
+                className="mt-1 mb-2"
+                defaultValue="Должность"
+                {...register('position')}
+              >
                 <option value="Должность" disabled>
                   Должность
                 </option>
@@ -184,9 +224,12 @@ export function EmployeeAddForm() {
             </Label>
           </Section>
 
-          <Section className="col-span-7 p-5 pt-3 pb-3 space-y-4" title="Уровень доступа">
+          <Section
+            className="col-span-7 space-y-4 p-5 pt-3 pb-3"
+            title="Уровень доступа"
+          >
             <div className="grid grid-cols-2 gap-10">
-              <div className="flex items-center justify-between mr-9 border-b border-border pb-2">
+              <div className="border-border mr-9 flex items-center justify-between border-b pb-2">
                 <div className="">
                   <p className="text-sm">Администратор</p>
                   <p className="text-xs">Полный доступ</p>
@@ -194,16 +237,16 @@ export function EmployeeAddForm() {
                 <Controller
                   name="admin"
                   control={control}
-                  render={({ field }) => <Switch
-                    className="
-        data-[state=unchecked]:bg-muted
-        [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground
-        data-[state=unchecked]:ring-muted-foreground
-      "
-                    checked={field.value} onCheckedChange={field.onChange} />}
+                  render={({ field }) => (
+                    <Switch
+                      className="data-[state=unchecked]:bg-muted [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground data-[state=unchecked]:ring-muted-foreground"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  )}
                 />
               </div>
-              <div className="flex items-center justify-between mr-3 ml-6 border-b border-border pb-2">
+              <div className="border-border mr-3 ml-6 flex items-center justify-between border-b pb-2">
                 <div>
                   <p className="text-sm">Менеджер 2 звена</p>
                   <p className="text-xs">Ограниченный доступ</p>
@@ -211,47 +254,47 @@ export function EmployeeAddForm() {
                 <Controller
                   name="manager1"
                   control={control}
-                  render={({ field }) => <Switch 
-                  className="
-        data-[state=unchecked]:bg-muted
-        [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground
-        data-[state=unchecked]:ring-muted-foreground
-      "
-                  checked={field.value} onCheckedChange={field.onChange} />}
+                  render={({ field }) => (
+                    <Switch
+                      className="data-[state=unchecked]:bg-muted [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground data-[state=unchecked]:ring-muted-foreground"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  )}
                 />
               </div>
-              <div className="flex items-center justify-between mr-9 border-b border-border pb-2">
+              <div className="border-border mr-9 flex items-center justify-between border-b pb-2">
                 <div>
-                  <p className="text-sm pb-1">Менеджер 1 звена</p>
+                  <p className="pb-1 text-sm">Менеджер 1 звена</p>
                   <p className="text-xs">Ограниченный доступ</p>
                 </div>
                 <Controller
                   name="manager2"
                   control={control}
-                  render={({ field }) => <Switch 
-                  className="
-        data-[state=unchecked]:bg-muted
-        [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground
-        data-[state=unchecked]:ring-muted-foreground
-      "
-                  checked={field.value} onCheckedChange={field.onChange} />}
+                  render={({ field }) => (
+                    <Switch
+                      className="data-[state=unchecked]:bg-muted [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground data-[state=unchecked]:ring-muted-foreground"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  )}
                 />
               </div>
-              <div className="flex items-center justify-between mr-3 ml-6 border-b border-border pb-2">
+              <div className="border-border mr-3 ml-6 flex items-center justify-between border-b pb-2">
                 <div>
-                  <p className="text-sm pb-1">Менеджер 3 звена</p>
+                  <p className="pb-1 text-sm">Менеджер 3 звена</p>
                   <p className="text-xs">Ограниченный доступ</p>
                 </div>
                 <Controller
                   name="manager3"
                   control={control}
-                  render={({ field }) => <Switch 
-                  className="
-        data-[state=unchecked]:bg-muted
-        [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground
-        data-[state=unchecked]:ring-muted-foreground
-      "
-                  checked={field.value} onCheckedChange={field.onChange} />}
+                  render={({ field }) => (
+                    <Switch
+                      className="data-[state=unchecked]:bg-muted [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground data-[state=unchecked]:ring-muted-foreground"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  )}
                 />
               </div>
             </div>
@@ -260,7 +303,11 @@ export function EmployeeAddForm() {
       </form>
       {/* Кнопки */}
       <div className="flex justify-end gap-3">
-        <Button type="button" variant="default-secondary" onClick={() => reset()}>
+        <Button
+          type="button"
+          variant="default-secondary"
+          onClick={() => reset()}
+        >
           Отменить
         </Button>
 
@@ -269,5 +316,5 @@ export function EmployeeAddForm() {
         </Button>
       </div>
     </FormCard>
-  )
+  );
 }

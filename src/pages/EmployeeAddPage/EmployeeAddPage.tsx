@@ -1,8 +1,8 @@
-import { EmployeeAddForm } from './EmployeeAddForm'
+import { EmployeeAddForm } from './EmployeeAddForm';
 
 function EmployeeAddPage() {
-  return <EmployeeAddForm />
+  return <EmployeeAddForm />;
 }
 
-export const Component = EmployeeAddPage
-export default EmployeeAddPage
+export const Component = EmployeeAddPage;
+export default EmployeeAddPage;
