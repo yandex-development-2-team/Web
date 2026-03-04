@@ -4,9 +4,8 @@ import { cn } from '@/utils';
 import { Button } from '@/components/ui/Button';
 import { UploadIcon, CloseIcon, TrashOpenIcon } from '@/assets/icons';
 import { Progress } from '@/components/ui/Progress';
-import { showNotification } from '@/services/notification.service';
-import { useFakeDownload } from '../useFakeDownload';
 import { DeleteModal } from '@/components/ui/Modal';
+import { useFileDownload } from '@/hooks/useFileDownload';
 
 interface UploadItemProps {
   item: FileType;
@@ -15,12 +14,8 @@ interface UploadItemProps {
 }
 
 export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
-  const {
-    handleStop,
-    handleUpload: fakeUpload,
-    progress,
-    isRunning,
-  } = useFakeDownload();
+  const { handleDownload, isRunning, progress, cancelDownload } =
+    useFileDownload();
 
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenRemove = () => {
@@ -28,14 +23,6 @@ export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
   };
   const handleConfirmRemove = () => {
     onRemoveItem?.(item.id);
-  };
-
-  const handleUpload = () => {
-    fakeUpload();
-  };
-  const handleStopWhithHint = () => {
-    handleStop();
-    showNotification({ message: 'Загрузка прервана', type: 'error' });
   };
 
   return (
@@ -61,7 +48,7 @@ export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
             size={'icon-md'}
             variant={'default-secondary'}
             className={cn('border-muted-foreground size-11.5 border')}
-            onClick={handleUpload}
+            onClick={() => handleDownload({ id: item.id, path: '#' })}
             disabled={isRunning}
           >
             <UploadIcon />
@@ -79,7 +66,7 @@ export function UploadItem({ item, onRemoveItem }: UploadItemProps) {
           className={cn('group', {
             ['hover:[&_svg]:stroke-destructive visible']: !isRunning,
           })}
-          onClick={isRunning ? handleStopWhithHint : handleOpenRemove}
+          onClick={isRunning ? cancelDownload : handleOpenRemove}
         >
           {isRunning ? (
             <CloseIcon
