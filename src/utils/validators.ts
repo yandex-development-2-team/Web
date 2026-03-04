@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 /* ================= LOGIN ================= */
 
@@ -9,14 +9,14 @@ export const loginSchema = z.object({
     .min(8, 'Пароль должен содержать минимум 8 символов')
     .regex(/[A-Za-z]/, 'Пароль должен содержать хотя бы одну букву')
     .regex(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру'),
-})
+});
 
-export type LoginFormValues = z.infer<typeof loginSchema>
+export type LoginFormValues = z.infer<typeof loginSchema>;
 
 /* ============== EMPLOYEE ADD ============== */
 
-const MAX_FILE_SIZE = 2 * 1024 * 1024
-const ACCEPTED_TYPES = ['image/png', 'image/jpeg']
+const MAX_FILE_SIZE = 2 * 1024 * 1024;
+const ACCEPTED_TYPES = ['image/png', 'image/jpeg'];
 
 export const employeeAddSchema = z.object({
   lastName: z.string().min(1, 'Обязательное поле'),
@@ -34,13 +34,9 @@ export const employeeAddSchema = z.object({
 
   gender: z.string().min(1, 'Обязательное поле'),
 
-  passportSeries: z
-    .string()
-    .regex(/^\d{4}$/, 'Серия должна содержать 4 цифры'),
+  passportSeries: z.string().regex(/^\d{4}$/, 'Серия должна содержать 4 цифры'),
 
-  passportNumber: z
-    .string()
-    .regex(/^\d{6}$/, 'Номер должен содержать 6 цифр'),
+  passportNumber: z.string().regex(/^\d{6}$/, 'Номер должен содержать 6 цифр'),
 
   phone: z
     .string()
@@ -62,13 +58,13 @@ export const employeeAddSchema = z.object({
     .any()
     .refine(
       (file) => !file || ACCEPTED_TYPES.includes(file?.type),
-      'Поддерживаются только PNG или JPG'
+      'Поддерживаются только PNG или JPG',
     )
     .refine(
       (file) => !file || file?.size <= MAX_FILE_SIZE,
-      'Размер файла не более 2MB'
+      'Размер файла не более 2MB',
     )
     .optional(),
-})
+});
 
-export type EmployeeAddFormValues = z.infer<typeof employeeAddSchema>
+export type EmployeeAddFormValues = z.infer<typeof employeeAddSchema>;
