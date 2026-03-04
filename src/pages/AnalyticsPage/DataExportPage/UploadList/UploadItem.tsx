@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { UploadIcon, CloseIcon, TrashOpenIcon } from '@/assets/icons';
 import { Progress } from '@/components/ui/Progress';
 import { DeleteModal } from '@/components/ui/Modal';
-import { useFileDownload } from '@/hooks/useFileDownload';
+import { useFileDownload } from '@/hooks';
 
 interface UploadItemProps {
   item: FileType;
