@@ -13,6 +13,7 @@ import {
 } from './ui';
 import {
   filterRows,
+  filterRowsByDate,
   isAllSelected,
   nextDirection,
   paginateRows,
@@ -37,6 +38,7 @@ export function DataTable<T>({
   onDeleteRow,
   onDownloadRow,
   onEditRow,
+  dateRange,
 }: DataTableProps<T>) {
   const [sortState, setSortState] = useState<SortState<T> | null>(null);
   const [rowCount, setRowCount] = useState<number>(defaultRowCount);
@@ -52,8 +54,9 @@ export function DataTable<T>({
   }, [columns, sortState]);
 
   const filteredRows = useMemo(() => {
-    return filterRows(data, columns, filter);
-  }, [data, columns, filter]);
+    const byText = filterRows(data, columns, filter);
+    return filterRowsByDate(byText, dateRange);
+  }, [data, columns, filter, dateRange]);
 
   const rows = useMemo(() => {
     if (!sortState || !activeColumn) return filteredRows;

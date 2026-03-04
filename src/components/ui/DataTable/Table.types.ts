@@ -18,6 +18,20 @@ type RowSelectionProps = {
   onChange?: (ids: string[]) => void;
 };
 
+type DateRange<T> =
+  | {
+      fromDate?: string;
+      toDate?: string;
+      getDate: (row: T) => string | Date | null | undefined;
+    }
+  | {
+      fromDate?: string;
+      toDate?: string;
+      getRange: (
+        row: T,
+      ) => { from: string | Date; to: string | Date } | null | undefined;
+    };
+
 type DataTableProps<T> = {
   data: T[];
   columns: Column<T>[];
@@ -32,6 +46,7 @@ type DataTableProps<T> = {
   onEditRow?: (id: string) => void;
   onDeleteRow?: (id: string) => void;
   onDownloadRow?: (id: string) => void;
+  dateRange?: DateRange<T>;
 };
 
 type SortDirection = 'asc' | 'desc';
@@ -129,4 +144,5 @@ export type {
   Traffic,
   Applications,
   UsersManagement,
+  DateRange,
 };
