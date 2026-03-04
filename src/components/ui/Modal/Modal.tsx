@@ -16,7 +16,7 @@ export const Modal = ({
   isOpen,
   onClose,
   children,
-  footer
+  footer,
 }: IModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -103,8 +103,7 @@ export const Modal = ({
     }
 
     return null;
-  }
-
+  };
 
   return createPortal(
     <div

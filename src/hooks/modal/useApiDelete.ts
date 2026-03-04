@@ -1,5 +1,5 @@
-import { deleteItemById } from "@/services/deleteItem.service";
-import { useMutation } from "@tanstack/react-query";
+import { deleteItemById } from '@/services/deleteItem.service';
+import { useMutation } from '@tanstack/react-query';
 
 interface UseDeleteItemParams {
   deletePath: string;
@@ -7,9 +7,14 @@ interface UseDeleteItemParams {
   onError?: () => void;
 }
 
-export function useApiDelete({ deletePath, onSuccess, onError }: UseDeleteItemParams) {
+export function useApiDelete({
+  deletePath,
+  onSuccess,
+  onError,
+}: UseDeleteItemParams) {
   return useMutation({
-    mutationFn: ({ id }: { id: string | number }) => deleteItemById(id, deletePath),
+    mutationFn: ({ id }: { id: string | number }) =>
+      deleteItemById(id, deletePath),
     onSuccess,
     onError,
   });
