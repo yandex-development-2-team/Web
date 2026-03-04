@@ -8,14 +8,14 @@ interface DeleteConfirmationModalProps {
   onConfirm: () => void;
   itemId: string | number;
   deletePath: string;
-  titleModal?: string
-  descriptionModal?: string
+  titleModal?: string;
+  descriptionModal?: string;
 }
 
 export const DeleteModal = ({
   isOpen,
-  titleModal = "Удалить заявку?",
-  descriptionModal = "Вы действительно хотите удалить эту заявку?",
+  titleModal = 'Удалить заявку?',
+  descriptionModal = 'Вы действительно хотите удалить эту заявку?',
   onClose,
   onConfirm,
   itemId,
@@ -30,11 +30,7 @@ export const DeleteModal = ({
   });
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={titleModal}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} title={titleModal}>
       <>
         <p className="text-gray-700">
           {descriptionModal}

@@ -9,8 +9,8 @@ export function TableRowState<T>({
   columns: Column<T>[];
 }) {
   return (
-    <tr className={cn("h-13 align-middle")}>
-      <td colSpan={columns.length} className={cn("pr-3 pl-3 text-center")}>
+    <tr className={cn('h-13 align-middle')}>
+      <td colSpan={columns.length} className={cn('pr-3 pl-3 text-center')}>
         {text}
       </td>
     </tr>

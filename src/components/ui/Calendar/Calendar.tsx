@@ -52,16 +52,16 @@ function Calendar({
         ),
         button_previous: cn(
           buttonVariants({ variant: buttonVariant }),
-          'size-(--btn-size) p-0 select-none aria-disabled:opacity-50 hover:[&_svg]:text-accent-strong',
+          'hover:[&_svg]:text-accent-strong size-(--btn-size) p-0 select-none aria-disabled:opacity-50',
           defaultClassNames.button_previous,
         ),
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
-          'size-(--btn-size) p-0 select-none aria-disabled:opacity-50 hover:[&_svg]:text-accent-strong',
+          'hover:[&_svg]:text-accent-strong size-(--btn-size) p-0 select-none aria-disabled:opacity-50',
           defaultClassNames.button_next,
         ),
         month_caption: cn(
-          'flex h-(--btn-size) items-center justify-center mr-4 ml-4 px-(--btn-size)',
+          'mr-4 ml-4 flex h-(--btn-size) items-center justify-center px-(--btn-size)',
           defaultClassNames.month_caption,
         ),
         dropdowns: cn(
@@ -80,7 +80,7 @@ function Calendar({
           'select-none',
           captionLayout === 'label'
             ? 'body-text'
-            : '[&>svg]:text-calendar-foreground body-text flex w-full items-center justify-between h-8 gap-1 rounded-md pr-1 pl-2 [&>svg]:size-5',
+            : '[&>svg]:text-calendar-foreground body-text flex h-8 w-full items-center justify-between gap-1 rounded-md pr-1 pl-2 [&>svg]:size-5',
           defaultClassNames.caption_label,
         ),
         table: 'w-full border-collapse',
@@ -112,7 +112,7 @@ function Calendar({
         range_middle: cn('rounded-none', defaultClassNames.range_middle),
         range_end: cn('bg-accent rounded-r-md', defaultClassNames.range_end),
         today: cn(
-          'ring-1 ring-accent rounded-lg data-[selected=true]:ring-0',
+          'ring-accent rounded-lg ring-1 data-[selected=true]:ring-0',
           defaultClassNames.today,
         ),
         outside: cn(
@@ -140,21 +140,33 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === 'left') {
             return (
-              <ArrowIcon className={cn('w-5 h-5 rotate-180 text-calendar-foreground', className)} {...props} />
+              <ArrowIcon
+                className={cn(
+                  'text-calendar-foreground h-5 w-5 rotate-180',
+                  className,
+                )}
+                {...props}
+              />
             );
           }
 
           if (orientation === 'right') {
             return (
               <ArrowIcon
-                className={cn('w-5 h-5 text-calendar-foreground', className)}
+                className={cn('text-calendar-foreground h-5 w-5', className)}
                 {...props}
               />
             );
           }
 
           return (
-            <ArrowIcon className={cn('w-4 h-4 rotate-90 text-calendar-foreground', className)} {...props} />
+            <ArrowIcon
+              className={cn(
+                'text-calendar-foreground h-4 w-4 rotate-90',
+                className,
+              )}
+              {...props}
+            />
           );
         },
         DayButton: CalendarDayButton,

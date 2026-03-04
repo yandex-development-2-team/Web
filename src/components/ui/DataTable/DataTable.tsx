@@ -1,20 +1,16 @@
 import { Cell } from '@/components/ui/DataTable/Cell';
 import { useMemo, useState } from 'react';
 import type { DataTableProps } from '@/components/ui/DataTable/Table.types';
-import {
-  ArrangeIcon,
-  ArrowRghtIcon,
-  DeleteIcon,
-  DownloadIcon,
-  EditIcon,
-} from '@/assets/icons';
-import { Button } from '@/components/ui/Button/index';
-import { Input } from '@/components/ui/Input/index';
+import { ArrangeIcon } from '@/assets/icons';
 import { cn } from '@/utils';
-import { SkeletonRow, TableRowState, TableShell } from './ui';
+import {
+  DataTablePagination,
+  SkeletonRow,
+  TableRowState,
+  TableShell,
+} from './ui';
 import {
   filterRows,
-  getPaginationRange,
   isAllSelected,
   nextDirection,
   paginateRows,
@@ -24,6 +20,8 @@ import {
   type SortState,
 } from './helpers';
 import { Checkbox } from '@/components/ui/Checkbox/index';
+import { DataTableControls } from './ui/DataTableControls';
+import { DataTableRowActions } from './ui/DataTableRowActions';
 
 export function DataTable<T>({
   data,
@@ -134,11 +132,15 @@ export function DataTable<T>({
 
   return (
     <>
-      <table className={cn("m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-border-variant")}>
-        <thead className={cn("bg-border")}>
+      <table
+        className={cn(
+          'border-border-variant m-5 mb-4 table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border',
+        )}
+      >
+        <thead className={cn('bg-border')}>
           <tr>
             {rowSelected?.enabled === true && (
-              <th className={cn("w-10 pr-3 pl-3")}>
+              <th className={cn('w-10 pr-3 pl-3')}>
                 <Checkbox
                   icon="CheckMark"
                   checked={selectedAll}
@@ -152,13 +154,18 @@ export function DataTable<T>({
               <th
                 key={column.id}
                 style={{ width: column.width }}
-                className={cn('h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal' + (column.isSort ? 'cursor-pointer select-none' : ''))}
+                className={cn(
+                  'h-13.5 pr-3 pl-3 text-left font-sans text-sm font-normal' +
+                    (column.isSort ? 'cursor-pointer select-none' : ''),
+                )}
                 onClick={() => {
                   if (!column.isSort) return;
                   setSortState((prev) => nextDirection(prev, column));
                 }}
               >
-                <span className={cn("flex flex-row items-center gap-1 font-normal")}>
+                <span
+                  className={cn('flex flex-row items-center gap-1 font-normal')}
+                >
                   {column.title}
                   {column.isSort && (
                     <ArrangeIcon
@@ -181,12 +188,16 @@ export function DataTable<T>({
             {rowSelected?.enabled === true && <th></th>}
           </tr>
         </thead>
-        <tbody className={cn("[&>:not(:last-child)>td]:border-b [&>:not(:last-child)>td]:border-border")}>
+        <tbody
+          className={cn(
+            '[&>:not(:last-child)>td]:border-border [&>:not(:last-child)>td]:border-b',
+          )}
+        >
           {displayRows.map((row) => {
             return (
-              <tr key={String(row[rowKey])} className={cn("h-13 align-middle")}>
+              <tr key={String(row[rowKey])} className={cn('h-13 align-middle')}>
                 {rowSelected?.enabled && (
-                  <td className={cn("w-10 pr-3 pl-3")}>
+                  <td className={cn('w-10 pr-3 pl-3')}>
                     <Checkbox
                       icon="CheckMark"
                       checked={selected.has(String(row[rowKey]))}
@@ -202,74 +213,30 @@ export function DataTable<T>({
                 ))}
 
                 {rowSelected?.enabled === true && (
-                  <td>
-                    {onEditRow && (
-                      <Button variant={'ghost'} className={cn('h-10 w-10 p-2')}>
-                        <EditIcon />
-                      </Button>
-                    )}
-                    {onDeleteRow && (
-                      <Button variant={'ghost'} className={cn('h-10 w-10 p-2')}>
-                        <DeleteIcon />
-                      </Button>
-                    )}
-                    {onDownloadRow && (
-                      <Button variant={'ghost'} className={cn('h-10 w-10 p-2')}>
-                        <DownloadIcon />
-                      </Button>
-                    )}
-                  </td>
+                  <DataTableRowActions
+                    id={String(row[rowKey])}
+                    onDeleteRow={onDeleteRow}
+                    onDownloadRow={onDownloadRow}
+                    onEditRow={onEditRow}
+                  />
                 )}
               </tr>
             );
           })}
         </tbody>
         {showControls === 'pagination' && (
-          <tfoot className={cn("font-normal text-muted-foreground")}>
+          <tfoot className={cn('text-muted-foreground font-normal')}>
             <tr>
-              <td colSpan={columns.length} className={cn("border-t")}>
-                <div className={cn("m-3 mb-4 flex items-center justify-end gap-1")}>
-                  <Button
-                    variant="ghost"
-                    disabled={pagination.safePage === 1}
-                    className={cn("p-2.5")}
-                    onClick={() => setPage((page) => page - 1)}
-                  >
-                    <ArrowRghtIcon className={cn("size-3 stroke-muted-foreground")} />
-                  </Button>
-
-                  {getPaginationRange({
-                    currentPage: pagination.safePage,
-                    totalPages: pagination.totalPage,
-                    nearCount: 2,
-                  }).map((item, index) =>
-                    item === 'dots' ? (
-                      <span key={`dots-${index}`}>...</span>
-                    ) : (
-                      <Button
-                        key={`page-${item}`}
-                        variant={
-                          item === pagination.safePage
-                            ? 'default-secondary'
-                            : 'ghost'
-                        }
-                        className={cn('h-8 w-8 p-0')}
-                        onClick={() => setPage(item)}
-                      >
-                        {item}
-                      </Button>
-                    ),
-                  )}
-
-                  <Button
-                    variant="ghost"
-                    className={cn("p-2.5")}
-                    disabled={pagination.safePage === pagination.totalPage}
-                    onClick={() => setPage((page) => page + 1)}
-                  >
-                    <ArrowRghtIcon className={cn("size-3 rotate-180 stroke-muted-foreground")} />
-                  </Button>
-                </div>
+              <td colSpan={columns.length} className={cn('border-t')}>
+                <DataTablePagination
+                  safePage={pagination.safePage}
+                  totalPage={pagination.totalPage}
+                  onPrev={() => setPage((page) => Math.max(1, page - 1))}
+                  onNext={() =>
+                    setPage((page) => Math.min(pagination.totalPage, page + 1))
+                  }
+                  onPage={setPage}
+                />
               </td>
             </tr>
           </tfoot>
@@ -277,40 +244,20 @@ export function DataTable<T>({
       </table>
 
       {showControls && (
-        <div className={cn("flex flex-row items-center justify-end")}>
-          {showControls === 'showBy' && (
-            <div className={cn("flex flex-row items-center gap-3")}>
-              <span className={cn("text-muted-foreground")}>
-                Показывать по
-              </span>
-              <Input
-                type="number"
-                value={rowCount}
-                min={1}
-                className={cn("h-12 w-12 border border-muted-foreground text-center text-muted-foreground")}
-                onChange={(e) => {
-                  const count = Math.max(1, Number(e.target.value) || 1);
-                  setRowCount(count);
-                  setVisibleCountRow(count);
-                }}
-              />
-            </div>
-          )}
-          {showControls === 'showMore' && (
-            <Button
-              disabled={!canShowMore}
-              variant={'ghost'}
-              className={cn("mr-5 p-0 font-normal text-muted-foreground")}
-              onClick={() =>
-                setVisibleCountRow((v) =>
-                  Math.min(v + showMoreCountRows, rows.length),
-                )
-              }
-            >
-              Показать больше
-            </Button>
-          )}
-        </div>
+        <DataTableControls
+          showControls={showControls}
+          rowCount={rowCount}
+          onChangeRowCount={(count) => {
+            setRowCount(count);
+            setVisibleCountRow(count);
+          }}
+          canShowMore={canShowMore}
+          onShowMore={() =>
+            setVisibleCountRow((visible) =>
+              Math.min(visible + showMoreCountRows, rows.length),
+            )
+          }
+        />
       )}
     </>
   );

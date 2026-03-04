@@ -8,7 +8,7 @@ function Cell<T>({ row, column }: { row: T; column: Column<T> }) {
       ? column.getValue(row)
       : (row[column.key] as ReactNode);
 
-  return <td className={cn("pl-3 font-sans font-normal")}>{value}</td>;
+  return <td className={cn('pl-3 font-sans font-normal')}>{value}</td>;
 }
 
 export { Cell };
