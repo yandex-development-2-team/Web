@@ -10,7 +10,7 @@ import {
 } from '@/pages/LoginPage/ui/Card';
 import { Input } from '@/components/ui/Input/Input';
 import { Button } from '@/components/ui/Button/Button';
-import { loginSchema, type LoginFormValues } from '@/utils/validators';
+import { loginSchema, type LoginFormValues } from '@/utils/loginValidators';
 import EyeIcon from '@/assets/icons/eye.svg';
 import EyeOffIcon from '@/assets/icons/eye-off.svg';
 
