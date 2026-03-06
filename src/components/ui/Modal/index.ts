@@ -1,2 +1,2 @@
-export { Modal } from "./Modal"
-export { DeleteModal } from "./DeleteModal"
+export { Modal } from './Modal';
+export { DeleteModal } from './DeleteModal';
