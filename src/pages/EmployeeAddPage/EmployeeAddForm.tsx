@@ -87,7 +87,7 @@ const PersonalSection = ({ register, control, errors }: FormProps) => (
       className="col-span-9 p-5 pt-3 pl-4"
       title="Персональная информация"
     >
-      <div className="grid grid-rows-3 gap-3">
+      <div className="flex flex-col gap-3">
         <Label>
           Фамилия
           <Input
@@ -119,16 +119,33 @@ const PersonalSection = ({ register, control, errors }: FormProps) => (
 
 const PassportContactSection = ({ register, control, errors }: FormProps) => (
   <Section className="p-4 pt-0" title="" withIcon={false}>
-    <div className="grid grid-cols-8 gap-10 pb-2">
+    <div
+      className="
+      grid 
+      grid-cols-1
+      gap-y-6
+      lg:grid-cols-8
+      lg:gap-x-10
+      pb-2
+    "
+    >
       <Section
-        className="col-span-4 space-y-2 border-0 pt-0 pr-0 pb-0 shadow-none"
+        className="
+        lg:col-span-4
+        space-y-2
+        border-0
+        pt-0
+        pr-0
+        pb-0
+        shadow-none
+      "
         title="Паспортные данные"
       >
         <Label>
           Гражданство
           <Select className="mt-1 mb-2" {...register('citizenship')}>
             <option value="ru">РФ</option>
-            <option value="kz">Другое</option>
+            <option value="other">Другое</option>
           </Select>
         </Label>
 
@@ -162,9 +179,11 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
               inputMode="numeric"
               maxLength={4}
               placeholder="Серия"
-              error={errors.passportSeries?.message}
               {...register('passportSeries')}
             />
+            <span className="text-xs text-red-500 min-h-[16px]">
+              {errors.passportSeries?.message}
+            </span>
           </Label>
 
           <Label>
@@ -174,15 +193,23 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
               inputMode="numeric"
               maxLength={6}
               placeholder="Номер"
-              error={errors.passportNumber?.message}
               {...register('passportNumber')}
             />
+            <span className="text-xs text-red-500 min-h-[16px]">
+              {errors.passportNumber?.message}
+            </span>
           </Label>
         </TwoColGrid>
       </Section>
 
       <Section
-        className="col-span-3 space-y-2 border-0 pt-0 pr-2 shadow-none"
+        className="
+        lg:col-span-3
+        space-y-2
+        border-0
+        pt-0
+        shadow-none
+      "
         title="Контактная информация"
       >
         <Label>
@@ -212,54 +239,52 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
 
 const PositionSection = ({ register }: FormProps) => (
   <Section
-    className="col-span-5 space-y-2 p-5 pt-3 pb-3"
+    className="col-span-12 lg:col-span-5 p-5 pt-3 pb-4"
     title="Должностная информация"
   >
-    <Label>
-      Отдел
-      <Select size="sm" className="mt-1 mb-2" {...register('department')}>
-        <option value="" disabled>
-          Отдел
-        </option>
-        <option value="department-1">Отдел 1</option>
-        <option value="department-2">Отдел 2</option>
-      </Select>
-    </Label>
+    <div className="flex flex-col gap-4">
+      <Label className="flex flex-col">
+        Отдел
+        <Select size="sm" {...register('department')}>
+          <option value="department-1">Отдел</option>
+          <option value="department-1">Отдел 1</option>
+          <option value="department-2">Отдел 2</option>
+        </Select>
+      </Label>
 
-    <Label>
-      Должность
-      <Select size="sm" className="mt-1 mb-2" {...register('position')}>
-        <option value="" disabled>
-          Должность
-        </option>
-        <option value="position-1">Должность 1</option>
-        <option value="position-2">Должность 2</option>
-      </Select>
-    </Label>
+      <Label className="flex flex-col gap-1">
+        Должность
+        <Select size="sm" {...register('position')}>
+          <option value="position-1">Должность</option>
+          <option value="position-1">Должность 1</option>
+          <option value="position-2">Должность 2</option>
+        </Select>
+      </Label>
+    </div>
   </Section>
 );
 
 const AccessSection = ({ control }: FormProps) => (
   <Section
-    className="col-span-7 space-y-4 p-5 pt-3 pb-3"
+    className="col-span-12  lg:col-span-7 p-5 pt-3"
     title="Уровень доступа"
   >
-    <div className="grid grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,3vw)] xl:gap-x-22 md:gap-x-5 gap-y-9">
       {[
         { name: 'admin', title: 'Администратор', desc: 'Полный доступ' },
         { name: 'manager1', title: 'Менеджер 2 звена', desc: 'Ограниченный доступ' },
         { name: 'manager2', title: 'Менеджер 1 звена', desc: 'Ограниченный доступ' },
         { name: 'manager3', title: 'Менеджер 3 звена', desc: 'Ограниченный доступ' },
-      ].map(({ name, title, desc }, index) => (
+      ].map(({ name, title, desc }) => (
         <div
           key={name}
-          className={`border-border flex items-center justify-between border-b pb-2 ${index % 2 === 0 ? 'mr-9' : 'mr-3 ml-6'
-            }`}
+          className="border-border flex items-center justify-between border-b pb-2 mr-3"
         >
-          <div>
-            <p className="text-sm">{title}</p>
-            <p className="text-xs">{desc}</p>
+          <div className="min-w-0 space-y-1">
+            <p className="text-sm truncate">{title}</p>
+            <p className="text-xs text-muted-foreground">{desc}</p>
           </div>
+
           <AccessSwitch
             name={name as keyof EmployeeAddFormValues}
             control={control}
@@ -309,7 +334,7 @@ export function EmployeeAddForm() {
         <PersonalSection register={register} control={control} errors={errors} />
         <PassportContactSection register={register} control={control} errors={errors} />
 
-        <div className="grid grid-cols-12 gap-3 mb-2">
+        <div className="grid grid-cols-12 gap-y-5 lg:gap-x-3 mb-3">
           <PositionSection register={register} control={control} errors={errors} />
           <AccessSection register={register} control={control} errors={errors} />
         </div>
