@@ -43,7 +43,6 @@ describe('toISODate', () => {
   });
 });
 
-
 describe('fromISODate', () => {
   it('парсит ISO строку в Date', () => {
     const date = fromISODate('2026-02-27');
@@ -95,7 +94,6 @@ describe('fromISODate', () => {
   });
 });
 
-
 describe('formatDateUI', () => {
   it('форматирует январь корректно', () => {
     expect(formatDateUI('2026-01-05')).toBe('05.01.2026');
@@ -119,7 +117,6 @@ describe('formatDateUI', () => {
     expect(formatDateUI('2026-01-05')).toBe('05.01.2026');
   });
 });
-
 
 describe('toISODateTime', () => {
   it('включает время без Z-суффикса', () => {

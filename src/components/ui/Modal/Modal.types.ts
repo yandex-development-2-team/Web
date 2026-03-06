@@ -10,4 +10,4 @@ export type ModalFooter =
       onDelete: () => void;
       isSaveLoading?: boolean;
       isDeleteLoading?: boolean;
-  }
+    };
