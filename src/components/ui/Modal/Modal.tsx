@@ -107,7 +107,7 @@ export const Modal = ({
 
   return createPortal(
     <div
-      className="bg-opacity-40 bg-modal-backdrop fixed inset-0 z-50 flex items-center justify-center"
+      className="bg-foreground/40 bg-modal-backdrop fixed inset-0 z-50 flex items-center justify-center"
       onClick={handleBackdropClick}
     >
       <div
