@@ -7,11 +7,12 @@ import { cn } from '@/utils';
 import { StatisticsList } from '@/components/ui/StatiscticsList';
 import { ProductsList } from './ProductsList';
 import { CreatedProductList } from './CreatedProductList/CreatedProductList';
-import { BoxIcon1, MagicStickIcon } from '@/assets/icons';
-import { CreateProjectModal } from '@/components/ui/Modal';
+import { Box1Icon, MagicStickIcon } from '@/assets/icons';
+import { CreateBoxModal, CreateProjectModal } from '@/components/ui/Modal';
 
 const BoxManagementPage = () => {
   const [isOpenSpecProjectModal, setIsOpenSpecProjectModal] = useState(false);
+  const [isOpenBoxModal, setIsOpenBoxModal] = useState(false);
 
   return (
     <div className={cn('flex h-full w-full flex-col gap-5')}>
@@ -27,10 +28,14 @@ const BoxManagementPage = () => {
         <div className={cn('grid h-full grid-cols-2 gap-5')}>
           <ProductsList
             createTitle="Создать коробку"
-            onCreateItem={() => console.log('create box')}
-            icon={<BoxIcon1 />}
+            onCreateItem={() => setIsOpenBoxModal(true)}
+            icon={<Box1Icon />}
           >
             <>
+              <CreateBoxModal
+                isOpen={isOpenBoxModal}
+                onClose={() => setIsOpenBoxModal(false)}
+              />
               <CreatedProductList items={BOXES_AND_SPECPROJECTS_LIST.boxes} />
             </>
           </ProductsList>

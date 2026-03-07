@@ -26,5 +26,5 @@ export { default as PlusIcon } from './plus-icon.svg?react';
 export { default as BoxWithStarIcon } from './boxes-star-icon.svg?react';
 export { default as PencilIcon } from './pencil-icon.svg?react';
 export { default as CloseIcon } from './close-icon.svg?react';
-export { default as BoxIcon1 } from './box-icon.svg?react';
+export { default as Box1Icon } from './box-icon.svg?react';
 export { default as MagicStickIcon } from './magic-stick-icon.svg?react';
