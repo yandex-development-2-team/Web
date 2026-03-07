@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { CalendarIcon} from '@/assets/icons';
+import { CalendarIcon } from '@/assets/icons';
 import { Calendar } from '@/components/ui/Calendar/Calendar';
 import { Input } from '@/components/ui/Input/Input';
 import { toISODate, fromISODate, formatDateUI } from '@/utils/dateHelpers';
@@ -53,17 +53,13 @@ export function DatePickerInput({
           className="cursor-pointer pr-10"
         />
         <CalendarIcon
-  className="pointer-events-none absolute right-3 bottom-3 size-5 [&_path]:stroke-border"
-  onClick={() => setOpen((v) => !v)}
+          className="[&_path]:stroke-border pointer-events-none absolute right-3 bottom-3 size-5"
+          onClick={() => setOpen((v) => !v)}
         />
       </div>
       {open && (
         <div className="absolute top-full left-0 z-50 mt-1">
-          <Calendar
-            mode="single"
-            selected={selected}
-            onSelect={handleSelect}
-          />
+          <Calendar mode="single" selected={selected} onSelect={handleSelect} />
         </div>
       )}
     </div>

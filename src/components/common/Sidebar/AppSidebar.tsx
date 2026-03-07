@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import { useSidebar } from '@/app/providers/Sidebar';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/common/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/components/common/Avatar';
 import { Collapsible, CollapsibleContent } from '@/components/ui/Collapsible';
 import {
   Sidebar,
