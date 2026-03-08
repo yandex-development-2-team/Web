@@ -56,7 +56,7 @@ function Select({
         </select>
 
         {withIcon && (
-          <ChevronDownIcon className="text-border pointer-events-none absolute top-7 right-2 -translate-y-1/2 opacity-40" />
+          <ChevronDownIcon className="text-border pointer-events-none absolute top-7 right-1 -translate-y-1/2 opacity-40" />
         )}
       </div>
 
