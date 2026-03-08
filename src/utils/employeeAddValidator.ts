@@ -1,5 +1,6 @@
 // src/utils/validators.ts
 import { z } from 'zod';
+import { parse, isValid } from 'date-fns';
 
 export const employeeAddSchema = z.object({
   photo: z
@@ -12,9 +13,14 @@ export const employeeAddSchema = z.object({
   birthDate: z
     .string()
     .nonempty({ message: 'Дата рождения обязательна' })
-    .refine((val) => new Date(val) <= new Date(), {
-      message: 'Дата рождения не может быть в будущем',
-    }),
+    .refine((val) => {
+      try {
+        const d = parse(val.trim(), 'dd.MM.yyyy', new Date());
+        return isValid(d) && d <= new Date();
+      } catch {
+        return false;
+      }
+    }, { message: 'Дата рождения не может быть в будущем' }),
   gender: z.string().nonempty({ message: 'Пол обязателен' }),
   passportSeries: z
     .string()
