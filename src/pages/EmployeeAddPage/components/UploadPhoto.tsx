@@ -60,7 +60,7 @@ export function UploadPhoto({ value, onChange, className }: Props) {
         onClick={() => inputRef.current?.click()}
         onKeyDown={(e) => e.key === 'Enter' && inputRef.current?.click()}
         className={cn(
-          'group relative h-36 w-36 rounded-full p-1.5',
+          'group relative aspect-square w-26 sm:w-28 md:w-30 lg:w-36 rounded-full p-1.5',
           'border-accent cursor-pointer border-1',
           'hover:border-primary/70 transition-all duration-300 hover:shadow-lg',
           'focus:ring-ring focus:outline-none',
