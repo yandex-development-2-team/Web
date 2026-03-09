@@ -9,12 +9,22 @@ import { usePreview } from '@/hooks';
 import { PlusIcon } from '@/assets/icons';
 import { DatePickerInput } from '@/components/ui//DatePickerInput/DatePickerInput';
 import { Textarea } from '@/components/ui/Textarea';
+import { TimeRangeInput } from '@/components/ui/TimeIntervalPicker';
 
 interface IFormValues {
   title: string;
   isActive: boolean;
   description: string;
   image: File | null;
+  date: string;
+  timeRange: {
+    from: number;
+    to: number;
+  };
+  location: string;
+  rules: string | string[];
+  cost: string | number;
+  organizer: string;
 }
 
 interface CreateProjectModalProps {
@@ -23,24 +33,37 @@ interface CreateProjectModalProps {
 }
 
 export function CreateBoxModal({ isOpen, onClose }: CreateProjectModalProps) {
-  const { control, handleSubmit } = useForm<IFormValues>({
+  const { control, handleSubmit, reset } = useForm<IFormValues>({
     defaultValues: {
       title: '',
-      isActive: true,
+      isActive: false,
       description: '',
       image: null,
+      cost: '',
+      date: '',
+      location: '',
+      organizer: '',
+      rules: '',
+      timeRange: {
+        from: 0,
+        to: 0,
+      },
     },
   });
   const inputRef = useRef<HTMLInputElement | null>(null);
   const submitBtnRef = useRef<HTMLButtonElement>(null);
   const { handleFileChange, previewUrl } = usePreview();
 
-  const onSubmit = (data: IFormValues) => data;
+  const onSubmit = (data: IFormValues) => console.log(data);
+  const onReset = () => {
+    onClose();
+    reset();
+  };
 
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onReset}
       title="Создать коробочное решение"
       footer={{
         variant: 'cancel-save',
@@ -48,7 +71,6 @@ export function CreateBoxModal({ isOpen, onClose }: CreateProjectModalProps) {
       }}
     >
       <form
-        id="my-form-id"
         className={cn('flex flex-col gap-4')}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -67,6 +89,8 @@ export function CreateBoxModal({ isOpen, onClose }: CreateProjectModalProps) {
               return (
                 <SwitchItem
                   {...field}
+                  checked={field.value}
+                  onToggle={field.onChange}
                   label="Активно"
                   className="flex flex-row-reverse"
                 />
@@ -75,15 +99,74 @@ export function CreateBoxModal({ isOpen, onClose }: CreateProjectModalProps) {
           />
         </div>
         <div className={cn('grid grid-cols-2 gap-3')}>
-          <DatePickerInput onChange={(data) => console.log(data)} label="" />
-          <DatePickerInput onChange={(data) => console.log(data)} label="" />
+          <Controller
+            name="date"
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <DatePickerInput
+                  label=""
+                  value={value}
+                  onChange={(data) => onChange(data)}
+                />
+              );
+            }}
+          />
+          <Controller
+            name="timeRange"
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <TimeRangeInput
+                  placeholder="Выберите время"
+                  value={value}
+                  onChange={(tr) => {
+                    console.log(tr);
+                    onChange(tr);
+                  }}
+                />
+              );
+            }}
+          />
         </div>
-        <Textarea label="Место" />
-        <Input label="Описание" />
-        <Input label="Правила" />
+        <Controller
+          name="location"
+          control={control}
+          render={({ field }) => {
+            return <Textarea {...field} label="Место" placeholder="Текст" />;
+          }}
+        />
+        <Controller
+          name="description"
+          control={control}
+          render={({ field }) => {
+            return <Input {...field} label="Описание" placeholder="Текст" />;
+          }}
+        />
+        <Controller
+          name="rules"
+          control={control}
+          render={({ field }) => {
+            return <Input {...field} label="Правила" placeholder="Текст" />;
+          }}
+        />
         <div className={cn('grid grid-cols-2 gap-3')}>
-          <Input placeholder="Стоимость" />
-          <Input placeholder="Организатор" />
+          <Controller
+            name="cost"
+            control={control}
+            render={({ field }) => {
+              return <Input {...field} label="Стоимость" placeholder="Текст" />;
+            }}
+          />
+          <Controller
+            name="organizer"
+            control={control}
+            render={({ field }) => {
+              return (
+                <Input {...field} label="Организатор" placeholder="Текст" />
+              );
+            }}
+          />
         </div>
         <div
           className={cn('grid items-center gap-3 transition-all duration-300', {

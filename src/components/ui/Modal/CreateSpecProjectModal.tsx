@@ -24,24 +24,29 @@ export function CreateProjectModal({
   isOpen,
   onClose,
 }: CreateProjectModalProps) {
-  const { control, handleSubmit } = useForm<IFormValues>({
+  const { control, handleSubmit, reset } = useForm<IFormValues>({
     defaultValues: {
       title: '',
-      isActive: true,
+      isActive: false,
       description: '',
       image: null,
     },
   });
   const inputRef = useRef<HTMLInputElement | null>(null);
   const submitBtnRef = useRef<HTMLButtonElement>(null);
-  const { handleFileChange, previewUrl } = usePreview();
+  const { handleFileChange, previewUrl, setPreviewUrl } = usePreview();
 
-  const onSubmit = (data: IFormValues) => data;
+  const onSubmit = (data: IFormValues) => console.log(data);
+  const onReset = () => {
+    onClose();
+    reset();
+    setPreviewUrl(null);
+  };
 
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onReset}
       title="Создать спецпроект"
       footer={{
         variant: 'cancel-save',
@@ -49,7 +54,6 @@ export function CreateProjectModal({
       }}
     >
       <form
-        id="my-form-id"
         className={cn('flex flex-col gap-4 px-6')}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -68,6 +72,8 @@ export function CreateProjectModal({
               return (
                 <SwitchItem
                   {...field}
+                  checked={field.value}
+                  onToggle={field.onChange}
                   label="Активен"
                   className="flex flex-row-reverse"
                 />

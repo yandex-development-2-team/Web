@@ -28,3 +28,5 @@ export { default as PencilIcon } from './pencil-icon.svg?react';
 export { default as CloseIcon } from './close-icon.svg?react';
 export { default as Box1Icon } from './box-icon.svg?react';
 export { default as MagicStickIcon } from './magic-stick-icon.svg?react';
+export { default as TimeIcon } from './time-icon.svg?react';
+export { default as ChevronDownIcon } from './chevron-down-icon.svg?react';
