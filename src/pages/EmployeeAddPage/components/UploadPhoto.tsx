@@ -67,11 +67,13 @@ export function UploadPhoto({ value, onChange, className }: Props) {
       >
         <div className="relative h-full w-full overflow-hidden rounded-full">
           {preview ? (
-            <img
-              src={preview}
-              alt="Предпросмотр загруженного фото"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+            <div className="absolute inset-0 flex items-center justify-center pt-4 pr-1">
+              <img
+                src={preview}
+                alt="Предпросмотр загруженного фото"
+                className="brightness-60 contrast-170 saturate-105"
+              />
+            </div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center pt-4 pr-1">
               <img
