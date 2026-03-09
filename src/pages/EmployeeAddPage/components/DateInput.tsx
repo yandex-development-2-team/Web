@@ -32,7 +32,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       }
       try {
         const d = parse(str, 'dd.MM.yyyy', new Date());
-        if (!Number.isNaN(d.getTime())) setSelected(d);
+        if (!Number.isNaN(d.getTime())) {
+          setSelected(d);
+        } else {
+          setSelected(undefined);
+        }
       } catch {
         setSelected(undefined);
       }
@@ -45,14 +49,12 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
 
     const handleSelect = (date: Date | undefined) => {
       setSelected(date);
+      const formatted = date ? format(date, 'dd.MM.yyyy') : '';
 
-      if (date) {
-        const formatted = format(date, 'dd.MM.yyyy');
-
-        onChange?.({
-          target: { value: formatted },
-        } as React.ChangeEvent<HTMLInputElement>);
-      }
+      onChange?.({
+        target: { value: formatted, name: props.name },
+        currentTarget: { value: formatted, name: props.name },
+      } as React.ChangeEvent<HTMLInputElement>);
 
       setIsOpen(false);
     };
