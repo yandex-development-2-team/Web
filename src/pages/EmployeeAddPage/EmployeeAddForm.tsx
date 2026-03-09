@@ -67,7 +67,7 @@ const TwoColGrid: React.FC<React.PropsWithChildren> = ({ children }) => (
 const PersonalSection = ({ register, control, errors }: FormProps) => (
   <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
     <Section
-      className="col-span-3 flex items-start justify-center"
+      className="lg:col-span-3 flex items-center justify-center"
       title=""
       withIcon={false}
     >
@@ -84,7 +84,7 @@ const PersonalSection = ({ register, control, errors }: FormProps) => (
     </Section>
 
     <Section
-      className="col-span-9 p-5 pt-3 pl-4"
+      className="lg:col-span-9 p-5 pt-3 pl-4"
       title="Персональная информация"
     >
       <div className="flex flex-col gap-3">
