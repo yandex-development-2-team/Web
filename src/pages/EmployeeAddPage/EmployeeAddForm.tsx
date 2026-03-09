@@ -65,9 +65,9 @@ const TwoColGrid: React.FC<React.PropsWithChildren> = ({ children }) => (
 /* -------------------------------------------------------------------------- */
 
 const PersonalSection = ({ register, control, errors }: FormProps) => (
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+  <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
     <Section
-      className="lg:col-span-3 flex items-center justify-center"
+      className="flex items-center justify-center lg:col-span-3"
       title=""
       withIcon={false}
     >
@@ -79,12 +79,12 @@ const PersonalSection = ({ register, control, errors }: FormProps) => (
         )}
       />
       {errors.photo?.message && typeof errors.photo.message === 'string' && (
-        <p className="text-sm text-red-500 mt-2">{errors.photo.message}</p>
+        <p className="mt-2 text-sm text-red-500">{errors.photo.message}</p>
       )}
     </Section>
 
     <Section
-      className="lg:col-span-9 p-5 pt-3 pl-4"
+      className="p-5 pt-3 pl-4 lg:col-span-9"
       title="Персональная информация"
     >
       <div className="flex flex-col gap-3">
@@ -110,7 +110,11 @@ const PersonalSection = ({ register, control, errors }: FormProps) => (
 
         <Label>
           Отчество
-          <Input className="mt-1" placeholder="Отчество" {...register('middleName')} />
+          <Input
+            className="mt-1"
+            placeholder="Отчество"
+            {...register('middleName')}
+          />
         </Label>
       </div>
     </Section>
@@ -119,26 +123,9 @@ const PersonalSection = ({ register, control, errors }: FormProps) => (
 
 const PassportContactSection = ({ register, control, errors }: FormProps) => (
   <Section className="p-4 pt-0" title="" withIcon={false}>
-    <div
-      className="
-      grid 
-      grid-cols-1
-      gap-y-6
-      lg:grid-cols-8
-      lg:gap-x-10
-      pb-2
-    "
-    >
+    <div className="grid grid-cols-1 gap-y-6 pb-2 lg:grid-cols-8 lg:gap-x-10">
       <Section
-        className="
-        lg:col-span-4
-        space-y-2
-        border-0
-        pt-0
-        pr-0
-        pb-0
-        shadow-none
-      "
+        className="space-y-2 border-0 pt-0 pr-0 pb-0 shadow-none lg:col-span-4"
         title="Паспортные данные"
       >
         <Label>
@@ -185,7 +172,7 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
               placeholder="Серия"
               {...register('passportSeries')}
             />
-            <span className="text-xs text-red-500 min-h-[16px]">
+            <span className="min-h-[16px] text-xs text-red-500">
               {errors.passportSeries?.message}
             </span>
           </Label>
@@ -199,7 +186,7 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
               placeholder="Номер"
               {...register('passportNumber')}
             />
-            <span className="text-xs text-red-500 min-h-[16px]">
+            <span className="min-h-[16px] text-xs text-red-500">
               {errors.passportNumber?.message}
             </span>
           </Label>
@@ -207,13 +194,7 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
       </Section>
 
       <Section
-        className="
-        lg:col-span-3
-        space-y-2
-        border-0
-        pt-0
-        shadow-none
-      "
+        className="space-y-2 border-0 pt-0 shadow-none lg:col-span-3"
         title="Контактная информация"
       >
         <Label>
@@ -226,13 +207,13 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
                 <IMaskInput
                   mask="+{7} (000) 000-00-00"
                   placeholder="+7 (999) 999-66-77"
-                  className="mt-1 h-11 w-full border rounded-lg placeholder:text-sm italic px-3"
+                  className="mt-1 h-11 w-full rounded-lg border px-3 italic placeholder:text-sm"
                   name={field.name}
                   value={field.value ?? ''}
                   onBlur={field.onBlur}
                   onAccept={(value) => field.onChange(String(value ?? ''))}
                 />
-                <span className="text-xs text-red-500 min-h-[16px]">
+                <span className="min-h-[16px] text-xs text-red-500">
                   {errors.phone?.message}
                 </span>
               </>
@@ -240,9 +221,14 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
           />
         </Label>
 
-        <Label className="flex flex-col mt-2">
+        <Label className="mt-2 flex flex-col">
           E-mail
-          <Input className="mt-1" error={errors.email?.message} placeholder="E-mail" {...register('email')} />
+          <Input
+            className="mt-1"
+            error={errors.email?.message}
+            placeholder="E-mail"
+            {...register('email')}
+          />
         </Label>
       </Section>
     </div>
@@ -251,7 +237,7 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
 
 const PositionSection = ({ register }: FormProps) => (
   <Section
-    className="col-span-12 lg:col-span-5 p-5 pt-3 pb-4"
+    className="col-span-12 p-5 pt-3 pb-4 lg:col-span-5"
     title="Должностная информация"
   >
     <div className="flex flex-col gap-4">
@@ -276,23 +262,35 @@ const PositionSection = ({ register }: FormProps) => (
 
 const AccessSection = ({ control }: FormProps) => (
   <Section
-    className="col-span-12  lg:col-span-7 p-5 pt-3"
+    className="col-span-12 p-5 pt-3 lg:col-span-7"
     title="Уровень доступа"
   >
-    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,3vw)] xl:gap-x-22 md:gap-x-5 gap-y-9">
+    <div className="grid grid-cols-1 gap-y-9 md:gap-x-5 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,3vw)] xl:gap-x-22">
       {[
         { name: 'admin', title: 'Администратор', desc: 'Полный доступ' },
-        { name: 'manager1', title: 'Менеджер 2 звена', desc: 'Ограниченный доступ' },
-        { name: 'manager2', title: 'Менеджер 1 звена', desc: 'Ограниченный доступ' },
-        { name: 'manager3', title: 'Менеджер 3 звена', desc: 'Ограниченный доступ' },
+        {
+          name: 'manager1',
+          title: 'Менеджер 2 звена',
+          desc: 'Ограниченный доступ',
+        },
+        {
+          name: 'manager2',
+          title: 'Менеджер 1 звена',
+          desc: 'Ограниченный доступ',
+        },
+        {
+          name: 'manager3',
+          title: 'Менеджер 3 звена',
+          desc: 'Ограниченный доступ',
+        },
       ].map(({ name, title, desc }) => (
         <div
           key={name}
-          className="border-border flex items-center justify-between border-b pb-2 mr-3"
+          className="border-border mr-3 flex items-center justify-between border-b pb-2"
         >
           <div className="min-w-0 space-y-1">
-            <p className="text-sm truncate">{title}</p>
-            <p className="text-xs text-muted-foreground">{desc}</p>
+            <p className="truncate text-sm">{title}</p>
+            <p className="text-muted-foreground text-xs">{desc}</p>
           </div>
 
           <AccessSwitch
@@ -342,16 +340,36 @@ export function EmployeeAddForm() {
       </Section>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <PersonalSection register={register} control={control} errors={errors} />
-        <PassportContactSection register={register} control={control} errors={errors} />
+        <PersonalSection
+          register={register}
+          control={control}
+          errors={errors}
+        />
+        <PassportContactSection
+          register={register}
+          control={control}
+          errors={errors}
+        />
 
-        <div className="grid grid-cols-12 gap-y-5 lg:gap-x-3 mb-3">
-          <PositionSection register={register} control={control} errors={errors} />
-          <AccessSection register={register} control={control} errors={errors} />
+        <div className="mb-3 grid grid-cols-12 gap-y-5 lg:gap-x-3">
+          <PositionSection
+            register={register}
+            control={control}
+            errors={errors}
+          />
+          <AccessSection
+            register={register}
+            control={control}
+            errors={errors}
+          />
         </div>
 
         <div className="flex justify-end gap-3">
-          <Button type="button" variant="default-secondary" onClick={() => reset()}>
+          <Button
+            type="button"
+            variant="default-secondary"
+            onClick={() => reset()}
+          >
             Отменить
           </Button>
 

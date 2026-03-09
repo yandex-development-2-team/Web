@@ -107,8 +107,7 @@ export const router = createBrowserRouter(
             },
             {
               path: ROUTES.EMPLOYEE_CARD,
-              lazy: () =>
-                import('@/pages/EmployeeCardPage/EmployeeCardPage'),
+              lazy: () => import('@/pages/EmployeeCardPage/EmployeeCardPage'),
             },
             {
               path: ROUTES.SYSTEM_SETTINGS,

@@ -19,7 +19,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const [selected, setSelected] = useState<Date | undefined>();
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Sync selected from form value (e.g. after reset or defaultValues)
     useEffect(() => {
       if (value == null || value === '') {
         setSelected(undefined);
@@ -88,7 +87,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
 
         {/* calendar icon */}
         <div className="">
-          <CalendarIcon className="pointer-events-none absolute top-4 left-3 text-border h-6 w-6" />
+          <CalendarIcon className="text-border pointer-events-none absolute top-4 left-3 h-6 w-6" />
         </div>
 
         {/* arrow */}
@@ -103,8 +102,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
 
         {/* calendar popup */}
         {isOpen && (
-          <div className="absolute z-50 mt-2"
-          onMouseDown={(e) => e.stopPropagation()}>
+          <div
+            className="absolute z-50 mt-2"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
             <Calendar
               mode="single"
               selected={selected}
@@ -113,9 +114,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           </div>
         )}
 
-        {error && (
-          <div className="text-destructive mt-1 text-xs">{error}</div>
-        )}
+        {error && <div className="text-destructive mt-1 text-xs">{error}</div>}
       </div>
     );
   },

@@ -1,11 +1,8 @@
-// src/utils/validators.ts
 import { z } from 'zod';
 import { parse, isValid } from 'date-fns';
 
 export const employeeAddSchema = z.object({
-  photo: z
-    .any()
-    .optional(), // по желанию можно сделать required
+  photo: z.any().optional(),
   lastName: z.string().nonempty({ message: 'Фамилия обязательна' }),
   firstName: z.string().nonempty({ message: 'Имя обязательно' }),
   middleName: z.string().optional(),
@@ -13,14 +10,17 @@ export const employeeAddSchema = z.object({
   birthDate: z
     .string()
     .nonempty({ message: 'Дата рождения обязательна' })
-    .refine((val) => {
-      try {
-        const d = parse(val.trim(), 'dd.MM.yyyy', new Date());
-        return isValid(d) && d <= new Date();
-      } catch {
-        return false;
-      }
-    }, { message: 'Дата рождения не может быть в будущем' }),
+    .refine(
+      (val) => {
+        try {
+          const d = parse(val.trim(), 'dd.MM.yyyy', new Date());
+          return isValid(d) && d <= new Date();
+        } catch {
+          return false;
+        }
+      },
+      { message: 'Дата рождения не может быть в будущем' },
+    ),
   gender: z.string().nonempty({ message: 'Пол обязателен' }),
   passportSeries: z
     .string()
@@ -33,8 +33,13 @@ export const employeeAddSchema = z.object({
   phone: z
     .string()
     .nonempty({ message: 'Телефон обязателен' })
-    .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, { message: 'Неверный формат телефона' }),
-  email: z.string().nonempty({ message: 'Email обязателен' }).email({ message: 'Неверный email' }),
+    .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, {
+      message: 'Неверный формат телефона',
+    }),
+  email: z
+    .string()
+    .nonempty({ message: 'Email обязателен' })
+    .email({ message: 'Неверный email' }),
   department: z.string().nonempty({ message: 'Отдел обязателен' }),
   position: z.string().nonempty({ message: 'Должность обязательна' }),
   admin: z.boolean().default(false),
