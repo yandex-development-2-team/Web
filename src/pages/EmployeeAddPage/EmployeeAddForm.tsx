@@ -161,7 +161,11 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
 
           <Label>
             Пол
-            <Select className="mt-1" {...register('gender')}>
+            <Select
+              className="mt-1"
+              error={errors.gender?.message}
+              {...register('gender')}
+            >
               <option value="" disabled>
                 Пол
               </option>
@@ -218,19 +222,27 @@ const PassportContactSection = ({ register, control, errors }: FormProps) => (
             name="phone"
             control={control}
             render={({ field }) => (
-              <IMaskInput
-                {...field}
-                mask="+{7} (000) 000-00-00"
-                placeholder="+7 (999) 999-66-77"
-                className="mt-1 h-11 mb-2 w-full border rounded-lg placeholder:text-sm italic px-2 py-1" // адаптируйте стили под Input
-              />
+              <>
+                <IMaskInput
+                  mask="+{7} (000) 000-00-00"
+                  placeholder="+7 (999) 999-66-77"
+                  className="mt-1 h-11 w-full border rounded-lg placeholder:text-sm italic px-3"
+                  name={field.name}
+                  value={field.value ?? ''}
+                  onBlur={field.onBlur}
+                  onAccept={(value) => field.onChange(String(value ?? ''))}
+                />
+                <span className="text-xs text-red-500 min-h-[16px]">
+                  {errors.phone?.message}
+                </span>
+              </>
             )}
           />
         </Label>
 
-        <Label>
+        <Label className="flex flex-col mt-2">
           E-mail
-          <Input error={errors.email?.message} placeholder="E-mail" {...register('email')} />
+          <Input className="mt-1" error={errors.email?.message} placeholder="E-mail" {...register('email')} />
         </Label>
       </Section>
     </div>
@@ -246,8 +258,7 @@ const PositionSection = ({ register }: FormProps) => (
       <Label className="flex flex-col">
         Отдел
         <Select size="sm" {...register('department')}>
-          <option value="department-1">Отдел</option>
-          <option value="department-1">Отдел 1</option>
+          <option value="department">Отдел</option>
           <option value="department-2">Отдел 2</option>
         </Select>
       </Label>
@@ -255,8 +266,7 @@ const PositionSection = ({ register }: FormProps) => (
       <Label className="flex flex-col gap-1">
         Должность
         <Select size="sm" {...register('position')}>
-          <option value="position-1">Должность</option>
-          <option value="position-1">Должность 1</option>
+          <option value="position">Должность</option>
           <option value="position-2">Должность 2</option>
         </Select>
       </Label>
@@ -312,6 +322,7 @@ export function EmployeeAddForm() {
     resolver: zodResolver(employeeAddSchema) as Resolver<EmployeeAddFormValues>,
     mode: 'onChange',
     defaultValues: {
+      phone: '',
       gender: '',
       admin: false,
       manager1: false,
