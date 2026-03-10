@@ -7,36 +7,65 @@ import { Modal } from './Modal';
 import { Button } from '@/components/ui/Button';
 import { usePreview } from '@/hooks';
 import { PlusIcon } from '@/assets/icons';
+import { DatePickerInput } from '@/components/ui//DatePickerInput/DatePickerInput';
+import { Textarea } from '@/components/ui/Textarea';
+import { TimeRangeInput } from '@/components/ui/TimeIntervalPicker';
+import type { ProjectItem } from '@/mock/boxManagementPage.mock';
 
 interface IFormValues {
   title: string;
   isActive: boolean;
   description: string;
   image: File | null;
+  date: string;
+  timeRange: {
+    from: number;
+    to: number;
+  };
+  location: string;
+  rules: string | string[];
+  cost: string | number;
+  organizer: string;
 }
 
-interface CreateProjectModalProps {
+interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
+  variant?: 'create' | 'edit';
+  item?: ProjectItem;
 }
 
-export function CreateProjectModal({
+export function BoxModal({
   isOpen,
   onClose,
-}: CreateProjectModalProps) {
+  variant = 'create',
+  item,
+}: ProjectModalProps) {
   const { control, handleSubmit, reset } = useForm<IFormValues>({
-    defaultValues: {
-      title: '',
-      isActive: false,
-      description: '',
-      image: null,
-    },
+    defaultValues:
+      variant === 'create'
+        ? {
+            title: '',
+            isActive: false,
+            description: '',
+            image: null,
+            cost: '',
+            date: '',
+            location: '',
+            organizer: '',
+            rules: '',
+            timeRange: {
+              from: 0,
+              to: 0,
+            },
+          }
+        : { ...item },
   });
   const inputRef = useRef<HTMLInputElement | null>(null);
   const submitBtnRef = useRef<HTMLButtonElement>(null);
   const { handleFileChange, previewUrl, setPreviewUrl } = usePreview();
 
-  const onSubmit = (data: IFormValues) => console.log(data);
+  const onSubmit = (data: IFormValues) => data;
   const onReset = () => {
     onClose();
     reset();
@@ -47,22 +76,22 @@ export function CreateProjectModal({
     <Modal
       isOpen={isOpen}
       onClose={onReset}
-      title="Создать спецпроект"
+      title={`${variant === 'create' ? 'Создать' : 'Редактировать'} коробочное решение`}
       footer={{
         variant: 'cancel-save',
         onSave: () => submitBtnRef.current?.click(),
       }}
     >
       <form
-        className={cn('flex flex-col gap-4 px-6')}
+        className={cn('flex flex-col gap-4')}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className={cn('grid grid-cols-[371px_auto] items-center')}>
+        <div className={cn('grid grid-cols-2 gap-3')}>
           <Controller
             name="title"
             control={control}
             render={({ field }) => {
-              return <Input {...field} label="Заголовок" placeholder="Текст" />;
+              return <Input {...field} label="Название" placeholder="Текст" />;
             }}
           />
           <Controller
@@ -74,13 +103,50 @@ export function CreateProjectModal({
                   {...field}
                   checked={field.value}
                   onToggle={field.onChange}
-                  label="Активен"
+                  label="Активно"
                   className="flex flex-row-reverse"
                 />
               );
             }}
           />
         </div>
+        <div className={cn('grid grid-cols-2 gap-3')}>
+          <Controller
+            name="date"
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <DatePickerInput
+                  label=""
+                  value={value}
+                  onChange={(data) => onChange(data)}
+                />
+              );
+            }}
+          />
+          <Controller
+            name="timeRange"
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <TimeRangeInput
+                  placeholder="Выберите время"
+                  value={value}
+                  onChange={(tr) => {
+                    onChange(tr);
+                  }}
+                />
+              );
+            }}
+          />
+        </div>
+        <Controller
+          name="location"
+          control={control}
+          render={({ field }) => {
+            return <Textarea {...field} label="Место" placeholder="Текст" />;
+          }}
+        />
         <Controller
           name="description"
           control={control}
@@ -88,32 +154,52 @@ export function CreateProjectModal({
             return <Input {...field} label="Описание" placeholder="Текст" />;
           }}
         />
-
+        <Controller
+          name="rules"
+          control={control}
+          render={({ field }) => {
+            return <Input {...field} label="Правила" placeholder="Текст" />;
+          }}
+        />
+        <div className={cn('grid grid-cols-2 gap-3')}>
+          <Controller
+            name="cost"
+            control={control}
+            render={({ field }) => {
+              return <Input {...field} label="Стоимость" placeholder="Текст" />;
+            }}
+          />
+          <Controller
+            name="organizer"
+            control={control}
+            render={({ field }) => {
+              return (
+                <Input {...field} label="Организатор" placeholder="Текст" />
+              );
+            }}
+          />
+        </div>
         <div
           className={cn('grid items-center gap-3 transition-all duration-300', {
-            ['grid-rows-[172px_1fr] justify-center']: previewUrl?.length,
-            ['grid-cols-1']: !previewUrl?.length,
+            ['justify-end; grid-cols-2']: previewUrl,
+            ['grid-cols-1']: !previewUrl,
           })}
         >
-          {previewUrl?.length && (
-            <div
-              className={cn('relative max-w-65.5 overflow-hidden object-cover')}
-            >
+          {previewUrl && (
+            <div className={cn('relative overflow-hidden object-cover')}>
               <img src={previewUrl} alt="preview" />
             </div>
           )}
           <div
             className={cn('flex items-center justify-center rounded-lg', {
-              ['bg-card justify-center pl-0']: previewUrl?.length,
-              ['bg-background border-border h-23.5 border']:
-                !previewUrl?.length,
+              ['bg-card justify-center pl-0']: previewUrl,
+              ['bg-background border-border h-23.5 border']: !previewUrl,
             })}
           >
             <div
-              className={cn('flex items-center gap-3 text-[14px]', {
-                ['flex-col']: !previewUrl,
-                ['flex-row-reverse']: previewUrl,
-              })}
+              className={cn(
+                'flex flex-row-reverse items-center gap-3 text-[14px]',
+              )}
             >
               {!previewUrl
                 ? 'Загрузить изображение'

@@ -34,6 +34,10 @@ export const STATISTIC_OF_DAY: StatisticItemType[] = [
 export type ProjectItem = {
   id: string;
   name: string;
+  title?: string;
+  isActive?: boolean;
+  description?: string;
+  image?: File | null;
 };
 
 export const BOXES_AND_SPECPROJECTS_LIST: {
@@ -62,6 +66,10 @@ export const BOXES_AND_SPECPROJECTS_LIST: {
     {
       id: 'specproject_1',
       name: 'Название спецпроекта',
+      description: 'Описание проекта',
+      isActive: true,
+      image: null,
+      title: 'Название спецпроекта',
     },
     {
       id: 'specproject_2',

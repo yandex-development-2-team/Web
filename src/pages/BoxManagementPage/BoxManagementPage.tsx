@@ -8,7 +8,10 @@ import { StatisticsList } from '@/components/ui/StatiscticsList';
 import { ProductsList } from './ProductsList';
 import { CreatedProductList } from './CreatedProductList/CreatedProductList';
 import { Box1Icon, MagicStickIcon } from '@/assets/icons';
-import { CreateBoxModal, CreateProjectModal } from '@/components/ui/Modal';
+import {
+  BoxModal as CreateBoxModal,
+  ProjectModal as CreateProjectModal,
+} from '@/components/ui/Modal';
 
 const BoxManagementPage = () => {
   const [isOpenSpecProjectModal, setIsOpenSpecProjectModal] = useState(false);
@@ -36,13 +39,15 @@ const BoxManagementPage = () => {
                 isOpen={isOpenBoxModal}
                 onClose={() => setIsOpenBoxModal(false)}
               />
-              <CreatedProductList items={BOXES_AND_SPECPROJECTS_LIST.boxes} />
+              <CreatedProductList
+                items={BOXES_AND_SPECPROJECTS_LIST.boxes}
+                productVariant="box"
+              />
             </>
           </ProductsList>
           <ProductsList
             createTitle="Создать спецпроект"
             onCreateItem={() => {
-              console.log('create specialProjects');
               setIsOpenSpecProjectModal(true);
             }}
             icon={<MagicStickIcon />}
@@ -54,6 +59,7 @@ const BoxManagementPage = () => {
               />
               <CreatedProductList
                 items={BOXES_AND_SPECPROJECTS_LIST.specialProjects}
+                productVariant="spec_projects"
               />
             </>
           </ProductsList>
