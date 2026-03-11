@@ -5,4 +5,3 @@ function EmployeeAddPage() {
 }
 
 export const Component = EmployeeAddPage;
-export default EmployeeAddPage;
