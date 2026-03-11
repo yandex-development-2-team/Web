@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org" 
+  viewBox="0 0 32 32" 
+  fill="none" 
+  stroke="currentColor" 
+  stroke-linecap="round" 
+  stroke-linejoin="round" 
+  class="group w-8 h-8 stroke-[1] transition-all duration-300"
+>
+  <!-- Подвижная часть: крышка и верхняя перекладина -->
+  <g class="transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:rotate-[-2deg] origin-center">
+    <path d="M13.75 10.75a.5.5 0 0 1 .5-.5h3.5a.5.5 0 0 1 .5.5v1.5m-8 0h11.5" />
+  </g>
+  
+  <!-- Статичная часть: бак корзины и линии внутри -->
+  <path d="M20.5 12.25l-.906 8.605a1 1 0 0 1-.994.895h-5.2a1 1 0 0 1-.995-.895L11.5 12.25m4.5 2.125v5.688m2.624-5.688-.292 5.688m-5.24 0 .292-5.688"/>
+</svg>
