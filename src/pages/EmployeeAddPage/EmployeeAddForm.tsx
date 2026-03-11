@@ -8,19 +8,16 @@ import {
 } from 'react-hook-form';
 import { IMaskInput } from 'react-imask';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
-import { Switch } from '@/components/ui/Switch/Switch';
+import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/components/ui/Button';
 import { Label } from '@/components/ui/Label';
 import { FormCard } from './components/FormCard';
 import { Section } from './components/Section';
 import { DateInput } from './components/DateInput';
 import { UploadPhoto } from './components/UploadPhoto';
-
 import { useAddEmployee } from '@/hooks/useAddEmployee';
-
 import {
   employeeAddSchema,
   type EmployeeAddFormValues,
@@ -35,6 +32,13 @@ type FormProps = {
   control: Control<EmployeeAddFormValues>;
   errors: FieldErrors<EmployeeAddFormValues>;
 };
+
+const ACCESS_LEVELS = [
+  { name: 'admin', title: 'Администратор', desc: 'Полный доступ' },
+  { name: 'manager1', title: 'Менеджер 2 звена', desc: 'Ограниченный доступ' },
+  { name: 'manager2', title: 'Менеджер 1 звена', desc: 'Ограниченный доступ' },
+  { name: 'manager3', title: 'Менеджер 3 звена', desc: 'Ограниченный доступ' },
+] as const;
 
 const AccessSwitch = ({
   name,
@@ -266,24 +270,7 @@ const AccessSection = ({ control }: FormProps) => (
     title="Уровень доступа"
   >
     <div className="grid grid-cols-1 gap-y-9 md:gap-x-5 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,3vw)] xl:gap-x-22">
-      {[
-        { name: 'admin', title: 'Администратор', desc: 'Полный доступ' },
-        {
-          name: 'manager1',
-          title: 'Менеджер 2 звена',
-          desc: 'Ограниченный доступ',
-        },
-        {
-          name: 'manager2',
-          title: 'Менеджер 1 звена',
-          desc: 'Ограниченный доступ',
-        },
-        {
-          name: 'manager3',
-          title: 'Менеджер 3 звена',
-          desc: 'Ограниченный доступ',
-        },
-      ].map(({ name, title, desc }) => (
+      {ACCESS_LEVELS.map(({ name, title, desc }) => (
         <div
           key={name}
           className="border-border mr-3 flex items-center justify-between border-b pb-2"
