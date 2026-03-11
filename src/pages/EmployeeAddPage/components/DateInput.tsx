@@ -1,12 +1,10 @@
 import { forwardRef, useState, useEffect, useRef } from 'react';
-import { cn } from '@/utils';
+import { format, parse } from 'date-fns';
 import { Input } from '@/components/ui/Input';
 import { Calendar } from '@/components/ui/Calendar';
-
+import { cn } from '@/utils';
 import CalendarIcon from '@/assets/icons/calendar.svg?react';
 import ChevronDownIcon from '@/assets/icons/arrow-down.svg?react';
-
-import { format, parse } from 'date-fns';
 
 interface DateInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
