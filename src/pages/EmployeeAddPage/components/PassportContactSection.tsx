@@ -12,7 +12,11 @@ function TwoColGrid({ children }: PropsWithChildren) {
   return <div className="grid grid-cols-2 gap-2 pt-1">{children}</div>;
 }
 
-export function PassportContactSection({ register, control, errors }: FormProps) {
+export function PassportContactSection({
+  register,
+  control,
+  errors,
+}: FormProps) {
   return (
     <Section className="p-4 pt-0" title="" withIcon={false}>
       <div className="grid grid-cols-1 gap-y-6 pb-2 lg:grid-cols-8 lg:gap-x-10">

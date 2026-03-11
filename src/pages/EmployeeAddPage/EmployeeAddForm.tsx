@@ -44,20 +44,36 @@ export function EmployeeAddForm() {
       </Section>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <PersonalSection register={register} control={control} errors={errors} />
+        <PersonalSection
+          register={register}
+          control={control}
+          errors={errors}
+        />
         <PassportContactSection
           register={register}
           control={control}
           errors={errors}
         />
 
-        <div className="grid grid-cols-12 gap-y-5 mb-3 lg:gap-x-3">
-          <PositionSection register={register} control={control} errors={errors} />
-          <AccessSection register={register} control={control} errors={errors} />
+        <div className="mb-3 grid grid-cols-12 gap-y-5 lg:gap-x-3">
+          <PositionSection
+            register={register}
+            control={control}
+            errors={errors}
+          />
+          <AccessSection
+            register={register}
+            control={control}
+            errors={errors}
+          />
         </div>
 
         <div className="flex justify-end gap-3">
-          <Button type="button" variant="default-secondary" onClick={() => reset()}>
+          <Button
+            type="button"
+            variant="default-secondary"
+            onClick={() => reset()}
+          >
             Отменить
           </Button>
 
