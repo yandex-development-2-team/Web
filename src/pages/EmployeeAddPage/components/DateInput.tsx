@@ -83,12 +83,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           {...props}
         />
 
-        {/* calendar icon */}
         <div className="">
           <CalendarIcon className="text-border pointer-events-none absolute top-4 left-3 h-6 w-6" />
         </div>
 
-        {/* arrow */}
         <div className="pointer-events-none absolute top-7 right-1 -translate-y-1/2">
           <ChevronDownIcon
             className={cn(
@@ -98,7 +96,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           />
         </div>
 
-        {/* calendar popup */}
         {isOpen && (
           <div
             className="absolute z-50 mt-2"
