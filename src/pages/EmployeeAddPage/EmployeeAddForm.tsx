@@ -1,298 +1,15 @@
-import {
-  useForm,
-  Controller,
-  type Control,
-  type UseFormRegister,
-  type FieldErrors,
-  type Resolver,
-} from 'react-hook-form';
-import { IMaskInput } from 'react-imask';
+import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '@/components/ui/Input';
-import { Select } from '@/components/ui/Select';
-import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/components/ui/Button';
-import { Label } from '@/components/ui/Label';
 import { FormCard } from './components/FormCard';
 import { Section } from './components/Section';
-import { DateInput } from './components/DateInput';
-import { UploadPhoto } from './components/UploadPhoto';
+import { PersonalSection } from './components/PersonalSection';
+import { PassportContactSection } from './components/PassportContactSection';
+import { PositionSection } from './components/PositionSection';
+import { AccessSection } from './components/AccessSection';
 import { useAddEmployee } from '@/hooks/useAddEmployee';
-import {
-  employeeAddSchema,
-  type EmployeeAddFormValues,
-} from '@/utils/employeeAddValidator';
-
-/* -------------------------------------------------------------------------- */
-/*                                   Helpers                                  */
-/* -------------------------------------------------------------------------- */
-
-type FormProps = {
-  register: UseFormRegister<EmployeeAddFormValues>;
-  control: Control<EmployeeAddFormValues>;
-  errors: FieldErrors<EmployeeAddFormValues>;
-};
-
-const ACCESS_LEVELS = [
-  { name: 'admin', title: 'Администратор', desc: 'Полный доступ' },
-  { name: 'manager1', title: 'Менеджер 2 звена', desc: 'Ограниченный доступ' },
-  { name: 'manager2', title: 'Менеджер 1 звена', desc: 'Ограниченный доступ' },
-  { name: 'manager3', title: 'Менеджер 3 звена', desc: 'Ограниченный доступ' },
-] as const;
-
-const AccessSwitch = ({
-  name,
-  control,
-}: {
-  name: keyof EmployeeAddFormValues;
-  control: Control<EmployeeAddFormValues>;
-}) => (
-  <Controller
-    name={name}
-    control={control}
-    render={({ field }) => (
-      <Switch
-        className="data-[state=unchecked]:bg-muted [&_[data-slot=switch-thumb]]:data-[state=unchecked]:bg-muted-foreground data-[state=unchecked]:ring-muted-foreground"
-        checked={field.value}
-        onCheckedChange={field.onChange}
-      />
-    )}
-  />
-);
-
-const TwoColGrid: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className="grid grid-cols-2 gap-2 pt-1">{children}</div>
-);
-
-/* -------------------------------------------------------------------------- */
-/*                                 Subsections                                */
-/* -------------------------------------------------------------------------- */
-
-const PersonalSection = ({ register, control, errors }: FormProps) => (
-  <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-    <Section
-      className="flex items-center justify-center lg:col-span-3"
-      title=""
-      withIcon={false}
-    >
-      <Controller
-        name="photo"
-        control={control}
-        render={({ field }) => (
-          <UploadPhoto value={field.value} onChange={field.onChange} />
-        )}
-      />
-      {errors.photo?.message && typeof errors.photo.message === 'string' && (
-        <p className="mt-2 text-sm text-red-500">{errors.photo.message}</p>
-      )}
-    </Section>
-
-    <Section
-      className="p-5 pt-3 pl-4 lg:col-span-9"
-      title="Персональная информация"
-    >
-      <div className="flex flex-col gap-3">
-        <Label>
-          Фамилия
-          <Input
-            className="mt-1"
-            placeholder="Фамилия"
-            error={errors.lastName?.message}
-            {...register('lastName')}
-          />
-        </Label>
-
-        <Label>
-          Имя
-          <Input
-            className="mt-1"
-            placeholder="Имя"
-            error={errors.firstName?.message}
-            {...register('firstName')}
-          />
-        </Label>
-
-        <Label>
-          Отчество
-          <Input
-            className="mt-1"
-            placeholder="Отчество"
-            {...register('middleName')}
-          />
-        </Label>
-      </div>
-    </Section>
-  </div>
-);
-
-const PassportContactSection = ({ register, control, errors }: FormProps) => (
-  <Section className="p-4 pt-0" title="" withIcon={false}>
-    <div className="grid grid-cols-1 gap-y-6 pb-2 lg:grid-cols-8 lg:gap-x-10">
-      <Section
-        className="space-y-2 border-0 pt-0 pr-0 pb-0 shadow-none lg:col-span-4"
-        title="Паспортные данные"
-      >
-        <Label>
-          Гражданство
-          <Select className="mt-1 mb-2" {...register('citizenship')}>
-            <option value="ru">РФ</option>
-            <option value="other">Другое</option>
-          </Select>
-        </Label>
-
-        <TwoColGrid>
-          <Label>
-            Дата рождения
-            <DateInput
-              className="mt-1"
-              error={errors.birthDate?.message}
-              {...register('birthDate')}
-            />
-          </Label>
-
-          <Label>
-            Пол
-            <Select
-              className="mt-1"
-              error={errors.gender?.message}
-              {...register('gender')}
-            >
-              <option value="" disabled>
-                Пол
-              </option>
-              <option value="male">Мужской</option>
-              <option value="female">Женский</option>
-            </Select>
-          </Label>
-        </TwoColGrid>
-
-        <TwoColGrid>
-          <Label>
-            Серия паспорта
-            <Input
-              className="mt-1"
-              inputMode="numeric"
-              maxLength={4}
-              placeholder="Серия"
-              {...register('passportSeries')}
-            />
-            <span className="min-h-[16px] text-xs text-red-500">
-              {errors.passportSeries?.message}
-            </span>
-          </Label>
-
-          <Label>
-            Номер паспорта
-            <Input
-              className="mt-1"
-              inputMode="numeric"
-              maxLength={6}
-              placeholder="Номер"
-              {...register('passportNumber')}
-            />
-            <span className="min-h-[16px] text-xs text-red-500">
-              {errors.passportNumber?.message}
-            </span>
-          </Label>
-        </TwoColGrid>
-      </Section>
-
-      <Section
-        className="space-y-2 border-0 pt-0 shadow-none lg:col-span-3"
-        title="Контактная информация"
-      >
-        <Label>
-          Номер телефона
-          <Controller
-            name="phone"
-            control={control}
-            render={({ field }) => (
-              <>
-                <IMaskInput
-                  mask="+{7} (000) 000-00-00"
-                  placeholder="+7 (999) 999-66-77"
-                  className="mt-1 h-11 w-full rounded-lg border px-3 italic placeholder:text-sm"
-                  name={field.name}
-                  value={field.value ?? ''}
-                  onBlur={field.onBlur}
-                  onAccept={(value) => field.onChange(String(value ?? ''))}
-                />
-                <span className="min-h-[16px] text-xs text-red-500">
-                  {errors.phone?.message}
-                </span>
-              </>
-            )}
-          />
-        </Label>
-
-        <Label className="mt-2 flex flex-col">
-          E-mail
-          <Input
-            className="mt-1"
-            error={errors.email?.message}
-            placeholder="E-mail"
-            {...register('email')}
-          />
-        </Label>
-      </Section>
-    </div>
-  </Section>
-);
-
-const PositionSection = ({ register }: FormProps) => (
-  <Section
-    className="col-span-12 p-5 pt-3 pb-4 lg:col-span-5"
-    title="Должностная информация"
-  >
-    <div className="flex flex-col gap-4">
-      <Label className="flex flex-col">
-        Отдел
-        <Select size="sm" {...register('department')}>
-          <option value="department">Отдел</option>
-          <option value="department-2">Отдел 2</option>
-        </Select>
-      </Label>
-
-      <Label className="flex flex-col gap-1">
-        Должность
-        <Select size="sm" {...register('position')}>
-          <option value="position">Должность</option>
-          <option value="position-2">Должность 2</option>
-        </Select>
-      </Label>
-    </div>
-  </Section>
-);
-
-const AccessSection = ({ control }: FormProps) => (
-  <Section
-    className="col-span-12 p-5 pt-3 lg:col-span-7"
-    title="Уровень доступа"
-  >
-    <div className="grid grid-cols-1 gap-y-9 md:gap-x-5 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,3vw)] xl:gap-x-22">
-      {ACCESS_LEVELS.map(({ name, title, desc }) => (
-        <div
-          key={name}
-          className="border-border mr-3 flex items-center justify-between border-b pb-2"
-        >
-          <div className="min-w-0 space-y-1">
-            <p className="truncate text-sm">{title}</p>
-            <p className="text-muted-foreground text-xs">{desc}</p>
-          </div>
-
-          <AccessSwitch
-            name={name as keyof EmployeeAddFormValues}
-            control={control}
-          />
-        </div>
-      ))}
-    </div>
-  </Section>
-);
-
-/* -------------------------------------------------------------------------- */
-/*                                  Main Form                                 */
-/* -------------------------------------------------------------------------- */
+import { employeeAddSchema } from '@/utils/employeeAddValidator';
+import type { EmployeeAddFormValues } from '@/utils/employeeAddValidator';
 
 export function EmployeeAddForm() {
   const { mutate: addEmployee, isPending: isSaving } = useAddEmployee();
@@ -327,36 +44,20 @@ export function EmployeeAddForm() {
       </Section>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <PersonalSection
-          register={register}
-          control={control}
-          errors={errors}
-        />
+        <PersonalSection register={register} control={control} errors={errors} />
         <PassportContactSection
           register={register}
           control={control}
           errors={errors}
         />
 
-        <div className="mb-3 grid grid-cols-12 gap-y-5 lg:gap-x-3">
-          <PositionSection
-            register={register}
-            control={control}
-            errors={errors}
-          />
-          <AccessSection
-            register={register}
-            control={control}
-            errors={errors}
-          />
+        <div className="grid grid-cols-12 gap-y-5 mb-3 lg:gap-x-3">
+          <PositionSection register={register} control={control} errors={errors} />
+          <AccessSection register={register} control={control} errors={errors} />
         </div>
 
         <div className="flex justify-end gap-3">
-          <Button
-            type="button"
-            variant="default-secondary"
-            onClick={() => reset()}
-          >
+          <Button type="button" variant="default-secondary" onClick={() => reset()}>
             Отменить
           </Button>
 
