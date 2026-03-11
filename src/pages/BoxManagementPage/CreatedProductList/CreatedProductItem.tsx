@@ -6,14 +6,14 @@ import { BoxModal, ProjectModal, DeleteModal } from '@/components/ui/Modal';
 import type { ProjectItem } from '@/mock/boxManagementPage.mock';
 
 interface CreatedProductItemProps {
-  name: string;
+  title: string;
   id: string;
   item?: ProjectItem;
   mode?: 'box' | 'spec_projects';
 }
 
 export function CreatedProductItem({
-  name,
+  title,
   id,
   item,
   mode = 'box',
@@ -25,7 +25,7 @@ export function CreatedProductItem({
     <div className="border-muted flex items-center justify-between rounded-lg border px-7 py-5">
       <div className={'flex items-center gap-7 font-semibold'}>
         <BoxWithStarIcon className="text-muted-foreground" />
-        {name}
+        {title}
       </div>
       <div className={cn('text-muted-foreground flex items-center')}>
         <Button

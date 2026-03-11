@@ -16,7 +16,7 @@ export function CreatedProductList({
       {items.map((item) => (
         <CreatedProductItem
           key={item.id}
-          name={item.name}
+          title={item.title ?? 'Название'}
           id={item.id}
           item={item}
           mode={productVariant}

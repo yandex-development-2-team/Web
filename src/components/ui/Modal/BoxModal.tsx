@@ -4,13 +4,12 @@ import { cn } from '@/utils';
 import { Input } from '@/components/ui/Input';
 import { SwitchItem } from '@/components/ui/Switch';
 import { Modal } from './Modal';
-import { Button } from '@/components/ui/Button';
 import { usePreview } from '@/hooks';
-import { PlusIcon } from '@/assets/icons';
 import { DatePickerInput } from '@/components/ui//DatePickerInput/DatePickerInput';
 import { Textarea } from '@/components/ui/Textarea';
 import { TimeRangeInput } from '@/components/ui/TimeIntervalPicker';
 import type { ProjectItem } from '@/mock/boxManagementPage.mock';
+import { ImagePicker } from '@/components/ui/ImagePicker';
 
 interface IFormValues {
   title: string;
@@ -61,11 +60,10 @@ export function BoxModal({
           }
         : { ...item },
   });
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const submitBtnRef = useRef<HTMLButtonElement>(null);
   const { handleFileChange, previewUrl, setPreviewUrl } = usePreview();
 
-  const onSubmit = (data: IFormValues) => data;
+  const onSubmit = (data: IFormValues) => console.log(data);
   const onReset = () => {
     onClose();
     reset();
@@ -179,67 +177,24 @@ export function BoxModal({
             }}
           />
         </div>
-        <div
-          className={cn('grid items-center gap-3 transition-all duration-300', {
-            ['justify-end; grid-cols-2']: previewUrl,
-            ['grid-cols-1']: !previewUrl,
-          })}
-        >
-          {previewUrl && (
-            <div className={cn('relative overflow-hidden object-cover')}>
-              <img src={previewUrl} alt="preview" />
-            </div>
-          )}
-          <div
-            className={cn('flex items-center justify-center rounded-lg', {
-              ['bg-card justify-center pl-0']: previewUrl,
-              ['bg-background border-border h-23.5 border']: !previewUrl,
-            })}
-          >
-            <div
-              className={cn(
-                'flex flex-row-reverse items-center gap-3 text-[14px]',
-              )}
-            >
-              {!previewUrl
-                ? 'Загрузить изображение'
-                : 'Загрузить другое изображение'}
-              <Button
-                type="button"
-                size={'icon-lg'}
-                className="relative flex items-center justify-center gap-3"
-                onClick={() => inputRef.current?.click()}
-              >
-                <PlusIcon />
-                <div className="absolute">
-                  <Controller
-                    name="image"
-                    control={control}
-                    render={({ field: { onChange, ref } }) => {
-                      return (
-                        <Input
-                          type="file"
-                          hidden
-                          ref={(e) => {
-                            ref(e);
-                            inputRef.current = e;
-                          }}
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              onChange(file);
-                              handleFileChange(e);
-                            }
-                          }}
-                        />
-                      );
-                    }}
-                  />
-                </div>
-              </Button>
-            </div>
-          </div>
-        </div>
+        <Controller
+          name="image"
+          control={control}
+          render={({ field: { onChange } }) => {
+            return (
+              <ImagePicker
+                previewUrl={previewUrl}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    onChange(file);
+                    handleFileChange(e);
+                  }
+                }}
+              />
+            );
+          }}
+        />
         <button type="submit" ref={submitBtnRef} hidden />
       </form>
     </Modal>

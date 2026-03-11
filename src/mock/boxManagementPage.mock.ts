@@ -33,7 +33,6 @@ export const STATISTIC_OF_DAY: StatisticItemType[] = [
 
 export type ProjectItem = {
   id: string;
-  name: string;
   title?: string;
   isActive?: boolean;
   description?: string;
@@ -47,41 +46,40 @@ export const BOXES_AND_SPECPROJECTS_LIST: {
   boxes: [
     {
       id: 'box_1',
-      name: 'Название коробки',
+      title: 'Название коробки',
     },
     {
       id: 'box_2',
-      name: 'Название коробки',
+      title: 'Название коробки',
     },
     {
       id: 'box_3',
-      name: 'Название коробки',
+      title: 'Название коробки',
     },
     {
       id: 'box_4',
-      name: 'Название коробки',
+      title: 'Название коробки',
     },
   ],
   specialProjects: [
     {
       id: 'specproject_1',
-      name: 'Название спецпроекта',
+      title: 'Название спецпроекта',
       description: 'Описание проекта',
       isActive: true,
       image: null,
-      title: 'Название спецпроекта',
     },
     {
       id: 'specproject_2',
-      name: 'Название спецпроекта',
+      title: 'Название спецпроекта',
     },
     {
       id: 'specproject_3',
-      name: 'Название спецпроекта',
+      title: 'Название спецпроекта',
     },
     {
       id: 'specproject_4',
-      name: 'Название спецпроекта',
+      title: 'Название спецпроекта',
     },
   ],
 };
