@@ -5,8 +5,6 @@ export type StatisticItemType = {
   isHighlighted?: boolean;
 };
 
-export const NOT_IMPLEMENTED_ID = 'not-implemented';
-
 export const STATISTIC_OF_DAY: StatisticItemType[] = [
   {
     id: 'created',
@@ -33,10 +31,19 @@ export const STATISTIC_OF_DAY: StatisticItemType[] = [
 
 export type ProjectItem = {
   id: string;
-  title?: string;
+  title: string;
   isActive?: boolean;
   description?: string;
   image?: File | null;
+  date?: string;
+  timeRange?: {
+    from: number;
+    to: number;
+  };
+  location?: string;
+  rules?: string | string[];
+  cost?: string | number;
+  organizer?: string;
 };
 
 export const BOXES_AND_SPECPROJECTS_LIST: {

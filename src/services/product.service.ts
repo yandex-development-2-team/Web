@@ -1,3 +1,4 @@
+import type { ProjectItem } from '@/mock/boxManagementPage.mock';
 import { api } from './api.service';
 
 export interface BoxProduct {
@@ -25,18 +26,14 @@ export interface SpecProduct {
   image: File | null;
 }
 
-export type UnitProductType = SpecProduct | BoxProduct;
+export type UnitProductType = SpecProduct | BoxProduct | ProjectItem;
 
 export const ProductService = {
-  creaetProduct: async (path: string, data: BoxProduct | SpecProduct) => {
+  creaetProduct: async (path: string, data: UnitProductType) => {
     const response = await api.post(`/${path}`, data);
     return response.data;
   },
-  editProduct: async (
-    path: string,
-    id: string,
-    data: BoxProduct | SpecProduct,
-  ) => {
+  editProduct: async (path: string, id: string, data: UnitProductType) => {
     const response = await api.patch(`/${path}/${id}`, data);
     return response.data;
   },
