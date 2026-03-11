@@ -1,9 +1,9 @@
 import { cn } from '@/utils';
-import type { ProjectItem } from '@/mock/boxManagementPage.mock';
 import { CreatedProductItem } from './CreatedProductItem';
+import type { UnitProductType } from '@/services/product.service';
 
 interface CreatedProductsListProps extends React.PropsWithChildren {
-  items: ProjectItem[];
+  items: UnitProductType[];
   productVariant?: 'box' | 'spec_projects';
 }
 

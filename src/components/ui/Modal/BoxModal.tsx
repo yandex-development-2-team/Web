@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 import { cn } from '@/utils';
 import { Input } from '@/components/ui/Input';
 import { SwitchItem } from '@/components/ui/Switch';
@@ -8,10 +9,12 @@ import { usePreview } from '@/hooks';
 import { DatePickerInput } from '@/components/ui//DatePickerInput/DatePickerInput';
 import { Textarea } from '@/components/ui/Textarea';
 import { TimeRangeInput } from '@/components/ui/TimeIntervalPicker';
-import type { ProjectItem } from '@/mock/boxManagementPage.mock';
 import { ImagePicker } from '@/components/ui/ImagePicker';
+import { useCreateProduct, useUpdateProduct } from '@/hooks';
+import type { UnitProductType } from '@/services/product.service';
 
 interface IFormValues {
+  id: string;
   title: string;
   isActive: boolean;
   description: string;
@@ -31,7 +34,7 @@ interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
   variant?: 'create' | 'edit';
-  item?: ProjectItem;
+  item?: UnitProductType;
 }
 
 export function BoxModal({
@@ -62,8 +65,18 @@ export function BoxModal({
   });
   const submitBtnRef = useRef<HTMLButtonElement>(null);
   const { handleFileChange, previewUrl, setPreviewUrl } = usePreview();
+  const { mutate: createProduct } = useCreateProduct();
+  const { mutate: updateProduct } = useUpdateProduct();
 
-  const onSubmit = (data: IFormValues) => console.log(data);
+  const onSubmit = (data: IFormValues) => {
+    if (variant === 'create') {
+      const newData = { ...data, id: uuidv4() };
+      createProduct({ path: '', data: newData });
+    } else if (item) {
+      updateProduct({ id: item.id, data, path: '' });
+    }
+  };
+
   const onReset = () => {
     onClose();
     reset();

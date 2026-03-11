@@ -3,12 +3,12 @@ import { cn } from '@/utils';
 import { BoxWithStarIcon, CloseIcon, PencilIcon } from '@/assets/icons';
 import { Button } from '@/components/ui/Button';
 import { BoxModal, ProjectModal, DeleteModal } from '@/components/ui/Modal';
-import type { ProjectItem } from '@/mock/boxManagementPage.mock';
+import type { UnitProductType } from '@/services/product.service';
 
 interface CreatedProductItemProps {
   title: string;
   id: string;
-  item?: ProjectItem;
+  item?: UnitProductType;
   mode?: 'box' | 'spec_projects';
 }
 

@@ -1,14 +1,16 @@
 import { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 import { cn } from '@/utils';
 import { Input } from '@/components/ui/Input';
 import { SwitchItem } from '@/components/ui/Switch';
 import { Modal } from './Modal';
-import { usePreview } from '@/hooks';
-import type { ProjectItem } from '@/mock/boxManagementPage.mock';
+import { useCreateProduct, usePreview, useUpdateProduct } from '@/hooks';
 import { ImagePicker } from '@/components/ui/ImagePicker';
+import type { UnitProductType } from '@/services/product.service';
 
 interface IFormValues {
+  id: string;
   title: string;
   isActive: boolean;
   description: string;
@@ -19,7 +21,7 @@ interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
   titleModal?: string;
-  item?: ProjectItem;
+  item?: UnitProductType;
   variant?: 'create' | 'edit';
 }
 
@@ -42,8 +44,17 @@ export function ProjectModal({
   });
   const submitBtnRef = useRef<HTMLButtonElement>(null);
   const { handleFileChange, previewUrl, setPreviewUrl } = usePreview();
+  const { mutate: createProduct } = useCreateProduct();
+  const { mutate: updateProduct } = useUpdateProduct();
 
-  const onSubmit = (data: IFormValues) => data;
+  const onSubmit = (data: IFormValues) => {
+    if (variant === 'create') {
+      const newData = { ...data, id: uuidv4() };
+      createProduct({ path: '', data: newData });
+    } else if (item) {
+      updateProduct({ id: item.id, data, path: '' });
+    }
+  };
   const onReset = () => {
     onClose();
     reset();
