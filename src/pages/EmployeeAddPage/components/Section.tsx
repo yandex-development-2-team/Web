@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/utils';
-import EmployeesIcon from '@/assets/icons/mdi:user-outline.svg?react';
+import { EmployeesIcon } from './index';
 
 type Props = {
   title: string;
