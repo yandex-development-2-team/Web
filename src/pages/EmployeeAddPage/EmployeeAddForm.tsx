@@ -43,7 +43,7 @@ export function EmployeeAddForm() {
         <h1 className="ml-4 text-3xl tracking-[0.04em]">Добавить сотрудника</h1>
       </Section>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
         <PersonalSection
           register={register}
           control={control}
