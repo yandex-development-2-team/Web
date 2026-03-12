@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { showNotification } from '@/services/notification.service';
 import { cn } from '@/utils';
-import UploadIcon from '@/assets/icons/upload-32.svg?react';
+import { UploadIcon } from './index';
 import uploadPlaceholder from '@/assets/images/AddEmployee.jpg';
 
 type Props = {
