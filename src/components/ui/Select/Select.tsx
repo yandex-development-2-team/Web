@@ -1,6 +1,6 @@
 import { useId, type ComponentProps } from 'react';
 import { cn } from '@/utils';
-import ChevronDownIcon from '@/assets/icons/arrow-down.svg?react';
+import { ChevronDownIcon } from './index';
 
 interface SelectProps extends Omit<ComponentProps<'select'>, 'size'> {
   placeholder?: string;
