@@ -3,7 +3,7 @@ export { Section } from './Section';
 export { DateInput } from './DateInput';
 export { UploadPhoto } from './UploadPhoto';
 export { PersonalSection } from './PersonalSection';
-export { PassportContactSection } from './PassportContactSection';
+export { ContactSection } from './ContactSection';
 export { PositionSection } from './PositionSection';
 export { AccessSection } from './AccessSection';
 export { default as EmployeesIcon } from '@/assets/icons/mdi:user-outline.svg?react';

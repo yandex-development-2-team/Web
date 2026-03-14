@@ -36,14 +36,14 @@ function AccessSwitch({
 export function AccessSection({ control }: FormProps) {
   return (
     <Section
-      className="col-span-12 p-5 pt-3 lg:col-span-7"
+      className="col-span-12 mb-3 p-5 pt-3 pb-6 lg:col-span-7"
       title="Уровень доступа"
     >
-      <div className="grid grid-cols-1 gap-y-9 md:gap-x-5 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,3vw)] xl:gap-x-22">
+      <div className="grid grid-cols-1 gap-y-10 md:gap-x-5 lg:grid-cols-2 lg:gap-x-[clamp(10px,1vw,4vw)] xl:gap-x-25">
         {ACCESS_LEVELS.map(({ name, title, desc }) => (
           <div
             key={name}
-            className="border-border mr-3 flex items-center justify-between border-b pb-2"
+            className="border-border flex items-center justify-between border-b pb-1"
           >
             <div className="min-w-0 space-y-1">
               <p className="truncate text-sm">{title}</p>

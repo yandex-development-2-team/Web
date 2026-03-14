@@ -26,6 +26,7 @@ export function PersonalSection({ register, control, errors }: FormProps) {
       </Section>
 
       <Section
+        withIcon={false}
         className="p-5 pt-3 pl-4 lg:col-span-9"
         title="Персональная информация"
       >

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { FormCard } from './components/FormCard';
 import { Section } from './components/Section';
 import { PersonalSection } from './components/PersonalSection';
-import { PassportContactSection } from './components/PassportContactSection';
+import { ContactSection } from './components/ContactSection';
 import { PositionSection } from './components/PositionSection';
 import { AccessSection } from './components/AccessSection';
 import { useAddEmployee } from '@/hooks/useAddEmployee';
@@ -49,27 +49,30 @@ export function EmployeeAddForm() {
           control={control}
           errors={errors}
         />
-        <PassportContactSection
-          register={register}
-          control={control}
-          errors={errors}
-        />
+        <Section
+          className="p-5 lg:p-10 lg:pt-1 lg:pb-5"
+          title=""
+          withIcon={false}
+        >
+          <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-12">
+            <ContactSection
+              register={register}
+              control={control}
+              errors={errors}
+            />
+            <PositionSection
+              register={register}
+              control={control}
+              errors={errors}
+            />
+          </div>
+        </Section>
 
-        <div className="mb-3 grid grid-cols-12 gap-y-5 lg:gap-x-3">
-          <PositionSection
-            register={register}
-            control={control}
-            errors={errors}
-          />
-          <AccessSection
-            register={register}
-            control={control}
-            errors={errors}
-          />
-        </div>
+        <AccessSection register={register} control={control} errors={errors} />
 
         <div className="flex justify-end gap-3">
           <Button
+            className="h-11"
             type="button"
             variant="default-secondary"
             onClick={() => reset()}
@@ -77,7 +80,7 @@ export function EmployeeAddForm() {
             Отменить
           </Button>
 
-          <Button type="submit" disabled={isSaving}>
+          <Button className="h-11" type="submit" disabled={isSaving}>
             {isSaving ? 'Сохранение...' : 'Сохранить'}
           </Button>
         </div>
