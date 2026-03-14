@@ -22,14 +22,6 @@ export const employeeAddSchema = z.object({
       { message: 'Дата рождения не может быть в будущем' },
     ),
   gender: z.string().nonempty({ message: 'Пол обязателен' }),
-  passportSeries: z
-    .string()
-    .nonempty({ message: 'Серия паспорта обязательна' })
-    .regex(/^\d{4}$/, { message: 'Серия паспорта: 4 цифры' }),
-  passportNumber: z
-    .string()
-    .nonempty({ message: 'Номер паспорта обязателен' })
-    .regex(/^\d{6}$/, { message: 'Номер паспорта: 6 цифр' }),
   phone: z
     .string()
     .nonempty({ message: 'Телефон обязателен' })
@@ -40,6 +32,7 @@ export const employeeAddSchema = z.object({
     .string()
     .nonempty({ message: 'Email обязателен' })
     .email({ message: 'Неверный email' }),
+  city: z.string().nonempty({ message: 'Город обязателен' }),
   department: z.string().nonempty({ message: 'Отдел обязателен' }),
   position: z.string().nonempty({ message: 'Должность обязательна' }),
   admin: z.boolean().default(false),

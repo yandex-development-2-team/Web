@@ -34,10 +34,6 @@ export const employeeAddSchema = z.object({
 
   gender: z.string().min(1, 'Обязательное поле'),
 
-  passportSeries: z.string().regex(/^\d{4}$/, 'Серия должна содержать 4 цифры'),
-
-  passportNumber: z.string().regex(/^\d{6}$/, 'Номер должен содержать 6 цифр'),
-
   phone: z
     .string()
     .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Некорректный формат'),
