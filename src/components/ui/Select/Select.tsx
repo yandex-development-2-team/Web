@@ -37,7 +37,7 @@ function Select({
           id={selectId}
           value={value}
           className={cn(
-            'bg-card border-border h-11 w-full appearance-none rounded-lg border p-3 transition outline-none',
+            'bg-card border-border h-11 w-full appearance-none rounded-lg border p-2 pl-3 transition outline-none',
             'focus-visible:border-ring focus-visible:ring-ring/50',
             'disabled:pointer-events-none disabled:opacity-50',
             sizeStyles[size],
@@ -56,7 +56,7 @@ function Select({
         </select>
 
         {withIcon && (
-          <ChevronDownIcon className="text-border pointer-events-none absolute top-7 right-1 -translate-y-1/2 opacity-40" />
+          <ChevronDownIcon className="text-border pointer-events-none absolute top-5 right-2 -translate-y-1/2 opacity-40" />
         )}
       </div>
 
