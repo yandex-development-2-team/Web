@@ -26,6 +26,9 @@ export const ROUTES = {
   SCHEDULE_MANAGEMENT: '/schedule-management',
   BOX_MANAGEMENT: '/box-management',
   USER_PERMISSIONS: '/user-permissions',
+  EMPLOYEE_ADD: '/employee-add',
+  EMPLOYEE_CARD: '/employee-card',
+  EMPLOYEE_EDIT: '/employee-edit',
   SYSTEM_SETTINGS: '/system-settings',
 
   FORBIDDEN: '/403',

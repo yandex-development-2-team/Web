@@ -102,6 +102,18 @@ export const router = createBrowserRouter(
                 import('@/pages/UserPermissionsPage/UserPermissionsPage'),
             },
             {
+              path: ROUTES.EMPLOYEE_ADD,
+              lazy: () => import('@/pages/EmployeeAddPage/EmployeeAddPage'),
+            },
+            {
+              path: ROUTES.EMPLOYEE_CARD,
+              lazy: () => import('@/pages/EmployeeCardPage/EmployeeCardPage'),
+            },
+            {
+              path: ROUTES.EMPLOYEE_EDIT,
+              lazy: () => import('@/pages/EmployeeEditPage/EmployeeEditPage'),
+            },
+            {
               path: ROUTES.SYSTEM_SETTINGS,
               lazy: () =>
                 import('@/pages/SystemSettingsPage/SystemSettingsPage'),
