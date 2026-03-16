@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { cn } from '@/utils';
 import { BoxWithStarIcon, CloseIcon, PencilIcon } from '@/assets/icons';
 import { Button } from '@/components/ui/Button';
-import { BoxModal, ProjectModal, DeleteModal } from '@/components/ui/Modal';
+import { DeleteModal } from '@/components/ui/Modal';
 import type { UnitProductType } from '@/services/product.service';
+import { ProjectModal } from '@/components/common/SpecProjectModal';
+import { BoxModal } from '@/components/common/BoxModal';
 
 interface CreatedProductItemProps {
   title: string;

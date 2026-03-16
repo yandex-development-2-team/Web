@@ -17,10 +17,16 @@ export function useUpdateProduct() {
       path: string;
     }) => ProductService.editProduct(path, id, data),
     onSuccess: () => {
-      showNotification({ type: 'success', message: 'Succes edit' });
+      showNotification({
+        type: 'success',
+        message: 'Продукт успешно отредактирован',
+      });
     },
     onError: () => {
-      showNotification({ type: 'error', message: 'Error edit' });
+      showNotification({
+        type: 'error',
+        message: 'Ошибка редактирование продукта',
+      });
     },
   });
 }

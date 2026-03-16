@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { cn } from '@/utils';
 import { Input } from '@/components/ui/Input';
 import { SwitchItem } from '@/components/ui/Switch';
-import { Modal } from './Modal';
+import { Modal } from '@/components/ui/Modal';
 import { useCreateProduct, usePreview, useUpdateProduct } from '@/hooks';
 import { ImagePicker } from '@/components/ui/ImagePicker';
 import type { UnitProductType } from '@/services/product.service';

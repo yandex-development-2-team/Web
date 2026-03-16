@@ -19,7 +19,10 @@ export function usePreview() {
       }
 
       if (file.size > 2 * 1024 * 1024) {
-        alert('Файл должен быть меньше 2MB');
+        showNotification({
+          message: 'Файл должен быть меньше 2MB',
+          type: 'info',
+        });
         return;
       }
 

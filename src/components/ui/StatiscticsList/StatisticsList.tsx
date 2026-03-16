@@ -8,7 +8,7 @@ interface StatisticItemProps {
 export function StatisticItem({ item }: StatisticItemProps) {
   return (
     <div className="w-full">
-      <small>{item.title}</small>
+      <span>{item.title}</span>
       <div
         className={cn(
           'flex h-38 items-center justify-center rounded-lg border',

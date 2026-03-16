@@ -10,10 +10,10 @@ export function useCreateProduct() {
     mutationFn: ({ path, data }: { data: UnitProductType; path: string }) =>
       ProductService.creaetProduct(path, data),
     onSuccess: () => {
-      showNotification({ type: 'success', message: 'Succes create' });
+      showNotification({ type: 'success', message: 'Продукт успешнь создан' });
     },
     onError: () => {
-      showNotification({ type: 'error', message: 'Error create' });
+      showNotification({ type: 'error', message: 'Ошибка создания продукта' });
     },
   });
 }

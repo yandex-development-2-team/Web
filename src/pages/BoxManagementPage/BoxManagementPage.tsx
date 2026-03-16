@@ -8,10 +8,8 @@ import { StatisticsList } from '@/components/ui/StatiscticsList';
 import { ProductsList } from './ProductsList';
 import { CreatedProductList } from './CreatedProductList/CreatedProductList';
 import { Box1Icon, MagicStickIcon } from '@/assets/icons';
-import {
-  BoxModal as CreateBoxModal,
-  ProjectModal as CreateProjectModal,
-} from '@/components/ui/Modal';
+import { ProjectModal as CreateProjectModal } from '@/components/common/SpecProjectModal';
+import { BoxModal as CreateBoxModal } from '@/components/common/BoxModal';
 
 const BoxManagementPage = () => {
   const [isOpenSpecProjectModal, setIsOpenSpecProjectModal] = useState(false);
