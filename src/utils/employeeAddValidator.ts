@@ -1,27 +1,10 @@
 import { z } from 'zod';
-import { parse, isValid } from 'date-fns';
 
 export const employeeAddSchema = z.object({
   photo: z.any().optional(),
   lastName: z.string().nonempty({ message: 'Фамилия обязательна' }),
   firstName: z.string().nonempty({ message: 'Имя обязательно' }),
   middleName: z.string().optional(),
-  citizenship: z.string().nonempty(),
-  birthDate: z
-    .string()
-    .nonempty({ message: 'Дата рождения обязательна' })
-    .refine(
-      (val) => {
-        try {
-          const d = parse(val.trim(), 'dd.MM.yyyy', new Date());
-          return isValid(d) && d <= new Date();
-        } catch {
-          return false;
-        }
-      },
-      { message: 'Дата рождения не может быть в будущем' },
-    ),
-  gender: z.string().nonempty({ message: 'Пол обязателен' }),
   phone: z
     .string()
     .nonempty({ message: 'Телефон обязателен' })

@@ -25,7 +25,6 @@ export function EmployeeAddForm() {
     mode: 'onChange',
     defaultValues: {
       phone: '',
-      gender: '',
       admin: false,
       manager1: false,
       manager2: false,

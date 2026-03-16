@@ -1,6 +1,5 @@
 export { FormCard } from './FormCard';
 export { Section } from './Section';
-export { DateInput } from './DateInput';
 export { UploadPhoto } from './UploadPhoto';
 export { PersonalSection } from './PersonalSection';
 export { ContactSection } from './ContactSection';
