@@ -28,3 +28,5 @@ export { default as MinusIcon } from './minus.svg?react';
 export { default as DownloadIcon } from './download.svg?react';
 export { default as DeleteIcon } from './delete.svg?react';
 export { default as EditIcon } from './edit-table.svg?react';
+export { default as PlusIcon } from './plus-icon.svg?react';
+export { default as ThreeDotsIcon } from './three-dots-icon.svg?react';
