@@ -3,14 +3,17 @@ import { Button } from '@/components/ui/Button';
 import { Switch } from '@/components/ui/Switch';
 import { navigate } from '@/services/navigation.service';
 import { ROUTES } from '@/app/router/routes';
-import { Section } from '@/pages/EmployeeAddPage/components/Section';
-import { FormCard } from '@/pages/EmployeeAddPage/components/FormCard';
-import { ContactInfoSection, PositionInfoSection } from './components';
+import {
+  Section,
+  FormCard,
+  ContactInfoSection,
+  PositionInfoSection,
+  MessageIcon,
+  PhoneIcon,
+  CameraIcon,
+  employeeAvatar,
+} from './components';
 import { employeeMock } from './mocks/employee.mock';
-import MessageIcon from '@/assets/icons/message.svg?react';
-import PhoneIcon from '@/assets/icons/phone.svg?react';
-import CameraIcon from '@/assets/icons/camera.svg?react';
-import employeeAvatar from '@/assets/images/AddEmployee.jpg';
 
 const actionButtons = [
   {
