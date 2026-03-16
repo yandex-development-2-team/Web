@@ -11,7 +11,6 @@ import {
   MessageIcon,
   PhoneIcon,
   CameraIcon,
-  employeeAvatar,
 } from './components';
 import { employeeMock } from './mocks/employee.mock';
 
@@ -50,7 +49,7 @@ function EmployeeCardPage() {
               <div className="group border-accent-strong relative aspect-square w-36 rounded-full border-1 p-1.5">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
                   <div className="absolute inset-0 flex items-center justify-center pt-4 pr-1">
-                    <img src={employeeAvatar} alt="Фото сотрудника" />
+                    <img src={employee.photoUrl} alt="Фото сотрудника" />
                   </div>
                 </div>
               </div>
