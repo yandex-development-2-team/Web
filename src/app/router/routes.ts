@@ -16,6 +16,7 @@ export const ROUTES = {
   SUPPORT: '/support',
 
   ANALYTICS: '/analytics',
+  ANALYTICS_DETAILS: '/analytics/:id',
 
   AVERAGE_BOX_ATTENDANCE: '/analytics/average-box-attendance',
   APPLICATIONS_WORK: '/analytics/applications-work',
