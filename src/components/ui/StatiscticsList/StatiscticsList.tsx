@@ -1,5 +1,11 @@
 import { cn } from '@/utils';
-import { type StatisticItemType } from '@/mock/analyticsPage.mock';
+
+type StatisticItemType = {
+  id: string;
+  title: string;
+  count: string;
+  isHighlighted?: boolean;
+};
 
 interface StatisticItemProps {
   item: StatisticItemType;
