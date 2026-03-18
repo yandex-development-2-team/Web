@@ -1,4 +1,4 @@
-import type { ProjectItem } from '@/mock/boxManagementPage.mock';
+import type { ProjectItem } from '@/mock/types';
 import { api } from './api.service';
 
 export interface BoxProduct {
