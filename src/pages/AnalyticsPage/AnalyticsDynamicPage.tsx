@@ -9,6 +9,7 @@ import { useRef } from 'react';
 import { useFileUpload } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchFileList } from '@/services/uploadFile.service';
+import { UploadList } from '@/components/ui/UploadList/UploadList';
 
 const DEFAULT_PAGE_DATA = {
   title: 'Рабочие моментики',
@@ -19,7 +20,7 @@ export function AnalyticDynamicPage() {
   const { isOpen, open, close } = useModal();
   const { id } = useParams();
   const { handleFileChange } = useFileUpload();
-  const loadFileList = useQuery({
+  const { data = [] } = useQuery({
     queryKey: ['files', 'list'],
     queryFn: fetchFileList,
   });
@@ -31,7 +32,8 @@ export function AnalyticDynamicPage() {
           <h2>{DEFAULT_PAGE_DATA.title}</h2>
         </div>
         <div className="bg-card flex flex-col gap-8 rounded-lg p-5">
-          {!loadFileList.data && (
+          {(!Array.isArray(data) ||
+            (Array.isArray(data) && data.length === 0)) && (
             <p className="text-[24px] font-normal">
               В этом блоке пока нет данных, добавьте первый элемент, чтобы
               начать работу
@@ -52,6 +54,7 @@ export function AnalyticDynamicPage() {
               />
             </div>
           </div>
+          <UploadList items={Array.isArray(data) ? data : []} />
         </div>
       </div>
       <DeleteModal
