@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Switch } from '@/components/ui/Switch';
 import { navigate } from '@/services/navigation.service';
-import { ROUTES } from '@/app/router/routes';
+import { employeeEditPath } from '@/app/router/routes';
+import { useParams } from 'react-router';
 import {
   Section,
   FormCard,
@@ -34,6 +35,7 @@ const actionButtons = [
 
 function EmployeeCardPage() {
   const [isEmployeeActive, setIsEmployeeActive] = useState(true);
+  const { id = '1' } = useParams();
   const employee = employeeMock;
 
   return (
@@ -122,7 +124,7 @@ function EmployeeCardPage() {
         <Button
           type="button"
           className="text-foreground h-12"
-          onClick={() => navigate(ROUTES.EMPLOYEE_EDIT)}
+          onClick={() => navigate(employeeEditPath(id))}
         >
           Редактировать
         </Button>

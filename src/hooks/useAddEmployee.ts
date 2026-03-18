@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { navigate } from '@/services/navigation.service';
-import { ROUTES } from '@/app/router/routes';
+import { employeeCardPath } from '@/app/router/routes';
 import { showNotification } from '@/services/notification.service';
 import type { EmployeeAddFormValues } from '@/utils/employeeAddValidator';
 
-type UseAddEmployeeOptions = { onSuccess?: () => void };
+type UseAddEmployeeOptions = { onSuccess?: () => void; employeeId?: string };
 
 export const useAddEmployee = (options?: UseAddEmployeeOptions) => {
   return useMutation({
@@ -17,7 +17,8 @@ export const useAddEmployee = (options?: UseAddEmployeeOptions) => {
         type: 'success',
         message: 'Сотрудник успешно добавлен',
       });
-      navigate(ROUTES.EMPLOYEE_CARD);
+      // Пока без бэка — навигация на моковый id, либо на id из options.
+      navigate(employeeCardPath(options?.employeeId ?? '1'));
       options?.onSuccess?.();
     },
     onError: () => {
