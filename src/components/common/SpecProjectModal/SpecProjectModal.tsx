@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { v4 as uuidv4 } from 'uuid';
 import { cn } from '@/utils';
 import { Input } from '@/components/ui/Input';
 import { SwitchItem } from '@/components/ui/Switch';
@@ -49,7 +48,7 @@ export function ProjectModal({
 
   const onSubmit = (data: IFormValues) => {
     if (variant === 'create') {
-      const newData = { ...data, id: uuidv4() };
+      const newData = { ...data };
       createProduct({ path: '', data: newData });
     } else if (item) {
       updateProduct({ id: item.id, data, path: '' });

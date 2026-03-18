@@ -1,5 +1,11 @@
 import { cn } from '@/utils';
-import { type StatisticItemType } from '@/mock/boxManagementPage.mock';
+
+type StatisticItemType = {
+  id: string;
+  title: string;
+  count: string;
+  isHighlighted?: boolean;
+};
 
 interface StatisticItemProps {
   item: StatisticItemType;
@@ -7,8 +13,8 @@ interface StatisticItemProps {
 
 export function StatisticItem({ item }: StatisticItemProps) {
   return (
-    <div className="w-full">
-      <span>{item.title}</span>
+    <div className="flex w-full flex-col gap-2">
+      <span className="xxs-text">{item.title}</span>
       <div
         className={cn(
           'flex h-38 items-center justify-center rounded-lg border',
