@@ -1,8 +1,7 @@
-import { EmployeeAddForm } from '@/pages/EmployeeAddPage';
+import { EmployeeEditForm } from './EmployeeEditForm';
 
 function EmployeeEditPage() {
-  return <EmployeeAddForm title="Редактировать сотрудника" />;
+  return <EmployeeEditForm />;
 }
 
 export const Component = EmployeeEditPage;
-export default EmployeeEditPage;
