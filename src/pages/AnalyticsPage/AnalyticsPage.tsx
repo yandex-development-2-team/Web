@@ -19,9 +19,21 @@ import {
   TabsButtonTrigger as TabsTrigger,
 } from '@/components/ui/TabsLine';
 import { TEAM_OF_DAY, type NewBlockType } from '@/mock/analyticsPage.mock';
+import { BoxModal } from '@/components/common/BoxModal';
+import { ProjectModal } from '@/components/common/SpecProjectModal';
 
 const AnalyticsPage = () => {
   const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isOpenBoxModal,
+    open: openBoxModal,
+    close: closeBoxModal,
+  } = useModal();
+  const {
+    isOpen: isOpenProjectModal,
+    open: openProjectModal,
+    close: closeProjectModal,
+  } = useModal();
   const [store, setStore] = useState<NewBlockType[]>(ANALITICS_PAGES_DATA);
 
   const handleSave = (data: NewBlockType) => {
@@ -32,8 +44,24 @@ const AnalyticsPage = () => {
     });
   };
 
+  const handleCreate = (id: string) => {
+    if (id === 'create_box') {
+      openBoxModal();
+      return;
+    }
+
+    if (id === 'create_spec_project') {
+      openProjectModal();
+      return;
+    }
+
+    return null;
+  };
+
   return (
     <div className="flex w-full flex-col gap-5 pr-1">
+      <BoxModal isOpen={isOpenBoxModal} onClose={closeBoxModal} />
+      <ProjectModal isOpen={isOpenProjectModal} onClose={closeProjectModal} />
       <div className="flex items-center gap-5">
         {CREATE_BUTTONS.map((btn) => (
           <CreateButton
@@ -41,6 +69,7 @@ const AnalyticsPage = () => {
             title={btn.title}
             icon={btn.icon}
             to={btn.to ? btn.to : ''}
+            onCreateItem={() => handleCreate(btn.id)}
           />
         ))}
       </div>
