@@ -11,9 +11,21 @@ import { useAddEmployee } from '@/hooks/useAddEmployee';
 import { employeeAddSchema } from '@/utils/employeeAddValidator';
 import type { EmployeeAddFormValues } from '@/utils/employeeAddValidator';
 
-export function EmployeeAddForm() {
-  const { mutate: addEmployee, isPending: isSaving } = useAddEmployee();
+type Props = {
+  title?: string;
+  onSubmit?: (data: EmployeeAddFormValues) => void;
+  isSaving?: boolean;
+};
 
+function EmployeeForm({
+  title,
+  onSubmit,
+  isSaving = false,
+}: {
+  title: string;
+  onSubmit: (data: EmployeeAddFormValues) => void;
+  isSaving?: boolean;
+}) {
   const {
     register,
     handleSubmit,
@@ -32,17 +44,17 @@ export function EmployeeAddForm() {
     },
   });
 
-  const onSubmit = (data: EmployeeAddFormValues) => {
-    addEmployee(data);
-  };
-
   return (
     <FormCard className="mx-auto w-full min-w-[445px] space-y-3 border-0 shadow-none">
       <Section className="pb-4" title="" withIcon={false}>
-        <h1 className="ml-4 text-3xl tracking-[0.04em]">Добавить сотрудника</h1>
+        <h1 className="ml-4 text-3xl tracking-[0.04em]">{title}</h1>
       </Section>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-5"
+        noValidate
+      >
         <PersonalSection
           register={register}
           control={control}
@@ -86,4 +98,17 @@ export function EmployeeAddForm() {
       </form>
     </FormCard>
   );
+}
+
+export function EmployeeAddForm({
+  title = 'Добавить сотрудника',
+  onSubmit,
+  isSaving,
+}: Props) {
+  const { mutate: addEmployee, isPending } = useAddEmployee();
+
+  const submit = onSubmit ?? ((data: EmployeeAddFormValues) => addEmployee(data));
+  const saving = isSaving ?? isPending;
+
+  return <EmployeeForm title={title} isSaving={saving} onSubmit={submit} />;
 }

@@ -6,6 +6,7 @@ type Props = {
   title: string;
   children: ReactNode;
   className?: string;
+  titleClassName?: string;
   icon?: ReactNode;
   withIcon?: boolean;
 };
@@ -15,6 +16,7 @@ export function Section({
   icon,
   children,
   className,
+  titleClassName,
   withIcon = true,
 }: Props) {
   const defaultIcon = <EmployeesIcon className="h-6 w-6 shrink-0" />;
@@ -22,7 +24,7 @@ export function Section({
     <div className={cn('bg-card rounded-lg p-1', 'space-y-4', className)}>
       <div className="flex items-center gap-2">
         {withIcon && (icon ?? defaultIcon)}
-        <h2 className="text-2xl font-bold">{title}</h2>
+        <h2 className={cn('text-2xl font-bold', titleClassName)}>{title}</h2>
       </div>
       {children}
     </div>
