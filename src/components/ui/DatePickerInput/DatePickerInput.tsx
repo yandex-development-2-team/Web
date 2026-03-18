@@ -41,7 +41,7 @@ export function DatePickerInput({
   }, [open]);
 
   return (
-    <div className="relative w-fit" ref={ref}>
+    <div className="relative w-full" ref={ref}>
       <div className="relative">
         <Input
           label={label}
