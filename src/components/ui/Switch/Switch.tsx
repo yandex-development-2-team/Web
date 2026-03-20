@@ -13,7 +13,7 @@ function Switch({
       data-slot="switch"
       data-size={size}
       className={cn(
-        'relative',
+        'relative cursor-pointer',
         'ring-accent-strong ring-1 ring-inset',
         'peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-card data-[state=unchecked]:ring-border data-[state=unchecked]:ring-2',
         'group/switch inline-flex shrink-0 items-center rounded-full',
