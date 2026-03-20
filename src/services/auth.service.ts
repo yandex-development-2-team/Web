@@ -1,5 +1,5 @@
 import { api } from '@/services/api.service';
-import type { LoginFormValues } from '@/utils/validators';
+import type { LoginFormValues } from '@/utils/loginValidators';
 
 export const login = async (data: LoginFormValues) => {
   const response = await api.post('/auth/login', data);

@@ -61,7 +61,7 @@ function TabsTrigger({
       data-slot="tabs-trigger"
       className={cn(
         `focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground/60 focus-visible:ring-[3px] focus-visible:outline-1`,
-        `hover:text-foreground data-[state=active]:text-foreground`,
+        `hover:text-foreground data-[state=active]:text-foreground cursor-pointer`,
         `relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-all`,
         `group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start group-data-[variant=default]/tabs-list:data-[state=active]:shadow-sm`,
         `disabled:pointer-events-none disabled:opacity-50`,

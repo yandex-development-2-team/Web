@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { PlusIcon } from '@/assets/icons';
 import { CreateButton } from '@/components/ui/Button';
-import { ButtonAddCard, ButtonCard } from '@/components/ui/Button/ButtonCard';
+import { ButtonAddCard, ButtonCard } from '@/components/ui/Button';
 import { AddBlockModal } from '@/components/ui/Modal';
 import { cn } from '@/utils';
 import {

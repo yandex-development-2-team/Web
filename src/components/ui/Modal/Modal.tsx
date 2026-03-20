@@ -112,7 +112,7 @@ export const Modal = ({
     >
       <div
         ref={modalRef}
-        className="mx-4 max-w-[651px] min-w-[628px] rounded-lg bg-white shadow-xl"
+        className="mx-4 max-w-[651px] min-w-[628px] rounded-xl bg-white shadow-xl"
         tabIndex={-1}
       >
         <div
