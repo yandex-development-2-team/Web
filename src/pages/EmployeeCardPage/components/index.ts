@@ -3,7 +3,7 @@ export { ContactInfoSection } from './ContactInfoSection';
 export { PositionInfoSection } from './PositionInfoSection';
 export { Section } from './Section';
 export { FormCard } from './FormCard';
-export { default as EmployeesIcon } from '@/assets/icons/mdi:user-outline.svg?react';
+export { default as EmployeesIcon } from '@/assets/icons/mdi-user-outline.svg?react';
 export { default as MessageIcon } from '@/assets/icons/message.svg?react';
 export { default as PhoneIcon } from '@/assets/icons/phone.svg?react';
 export { default as CameraIcon } from '@/assets/icons/camera.svg?react';
