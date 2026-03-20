@@ -50,11 +50,7 @@ function EmployeeForm({
         <h1 className="ml-4 text-3xl tracking-[0.04em]">{title}</h1>
       </Section>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-5"
-        noValidate
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
         <PersonalSection
           register={register}
           control={control}
@@ -107,7 +103,8 @@ export function EmployeeAddForm({
 }: Props) {
   const { mutate: addEmployee, isPending } = useAddEmployee();
 
-  const submit = onSubmit ?? ((data: EmployeeAddFormValues) => addEmployee(data));
+  const submit =
+    onSubmit ?? ((data: EmployeeAddFormValues) => addEmployee(data));
   const saving = isSaving ?? isPending;
 
   return <EmployeeForm title={title} isSaving={saving} onSubmit={submit} />;

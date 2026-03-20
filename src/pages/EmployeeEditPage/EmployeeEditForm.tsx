@@ -5,7 +5,9 @@ import { useParams } from 'react-router';
 
 export function EmployeeEditForm() {
   const { id = '1' } = useParams();
-  const { mutate: editEmployee, isPending } = useEditEmployee({ employeeId: id });
+  const { mutate: editEmployee, isPending } = useEditEmployee({
+    employeeId: id,
+  });
 
   return (
     <EmployeeAddForm
@@ -15,5 +17,3 @@ export function EmployeeEditForm() {
     />
   );
 }
-
-
