@@ -52,6 +52,8 @@ const ScheduleManagementPage = () => {
 
   const handleDownloadRow = (rowId: string) => { console.log(rowId) };
 
+  console.log(tableSort)
+
   return (
     <div className="flex h-screen flex-col gap-5">
       <div className="m-5 mb-0 rounded-lg bg-(--color-card)">
