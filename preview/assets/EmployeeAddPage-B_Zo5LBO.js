@@ -1,0 +1,1 @@
+import{j as o}from"./index-DZe3yofc.js";import{E as m}from"./EmployeeAddForm-oMTj2Kp8.js";import"./Label-Cn_ZiIOQ.js";import"./zod-CRnWQ_I5.js";import"./schemas-Pcw6qERQ.js";import"./Section-C3elYTaG.js";import"./Input-DCg71C7w.js";import"./notification.service-CJpUu9j4.js";import"./Switch-B8lspc5p.js";function r(){return o.jsx(m,{})}const a=r;export{a as Component};
