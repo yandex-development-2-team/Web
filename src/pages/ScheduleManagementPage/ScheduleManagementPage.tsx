@@ -46,11 +46,11 @@ const ScheduleManagementPage = () => {
     setIsSortMenuOpen(false);
   };
 
-  const handleDeleteRow = (rowId: string) => {};
+  const handleDeleteRow = (rowId: string) => { console.log(rowId) };
 
-  const handleEditRow = (rowId: string) => {};
+  const handleEditRow = (rowId: string) => { console.log(rowId) };
 
-  const handleDownloadRow = (rowId: string) => {};
+  const handleDownloadRow = (rowId: string) => { console.log(rowId) };
 
   return (
     <div className="flex h-screen flex-col gap-5">
