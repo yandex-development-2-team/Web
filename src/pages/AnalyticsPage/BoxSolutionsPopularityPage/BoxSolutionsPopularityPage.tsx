@@ -1,16 +1,10 @@
+import { useMemo, useState } from 'react';
+import { isAfter, isBefore } from 'date-fns';
 import { SortIcon, UploadIcon } from '@/assets/icons';
 import { Button } from '@/components/ui/Button';
 import { DatePickerInput } from '@/components/ui/DatePickerInput/DatePickerInput';
+import { MOCK_DATA } from '@/mock/boxSolutionsPopularityPage.mock';
 import { cn } from '@/utils';
-import { isAfter, isBefore } from 'date-fns';
-import { useMemo, useState } from 'react';
-
-const MOCK_DATA = [
-  { id: '1', label: 'Третьяковка', value: 80, color: 'bg-chart-1' },
-  { id: '2', label: 'Экспериментариум', value: 65, color: 'bg-chart-2' },
-  { id: '3', label: 'Пушкинский музей', value: 32, color: 'bg-chart-3' },
-  { id: '4', label: 'ГЭЗ', value: 14, color: 'bg-chart-4' },
-];
 
 const BoxSolutionsPopularityPage = () => {
   const [date, setDate] = useState({ start: undefined, end: undefined });
