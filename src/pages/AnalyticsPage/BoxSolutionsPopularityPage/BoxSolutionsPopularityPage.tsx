@@ -8,8 +8,10 @@ import {
   PyramidChart,
 } from '@/components/ui/PyramidChart';
 import { DateRangePicker } from '@/components/ui/DateRangePicker';
+import { useFileDownload, useBoxPopularity } from '@/hooks';
 
 const BoxSolutionsPopularityPage = () => {
+  const { handleDownload } = useFileDownload();
   const [date, setDate] = useState<{
     start?: string;
     end?: string;
@@ -22,6 +24,8 @@ const BoxSolutionsPopularityPage = () => {
     start: null,
     end: null,
   });
+
+  const { data, refetch, isFetching } = useBoxPopularity(date.start, date.end);
 
   const sortedData = useMemo(() => {
     if (sortOption === 'asc') {
@@ -42,6 +46,10 @@ const BoxSolutionsPopularityPage = () => {
     if (!date.end) {
       setError((prev) => ({ ...prev, end: 'Не выбрана дата конца периода' }));
     }
+
+    if (date.start && date.end) {
+      refetch();
+    }
   };
 
   return (
@@ -60,8 +68,19 @@ const BoxSolutionsPopularityPage = () => {
               errors={error}
             />
             <div className={cn('flex w-55.5 gap-3 self-end')}>
-              <Button onClick={handleRange}>Показать</Button>
-              <Button size={'icon-lg'} variant={'default-secondary'}>
+              <Button
+                onClick={handleRange}
+                disabled={!date.start || !date.end || isFetching}
+              >
+                {isFetching ? 'Загрузка...' : 'Показать'}
+              </Button>
+              <Button
+                size={'icon-lg'}
+                variant={'default-secondary'}
+                className={cn('border-muted-foreground size-11.5 border')}
+                onClick={() => handleDownload({ path: '', id: '' })}
+                disabled={!data}
+              >
                 <UploadIcon className="size-6" />
               </Button>
             </div>
