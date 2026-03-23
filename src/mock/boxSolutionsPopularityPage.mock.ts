@@ -1,3 +1,10 @@
+export type ChartItemType = {
+  id: string;
+  label: string;
+  value: number;
+  color: string;
+};
+
 export const MOCK_DATA = [
   { id: '1', label: 'Третьяковка', value: 80, color: 'bg-chart-1' },
   { id: '2', label: 'Экспериментариум', value: 65, color: 'bg-chart-2' },

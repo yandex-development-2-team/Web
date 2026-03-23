@@ -5,6 +5,10 @@ import { Button } from '@/components/ui/Button';
 import { DatePickerInput } from '@/components/ui/DatePickerInput/DatePickerInput';
 import { MOCK_DATA } from '@/mock/boxSolutionsPopularityPage.mock';
 import { cn } from '@/utils';
+import {
+  ChartColorDescriptionItem,
+  PyramidChart,
+} from '@/components/ui/PyramidChart';
 
 const BoxSolutionsPopularityPage = () => {
   const [date, setDate] = useState({ start: undefined, end: undefined });
@@ -107,42 +111,8 @@ const BoxSolutionsPopularityPage = () => {
           <SortIcon />
         </Button>
         <div className="flex flex-col items-center gap-13">
-          <div
-            className={cn(
-              'flex h-110.75 w-full max-w-172 flex-col gap-5 transition-all duration-300',
-              {
-                ['[clip-path:polygon(50%_0%,100%_100%,0%_100%)]']:
-                  sortOption === 'asc',
-                ['[clip-path:polygon(0%_0%,100%_0%,50%_100%)]']:
-                  sortOption === 'desc',
-              },
-            )}
-          >
-            {sortedData.map((item) => (
-              <div
-                key={item.id}
-                className={cn(
-                  `${item.color}`,
-                  'flex flex-1 items-center justify-center text-center',
-                )}
-              >
-                <span className="text-white">{item.value}%</span>
-              </div>
-            ))}
-          </div>
-          <div className="grid w-full grid-cols-[auto_auto] grid-rows-2 justify-start gap-x-20 gap-y-5">
-            {MOCK_DATA.map((item) => (
-              <div className={cn('flex items-center gap-5')} key={item.id}>
-                <div
-                  className={cn(
-                    `${item.color}`,
-                    'flex size-10 items-center gap-3 rounded-lg',
-                  )}
-                ></div>
-                <span className="font-semibold">{item.label}</span>
-              </div>
-            ))}
-          </div>
+          <PyramidChart chartItems={sortedData} sortVariant={sortOption} />
+          <ChartColorDescriptionItem chartItems={MOCK_DATA} />
         </div>
       </div>
     </div>
