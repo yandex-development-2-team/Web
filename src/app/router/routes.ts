@@ -45,4 +45,7 @@ export type PathParams = {
   [ROUTES.APPLICATIONS_SPECIAL_PROJECTS_DETAILS]: {
     projectId: string;
   };
+  [ROUTES.ANALYTICS_DETAILS]: {
+    id: string;
+  };
 };

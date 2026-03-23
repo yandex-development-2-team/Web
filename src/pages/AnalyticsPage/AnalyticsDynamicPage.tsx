@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import { useFileUpload } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchFileList } from '@/services/uploadFile.service';
-import { UploadList } from '@/components/ui/UploadList/UploadList';
+import { UploadList } from '@/components/ui/UploadList';
 
 const DEFAULT_PAGE_DATA = {
   title: 'Рабочие моментики',

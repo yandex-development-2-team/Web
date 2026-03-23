@@ -1,5 +1,5 @@
 import { Input } from '@/components/ui/Input';
-import { Modal } from './Modal';
+import { Modal } from '@/components/ui/Modal';
 import { cn } from '@/utils';
 import { useState } from 'react';
 import { PlusIcon } from '@/assets/icons';

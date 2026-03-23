@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { PlusIcon } from '@/assets/icons';
 import { CreateButton } from '@/components/ui/Button';
 import { ButtonAddCard, ButtonCard } from '@/components/ui/Button';
-import { AddBlockModal } from '@/components/ui/Modal';
+import { AddBlockModal } from './AddBlockModal';
 import { cn } from '@/utils';
 import {
   ANALITICS_PAGES_DATA,
@@ -23,7 +23,11 @@ import { BoxModal } from '@/components/common/BoxModal';
 import { ProjectModal } from '@/components/common/SpecProjectModal';
 
 const AnalyticsPage = () => {
-  const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isOpenAddBlockModal,
+    open: openAddBlockModal,
+    close: closeAddBlockModal,
+  } = useModal();
   const {
     isOpen: isOpenBoxModal,
     open: openBoxModal,
@@ -85,12 +89,12 @@ const AnalyticsPage = () => {
         <ButtonAddCard
           className="max-w-85"
           icon={<PlusIcon />}
-          onClick={open}
+          onClick={openAddBlockModal}
         />
         <AddBlockModal
-          isOpen={isOpen}
+          isOpen={isOpenAddBlockModal}
           onSave={handleSave}
-          onClose={close}
+          onClose={closeAddBlockModal}
           title="Добавить блок"
         />
       </div>
