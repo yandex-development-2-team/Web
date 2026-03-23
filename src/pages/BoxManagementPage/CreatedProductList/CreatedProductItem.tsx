@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { cn } from '@/utils';
-import { BoxWithStarIcon, CloseIcon, PencilIcon } from '@/assets/icons';
-import { Button } from '@/components/ui/Button';
 import { DeleteModal } from '@/components/ui/Modal';
+import { ProductCard } from '@/components/common/ProductCard';
 import type { UnitProductType } from '@/services/product.service';
 import { ProjectModal } from '@/components/common/SpecProjectModal';
 import { BoxModal } from '@/components/common/BoxModal';
@@ -12,6 +10,7 @@ interface CreatedProductItemProps {
   id: string;
   item?: UnitProductType;
   mode?: 'box' | 'spec_projects';
+  order: number;
 }
 
 export function CreatedProductItem({
@@ -19,34 +18,27 @@ export function CreatedProductItem({
   id,
   item,
   mode = 'box',
+  order,
 }: CreatedProductItemProps) {
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const label =
+    mode === 'spec_projects'
+      ? `Спецпроект №${order}:`
+      : `Коробочное решение №${order}:`;
 
   return (
-    <div className="border-muted flex items-center justify-between rounded-lg border px-7 py-5">
-      <div className={'flex items-center gap-7 font-semibold'}>
-        <BoxWithStarIcon className="text-muted-foreground" />
-        {title}
-      </div>
-      <div className={cn('text-muted-foreground flex items-center')}>
-        <Button
-          size={'icon-lg'}
-          variant={'ghost'}
-          className="hover:text-foreground transition-all duration-300"
-          onClick={() => setIsOpenEdit(true)}
-        >
-          <PencilIcon />
-        </Button>
-        <Button
-          size={'icon-lg'}
-          variant={'ghost'}
-          className="hover:text-foreground transition-all duration-300"
-          onClick={() => setIsOpenDelete(true)}
-        >
-          <CloseIcon />
-        </Button>
-      </div>
+    <>
+      <ProductCard
+        label={label}
+        title={title}
+        description={item?.description}
+        image={item?.image}
+        isActive={item?.isActive}
+        onOpen={() => setIsOpenEdit(true)}
+        onEdit={() => setIsOpenEdit(true)}
+        onDelete={() => setIsOpenDelete(true)}
+      />
       <DeleteModal
         isOpen={isOpenDelete}
         itemId={id}
@@ -70,6 +62,6 @@ export function CreatedProductItem({
           item={item ? item : undefined}
         />
       )}
-    </div>
+    </>
   );
 }

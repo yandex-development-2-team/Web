@@ -13,13 +13,14 @@ export function CreatedProductList({
 }: CreatedProductsListProps) {
   return (
     <div className={cn('flex flex-col gap-5')}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <CreatedProductItem
           key={item.id}
           title={item.title ?? 'Название'}
           id={item.id}
           item={item}
           mode={productVariant}
+          order={index + 1}
         />
       ))}
     </div>
