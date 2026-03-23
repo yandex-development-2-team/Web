@@ -10,6 +10,7 @@ interface DatePickerInputProps {
   value?: string;
   onChange: (iso: string | undefined) => void;
   error?: string;
+  latestDate?: Date;
 }
 
 export function DatePickerInput({
@@ -18,6 +19,7 @@ export function DatePickerInput({
   value,
   onChange,
   error,
+  latestDate,
 }: DatePickerInputProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -59,7 +61,12 @@ export function DatePickerInput({
       </div>
       {open && (
         <div className="absolute top-full left-0 z-50 mt-1">
-          <Calendar mode="single" selected={selected} onSelect={handleSelect} />
+          <Calendar
+            mode="single"
+            selected={selected}
+            onSelect={handleSelect}
+            disabled={latestDate ? { after: latestDate } : []}
+          />
         </div>
       )}
     </div>
