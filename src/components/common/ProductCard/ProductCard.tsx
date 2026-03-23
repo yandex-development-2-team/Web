@@ -75,10 +75,10 @@ function ProductCardPreview({
       </div>
 
       <div className="min-w-0 space-y-3 px-1">
-        <h3 className="break-words text-[clamp(1.375rem,4vw,2rem)] leading-tight font-semibold text-balance">
+        <h3 className="text-[clamp(1.375rem,4vw,2rem)] leading-tight font-semibold text-balance break-words">
           {title}
         </h3>
-        <p className="text-foreground/85 min-h-[4.5rem] break-words text-sm leading-6 text-pretty sm:text-base sm:leading-7">
+        <p className="text-foreground/85 min-h-[4.5rem] text-sm leading-6 text-pretty break-words sm:text-base sm:leading-7">
           {description ?? 'Описание продукта пока не добавлено.'}
         </p>
       </div>
@@ -113,7 +113,7 @@ export function ProductCard({
         <Button
           type="button"
           variant="ghost"
-          className="group text-left block h-auto w-full rounded-none p-6 hover:bg-transparent"
+          className="group block h-auto w-full rounded-none p-6 text-left hover:bg-transparent"
           onClick={onOpen}
         >
           <div className="flex w-full flex-col gap-5">

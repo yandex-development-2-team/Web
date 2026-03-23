@@ -1,5 +1,5 @@
-import { cn } from '@/utils';
 import { CreatedProductItem } from './CreatedProductItem';
+import { cn } from '@/utils';
 import type { UnitProductType } from '@/services/product.service';
 
 interface CreatedProductsListProps extends React.PropsWithChildren {

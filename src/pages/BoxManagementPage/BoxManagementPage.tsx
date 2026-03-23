@@ -26,7 +26,7 @@ const BoxManagementPage = () => {
       </div>
       <div className={cn('bg-card flex h-full flex-col gap-5 rounded-lg p-5')}>
         <h4 className={cn('font-semibold')}>Список коробок и спецпроектов</h4>
-        <div className={cn('grid h-full lg:grid-cols-2 gap-5')}>
+        <div className={cn('grid h-full gap-5 lg:grid-cols-2')}>
           <ProductsList
             createTitle="Создать коробку"
             onCreateItem={() => setIsOpenBoxModal(true)}
