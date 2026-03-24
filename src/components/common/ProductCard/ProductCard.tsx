@@ -56,7 +56,8 @@ export function ProductCard({
             }}
             className={cn(
               'h-44 w-full object-cover',
-              onOpen && 'transition-transform duration-300 group-hover:scale-[1.02]',
+              onOpen &&
+                'transition-transform duration-300 group-hover:scale-[1.02]',
             )}
           />
         ) : (
@@ -66,7 +67,6 @@ export function ProductCard({
             </span>
           </div>
         )}
-
 
         {typeof isActive === 'boolean' && (
           <span
