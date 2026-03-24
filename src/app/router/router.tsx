@@ -63,6 +63,10 @@ export const router = createBrowserRouter(
               lazy: () => import('@/pages/AnalyticsPage/AnalyticsPage'),
             },
             {
+              path: ROUTES.ANALYTICS_DETAILS,
+              lazy: () => import('@/pages/AnalyticsPage/AnalyticsDynamicPage'),
+            },
+            {
               path: ROUTES.AVERAGE_BOX_ATTENDANCE,
               lazy: () =>
                 import('@/pages/AnalyticsPage/AverageBoxAttendancePage/AverageBoxAttendancePage'),
@@ -108,6 +112,10 @@ export const router = createBrowserRouter(
             {
               path: ROUTES.EMPLOYEE_CARD,
               lazy: () => import('@/pages/EmployeeCardPage/EmployeeCardPage'),
+            },
+            {
+              path: ROUTES.EMPLOYEE_EDIT,
+              lazy: () => import('@/pages/EmployeeEditPage/EmployeeEditPage'),
             },
             {
               path: ROUTES.SYSTEM_SETTINGS,

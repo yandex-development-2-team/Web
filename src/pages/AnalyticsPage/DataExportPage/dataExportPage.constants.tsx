@@ -4,7 +4,7 @@ import {
   UserPlusIcon,
 } from '@/assets/icons';
 import { FILES_LIST } from '@/mock/exporting-files-page.mock';
-import { UploadList } from './UploadList/UploadList';
+import { UploadList } from '@/components/ui/UploadList/UploadList';
 
 export const TABS_ID = {
   employees: 'employees',

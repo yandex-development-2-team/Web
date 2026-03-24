@@ -4,9 +4,9 @@ import { employeeCardPath } from '@/app/router/routes';
 import { showNotification } from '@/services/notification.service';
 import type { EmployeeAddFormValues } from '@/utils/employeeAddValidator';
 
-type UseAddEmployeeOptions = { onSuccess?: () => void; employeeId?: string };
+type UseEditEmployeeOptions = { onSuccess?: () => void; employeeId: string };
 
-export const useAddEmployee = (options?: UseAddEmployeeOptions) => {
+export const useEditEmployee = (options?: UseEditEmployeeOptions) => {
   return useMutation({
     mutationFn: async (data: EmployeeAddFormValues) => {
       // В этой задаче только сбор данных формы, без отправки на бэк.
@@ -15,9 +15,8 @@ export const useAddEmployee = (options?: UseAddEmployeeOptions) => {
     onSuccess: () => {
       showNotification({
         type: 'success',
-        message: 'Сотрудник успешно добавлен',
+        message: 'Изменения успешно сохранены',
       });
-      // Пока без бэка — навигация на моковый id, либо на id из options.
       navigate(employeeCardPath(options?.employeeId ?? '1'));
       options?.onSuccess?.();
     },

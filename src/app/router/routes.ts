@@ -16,6 +16,7 @@ export const ROUTES = {
   SUPPORT: '/support',
 
   ANALYTICS: '/analytics',
+  ANALYTICS_DETAILS: '/analytics/:id',
 
   AVERAGE_BOX_ATTENDANCE: '/analytics/average-box-attendance',
   APPLICATIONS_WORK: '/analytics/applications-work',
@@ -27,12 +28,17 @@ export const ROUTES = {
   BOX_MANAGEMENT: '/box-management',
   USER_PERMISSIONS: '/user-permissions',
   EMPLOYEE_ADD: '/employee-add',
-  EMPLOYEE_CARD: '/employee-card',
+  EMPLOYEE_CARD: '/employee-card/:id',
+  EMPLOYEE_EDIT: '/employee-card/:id/edit',
   SYSTEM_SETTINGS: '/system-settings',
 
   FORBIDDEN: '/403',
   NOT_FOUND: '/404',
 } as const;
+
+export const employeeCardPath = (id: string) => `/employee-card/${id}` as const;
+export const employeeEditPath = (id: string) =>
+  `/employee-card/${id}/edit` as const;
 
 export type PathParams = {
   [ROUTES.BOX_DETAILS]: {
@@ -43,5 +49,14 @@ export type PathParams = {
   };
   [ROUTES.APPLICATIONS_SPECIAL_PROJECTS_DETAILS]: {
     projectId: string;
+  };
+  [ROUTES.ANALYTICS_DETAILS]: {
+    id: string;
+  };
+  [ROUTES.EMPLOYEE_CARD]: {
+    id: string;
+  };
+  [ROUTES.EMPLOYEE_EDIT]: {
+    id: string;
   };
 };

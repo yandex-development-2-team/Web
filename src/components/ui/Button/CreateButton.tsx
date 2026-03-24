@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
-import { Button } from '@/components/ui/Button';
+import { Button } from './Button';
 import { PlusIcon } from '@/assets/icons';
 import { cn } from '@/utils';
 
