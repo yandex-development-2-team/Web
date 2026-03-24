@@ -1,0 +1,1 @@
+import{r as e}from"./index-CK-bthz8.js";const r=t=>e.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",...t},e.createElement("path",{stroke:"currentColor",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1.5,d:"M6 12h12M12 6v12"}));export{r as S};
