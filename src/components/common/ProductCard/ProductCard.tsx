@@ -1,14 +1,14 @@
-import { useEffect, useMemo, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
 import { EditPencilIcon, TrashIcon } from '@/assets/icons';
 import { cn } from '@/utils';
-import productPlaceholder from '@/assets/images/Card_box_image.png';
 
 type ProductCardProps = {
   label?: string;
   title: string;
   description?: string;
-  image?: File | string | null;
+  image?: string;
+  fallbackImage?: string;
   isActive?: boolean;
   activeLabel?: string;
   onOpen?: () => void;
@@ -19,47 +19,55 @@ type ProductCardProps = {
   deleteLabel?: ReactNode;
 };
 
-function ProductCardPreview({
+export function ProductCard({
   label,
   title,
   description,
   image,
+  fallbackImage,
   isActive,
   activeLabel,
-}: Pick<
-  ProductCardProps,
-  'label' | 'title' | 'description' | 'image' | 'isActive' | 'activeLabel'
->) {
-  const filePreview = useMemo(
-    () => (image instanceof File ? URL.createObjectURL(image) : null),
-    [image],
-  );
+  onOpen,
+  onEdit,
+  onDelete,
+  className,
+  editLabel,
+  deleteLabel,
+}: ProductCardProps) {
+  const imageSrc = image ?? fallbackImage;
 
-  useEffect(() => {
-    return () => {
-      if (filePreview) {
-        URL.revokeObjectURL(filePreview);
-      }
-    };
-  }, [filePreview]);
-
-  const imageSrc = useMemo(() => {
-    if (typeof image === 'string') return image;
-    if (filePreview) return filePreview;
-    return productPlaceholder;
-  }, [filePreview, image]);
-
-  return (
-    <>
+  const cardContent = (
+    <div className="flex w-full flex-col gap-5">
       {label && (
         <p className="text-muted-foreground px-1 text-sm leading-5">{label}</p>
       )}
+
       <div className="relative overflow-hidden rounded-3xl">
-        <img
-          src={imageSrc}
-          alt={title}
-          className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-        />
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={title}
+            loading="lazy"
+            onError={(e) => {
+              if (fallbackImage) {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = fallbackImage;
+              }
+            }}
+            className={cn(
+              'h-44 w-full object-cover',
+              onOpen && 'transition-transform duration-300 group-hover:scale-[1.02]',
+            )}
+          />
+        ) : (
+          <div className="bg-muted text-muted-foreground flex h-44 w-full items-center justify-center rounded-3xl border border-dashed border-black/10">
+            <span className="px-4 text-center text-sm font-medium">
+              Изображение отсутствует
+            </span>
+          </div>
+        )}
+
+
         {typeof isActive === 'boolean' && (
           <span
             className={cn(
@@ -82,25 +90,8 @@ function ProductCardPreview({
           {description ?? 'Описание продукта пока не добавлено.'}
         </p>
       </div>
-    </>
+    </div>
   );
-}
-
-export function ProductCard({
-  label,
-  title,
-  description,
-  image,
-  isActive,
-  activeLabel,
-  onOpen,
-  onEdit,
-  onDelete,
-  className,
-  editLabel,
-  deleteLabel,
-}: ProductCardProps) {
-  const isInteractive = typeof onOpen === 'function';
 
   return (
     <article
@@ -109,35 +100,17 @@ export function ProductCard({
         className,
       )}
     >
-      {isInteractive ? (
+      {onOpen ? (
         <Button
           type="button"
           variant="ghost"
           className="group block h-auto w-full rounded-none p-6 text-left hover:bg-transparent"
           onClick={onOpen}
         >
-          <div className="flex w-full flex-col gap-5">
-            <ProductCardPreview
-              label={label}
-              title={title}
-              description={description}
-              image={image}
-              isActive={isActive}
-              activeLabel={activeLabel}
-            />
-          </div>
+          {cardContent}
         </Button>
       ) : (
-        <div className="group flex flex-col gap-5 p-6">
-          <ProductCardPreview
-            label={label}
-            title={title}
-            description={description}
-            image={image}
-            isActive={isActive}
-            activeLabel={activeLabel}
-          />
-        </div>
+        <div className="group flex flex-col gap-5 p-6">{cardContent}</div>
       )}
 
       <div className="border-border/70 flex items-center justify-between border-t px-6 py-5">
@@ -150,6 +123,7 @@ export function ProductCard({
         >
           {editLabel ?? <EditPencilIcon />}
         </Button>
+
         <Button
           type="button"
           variant="default-secondary"
