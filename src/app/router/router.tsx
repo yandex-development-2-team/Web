@@ -63,6 +63,10 @@ export const router = createBrowserRouter(
               lazy: () => import('@/pages/AnalyticsPage/AnalyticsPage'),
             },
             {
+              path: ROUTES.ANALYTICS_DETAILS,
+              lazy: () => import('@/pages/AnalyticsPage/AnalyticsDynamicPage'),
+            },
+            {
               path: ROUTES.AVERAGE_BOX_ATTENDANCE,
               lazy: () =>
                 import('@/pages/AnalyticsPage/AverageBoxAttendancePage/AverageBoxAttendancePage'),

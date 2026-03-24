@@ -16,6 +16,7 @@ export const ROUTES = {
   SUPPORT: '/support',
 
   ANALYTICS: '/analytics',
+  ANALYTICS_DETAILS: '/analytics/:id',
 
   AVERAGE_BOX_ATTENDANCE: '/analytics/average-box-attendance',
   APPLICATIONS_WORK: '/analytics/applications-work',
@@ -48,6 +49,9 @@ export type PathParams = {
   };
   [ROUTES.APPLICATIONS_SPECIAL_PROJECTS_DETAILS]: {
     projectId: string;
+  };
+  [ROUTES.ANALYTICS_DETAILS]: {
+    id: string;
   };
   [ROUTES.EMPLOYEE_CARD]: {
     id: string;

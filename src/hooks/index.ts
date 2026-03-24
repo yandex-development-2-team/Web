@@ -5,3 +5,4 @@ export { useCreateProduct } from './productManagement/useCreateProduct';
 export { useUpdateProduct } from './productManagement/useEditProduct';
 export { useFileDownload } from './fileDownload/useFileDownload';
 export { useLogin } from './login/useLogin';
+export { useFileUpload } from './fileUpload/useFileUpload';
