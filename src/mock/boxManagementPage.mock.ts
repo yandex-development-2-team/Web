@@ -53,62 +53,40 @@ export const BOXES_AND_SPECPROJECTS_LIST: {
   boxes: [
     {
       id: 'box_1',
-      title: 'Private Excursion',
-      description:
-        'Уютное путешествие по шедеврам русского искусства с персональным гидом.',
-      isActive: true,
+      title: 'Название коробки',
     },
     {
       id: 'box_2',
-      title: 'Evening Gallery Walk',
-      description:
-        'Камерный маршрут по вечерним экспозициям с музыкальным сопровождением.',
-      isActive: false,
+      title: 'Название коробки',
     },
     {
       id: 'box_3',
-      title: 'Curator Talk',
-      description:
-        'Авторская встреча с куратором и подробным разбором ключевых работ.',
-      isActive: true,
+      title: 'Название коробки',
     },
     {
       id: 'box_4',
-      title: 'Family Weekend',
-      description:
-        'Семейный формат с интерактивом, короткими экскурсиями и заданиями.',
-      isActive: true,
+      title: 'Название коробки',
     },
   ],
   specialProjects: [
     {
       id: 'specproject_1',
-      title: 'Museum Residency',
-      description:
-        'Спецпроект с лекциями, кураторскими маршрутами и творческими практиками.',
+      title: 'Название спецпроекта',
+      description: 'Описание проекта',
       isActive: true,
       image: null,
     },
     {
       id: 'specproject_2',
-      title: 'Open Studio',
-      description:
-        'Публичная программа с художниками и серией открытых студий.',
-      isActive: false,
+      title: 'Название спецпроекта',
     },
     {
       id: 'specproject_3',
-      title: 'Night at the Museum',
-      description:
-        'Ночная серия событий с перформансами, экскурсиями и дискуссиями.',
-      isActive: true,
+      title: 'Название спецпроекта',
     },
     {
       id: 'specproject_4',
-      title: 'Archive Lab',
-      description:
-        'Исследовательский проект о музейных архивах и работе с коллекцией.',
-      isActive: true,
+      title: 'Название спецпроекта',
     },
   ],
 };

@@ -1,5 +1,5 @@
-import { CreatedProductItem } from './CreatedProductItem';
 import { cn } from '@/utils';
+import { CreatedProductItem } from './CreatedProductItem';
 import type { UnitProductType } from '@/services/product.service';
 
 interface CreatedProductsListProps extends React.PropsWithChildren {
@@ -13,14 +13,13 @@ export function CreatedProductList({
 }: CreatedProductsListProps) {
   return (
     <div className={cn('flex flex-col gap-5')}>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <CreatedProductItem
           key={item.id}
           title={item.title ?? 'Название'}
           id={item.id}
           item={item}
           mode={productVariant}
-          order={index + 1}
         />
       ))}
     </div>
