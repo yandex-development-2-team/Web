@@ -6,3 +6,4 @@ export { useUpdateProduct } from './productManagement/useEditProduct';
 export { useFileDownload } from './fileDownload/useFileDownload';
 export { useLogin } from './login/useLogin';
 export { useBoxPopularity } from './boxPopularity/useBoxPopularity';
+export { useFileUpload } from './fileUpload/useFileUpload';

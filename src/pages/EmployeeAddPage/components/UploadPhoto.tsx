@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { showNotification } from '@/services/notification.service';
 import { cn } from '@/utils';
 import { UploadIcon } from './index';
@@ -12,16 +12,15 @@ type Props = {
 
 export function UploadPhoto({ value, onChange, className }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [preview, setPreview] = useState<string | null>(null);
+  const preview = value ? URL.createObjectURL(value) : null;
 
   useEffect(() => {
-    if (value) {
-      const url = URL.createObjectURL(value);
-      setPreview(url);
-      return () => URL.revokeObjectURL(url);
-    }
-    setPreview(null);
-  }, [value]);
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   const handleSelect = (file?: File) => {
     if (!file) return;

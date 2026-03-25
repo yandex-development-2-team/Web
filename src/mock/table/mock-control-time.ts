@@ -56,6 +56,7 @@ export const COLUMNS_CONTROL_TIME_NAME: Column<ControlTimeTable>[] = [
 
 export const DATA_CONTROL_TIME: ControlTimeTable[] = [
   {
+    id: uuid(),
     placeName: 'Научный день рождения',
     time: '15:00',
     place: 'Экспериментариум',
@@ -65,6 +66,7 @@ export const DATA_CONTROL_TIME: ControlTimeTable[] = [
     countBooked: 150,
   },
   {
+    id: uuid(),
     placeName: 'Встреча с друзьями',
     time: '15:00',
     place: 'Экспериментариум',
@@ -74,6 +76,7 @@ export const DATA_CONTROL_TIME: ControlTimeTable[] = [
     countBooked: 150,
   },
   {
+    id: uuid(),
     placeName: 'Тимбилдинг',
     time: '17:00',
     place: 'Экспериментариум',
@@ -83,6 +86,7 @@ export const DATA_CONTROL_TIME: ControlTimeTable[] = [
     countBooked: 150,
   },
   {
+    id: uuid(),
     placeName: 'Шоу «Нитра»',
     time: '19:00',
     place: 'Экспериментариум',
