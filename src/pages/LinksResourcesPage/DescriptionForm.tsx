@@ -5,27 +5,27 @@ import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 import { cn } from '@/utils';
 
-const TextareaSchema = z.object({
+const textareaSchema = z.object({
   content: z
     .string()
     .min(1, 'Поле обязательно')
     .max(500, 'Максимум 500 символов'),
 });
 
-type TextareaSchemaType = z.infer<typeof TextareaSchema>;
+type TextareaSchemaType = z.infer<typeof textareaSchema>;
 
-interface TextFormProps extends React.PropsWithChildren {
+interface DescriptionFormProps extends React.PropsWithChildren {
   onSubmit?: (data: TextareaSchemaType) => void;
 }
 
-export function TextForm({ onSubmit }: TextFormProps) {
+export function DescriptionForm({ onSubmit }: DescriptionFormProps) {
   const {
     handleSubmit,
     register,
     formState: { errors },
     reset,
   } = useForm({
-    resolver: zodResolver(TextareaSchema),
+    resolver: zodResolver(textareaSchema),
   });
 
   const handleFormSubmit = (data: TextareaSchemaType) => {
