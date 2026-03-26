@@ -13,6 +13,7 @@ const doubleInputSchema = z.object({
 type DoubleInputSchemaType = z.infer<typeof doubleInputSchema>;
 
 interface ResourceFormProps extends React.PropsWithChildren {
+  // fieldItems?: { label: string; placeholder?: string }[];
   onSubmit?: (data: DoubleInputSchemaType) => void;
 }
 
@@ -38,17 +39,21 @@ export function ResourceForm({ onSubmit }: ResourceFormProps) {
       className={cn('grid grid-cols-[1fr_auto] gap-5 py-5')}
     >
       <div className="flex flex-col gap-5">
-        <div className="flex flex-col gap-2">
-          <Input {...register('name')} error={errors.name?.message} />
-        </div>
-        <div className="flex flex-col gap-2">
-          <Input {...register('url')} error={errors.url?.message} />
-        </div>
+        <Input
+          {...register('name')}
+          placeholder="Название"
+          label="Название"
+          error={errors.name?.message}
+        />
+        <Input
+          {...register('url')}
+          placeholder="Ссылка"
+          label="URL"
+          error={errors.url?.message}
+        />
       </div>
       <div className="flex items-end justify-end gap-2">
-        <Button variant={'default-secondary'} type="submit">
-          Загрузить
-        </Button>
+        <Button type="submit">Загрузить</Button>
       </div>
     </form>
   );
