@@ -1,19 +1,10 @@
 import { useForm } from 'react-hook-form';
-import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { cn } from '@/utils';
-
-const doubleInputSchema = z.object({
-  name: z.string().min(1, 'Название обязательно'),
-  url: z.url('Введите корректный URL'),
-});
-
-type DoubleInputSchemaType = z.infer<typeof doubleInputSchema>;
+import { cn, doubleInputSchema, type DoubleInputSchemaType } from '@/utils';
 
 interface ResourceFormProps extends React.PropsWithChildren {
-  // fieldItems?: { label: string; placeholder?: string }[];
   onSubmit?: (data: DoubleInputSchemaType) => void;
 }
 
@@ -28,7 +19,6 @@ export function ResourceForm({ onSubmit }: ResourceFormProps) {
   });
 
   const handleFormSubmit = (data: DoubleInputSchemaType) => {
-    console.log(data, ' resource form');
     onSubmit?.(data);
     reset();
   };
@@ -36,7 +26,7 @@ export function ResourceForm({ onSubmit }: ResourceFormProps) {
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className={cn('grid grid-cols-[1fr_auto] gap-5 py-5')}
+      className={cn('grid grid-cols-[1fr_auto] gap-5')}
     >
       <div className="flex flex-col gap-5">
         <Input
@@ -53,7 +43,9 @@ export function ResourceForm({ onSubmit }: ResourceFormProps) {
         />
       </div>
       <div className="flex items-end justify-end gap-2">
-        <Button type="submit">Загрузить</Button>
+        <Button type="submit" className="px-15.5">
+          Загрузить
+        </Button>
       </div>
     </form>
   );
