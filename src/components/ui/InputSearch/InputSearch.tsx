@@ -7,12 +7,11 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
-import { CloseIcon, SearchIcon } from '@/assets/icons';
 import { useSearch } from '@/hooks';
 import { cn } from '@/utils';
+import { CloseIcon, SearchIcon } from '@/assets/icons';
 
 type InputSearchOption = {
   id: string;
@@ -153,7 +152,9 @@ export function InputSearch<T extends InputSearchOption = InputSearchOption>({
     query.trim().length >= minSearchLength &&
     (isLoading || hasSearched);
   const activeDescendantId =
-    highlightedIndex >= 0 ? `${listboxId}-option-${highlightedIndex}` : undefined;
+    highlightedIndex >= 0
+      ? `${listboxId}-option-${highlightedIndex}`
+      : undefined;
 
   return (
     <div ref={rootRef} className="relative w-full">
@@ -209,7 +210,11 @@ export function InputSearch<T extends InputSearchOption = InputSearchOption>({
 
       {showDropdown && (
         <div className="bg-card border-border absolute top-full right-0 left-0 z-20 mt-2 overflow-hidden rounded-lg border shadow-lg">
-          <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
+          <ul
+            id={listboxId}
+            role="listbox"
+            className="max-h-72 overflow-y-auto py-1"
+          >
             {isLoading ? (
               <li className="text-muted-foreground px-4 py-3 text-sm">
                 {searchingText}
