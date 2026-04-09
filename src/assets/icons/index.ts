@@ -32,6 +32,7 @@ export { default as EditIcon } from './edit-table.svg?react';
 export { default as PlusIcon } from './plus-icon.svg?react';
 export { default as BoxWithStarIcon } from './box-with-star-icon.svg?react';
 export { default as PencilIcon } from './pencil-icon.svg?react';
+export { default as SearchIcon } from './search-simple-24.svg?react';
 export { default as EditPencilIcon } from './edit-pencil.svg?react';
 export { default as MagicStickIcon } from './magic-stick-icon.svg?react';
 export { default as TimeIcon } from './time-icon.svg?react';
